@@ -1,0 +1,20 @@
+.link-underline {
+  border-bottom-width: 0;
+  background-image: linear-gradient(transparent, transparent),
+    linear-gradient(#fff, #fff);
+  background-size: 0 3px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  /* transition: background-size 0.3s ease-out; */
+  transition: background-size 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* easeOutQuart */
+  
+}
+.link-underline-black {
+  background-image: linear-gradient(transparent, transparent),
+    linear-gradient(#06b6d4, #10b981);
+}
+
+.link-underline:hover {
+  background-size: 100% 3px;
+  background-position: 0 100%;
+}
