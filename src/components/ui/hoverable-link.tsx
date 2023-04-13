@@ -15,7 +15,7 @@ export default function HoverableLink({ href, label, newTab = true }: Props) {
       href={href}
       className="text-transparent transition-colors bg-clip-text bg-gradient-to-r from-cyan-500 to-emerald-500"
     >
-      <span className="link link-underline link-underline-black">@{label}</span>
+      <span className="link link-underline link-underline-black">{label}</span>
     </Link>
   )
 }

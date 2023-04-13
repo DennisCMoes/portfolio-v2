@@ -16,8 +16,10 @@ export default function ProjectCard({ icon, title, description }: Props) {
         <p className="text-5xl">{icon}</p>
       </div>
       <div>
-        <p className="text-5xl text-secondary-light">{title}</p>
-        <p className="text-3xl text-tertiary-light">{description}</p>
+        <p className="text-4xl md:text-5xl text-secondary-light">{title}</p>
+        <p className="text-2xl md:text-3xl text-tertiary-light">
+          {description}
+        </p>
       </div>
     </Link>
   )

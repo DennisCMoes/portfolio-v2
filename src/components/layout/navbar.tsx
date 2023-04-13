@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Navbar() {
   return (
-    <nav className="w-full py-2 inline-flex items-center justify-center">
+    <nav className="w-full py-2 px-4 md:px-0 inline-flex items-center justify-center">
       <div className="max-w-4xl w-full flex-row inline-flex justify-between">
         <div>
           <Link href="/">
@@ -23,7 +23,7 @@ export default function Navbar() {
             </svg>
           </Link>
         </div>
-        <div className="inline-flex items-center justify-between gap-12">
+        <div className="inline-flex items-center justify-between gap-4 md:gap-12">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
           <Link href="/projects">Projects</Link>

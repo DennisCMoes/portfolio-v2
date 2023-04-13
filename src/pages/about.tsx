@@ -18,10 +18,10 @@ export default function About() {
       <main
         className={`${inter.className} bg-background-light min-h-screen px-4 py-12 md:py-32`}
       >
-        <section className="max-w-4xl mx-auto space-y-12 text-secondary-light">
+        <section className="max-w-4xl mx-auto space-y-12 text-secondary-light text-2xl md:text-3xl">
           <div>
-            <p className="text-3xl">
-              I love working on{' '}
+            <p>
+              I love working on my{' '}
               <HoverableLink
                 href="projects"
                 label="side projects"
@@ -59,7 +59,7 @@ export default function About() {
             </small>
           </div>
           <div>
-            <div className="text-3xl space-y-8">
+            <div className="space-y-8">
               <p>
                 Hello! My name is Dennis and I&apos;m a software engineering
                 student who is based in the picturesque Amsterdam. I am
@@ -111,7 +111,7 @@ export default function About() {
               Me sitting behind my desk coding
             </small>
           </div>
-          <div className="text-3xl space-y-8">
+          <div className="space-y-8">
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
               dolorum quis pariatur, blanditiis dolorem et non mollitia aliquid
