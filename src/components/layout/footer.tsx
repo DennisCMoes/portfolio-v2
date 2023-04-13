@@ -8,7 +8,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-primary-light py-4 w-full inline-flex items-center justify-center flex-col">
+    <footer className="bg-primary-light p-4 w-full inline-flex items-center justify-center flex-col">
       <div className="max-w-4xl w-full text-2xl text-left space-y-2">
         <p>
           I designed and built this website with NextJS. Check on{' '}

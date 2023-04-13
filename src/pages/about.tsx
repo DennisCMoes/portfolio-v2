@@ -16,7 +16,7 @@ export default function About() {
         <title>About</title>
       </Head>
       <main
-        className={`${inter.className} bg-background-light min-h-screen px-4 py-32`}
+        className={`${inter.className} bg-background-light min-h-screen px-4 py-12 md:py-32`}
       >
         <section className="max-w-4xl mx-auto space-y-12 text-secondary-light">
           <div>
@@ -32,7 +32,6 @@ export default function About() {
               Here are the two most notable things
             </p>
           </div>
-          {/* <div className="inline-flex flex-row my-4 gap-4 w-full"> */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <ProjectCard
               icon="📚"
@@ -46,7 +45,7 @@ export default function About() {
             />
           </div>
           <div>
-            <div className="relative w-full overflow-hidden aspect-[21/9] bg-primary-light inline-flex items-center justify-center rounded-xl">
+            <div className="relative w-full overflow-hidden aspect-square md:aspect-[21/9] bg-primary-light inline-flex items-center justify-center rounded-xl">
               <Image
                 src={MeImage}
                 alt="Me describing plans for our group project to the class"
@@ -98,7 +97,7 @@ export default function About() {
             </div>
           </div>
           <div>
-            <div className="relative w-full aspect-[21/9] bg-secondary-light inline-flex items-center justify-center rounded-xl">
+            <div className="relative w-full aspect-square md:aspect-[21/9] bg-secondary-light inline-flex items-center justify-center rounded-xl">
               <Image
                 src={MeCoding}
                 className="p-8"

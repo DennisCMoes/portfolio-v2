@@ -2,6 +2,12 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import { useRef } from 'react'
+import Image from 'next/image'
+
+import SelfPortrait from '../../public/images/self-portrait.jpeg'
+import HoverableLink from '@/components/ui/hoverable-link'
+import SkillCard from '@/components/ui/skill-card'
+import ProjectCard from '@/components/project-card'
 
 const inter = Inter({ subsets: ['latin'], weight: '400' })
 
@@ -20,108 +26,150 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={inter.className + ' bg-background-light'}>
-        <section
-          id="intro"
-          className="flex min-h-screen w-full items-center justify-center flex-col"
-        >
-          <div>
-            <p className="inline-flex items-center gap-2 text-2xl text-tertiary">
-              About me & other things I do
-              <span>
+      <main
+        className={`${inter.className} bg-background-light text-secondary-light`}
+      >
+        <section className="min-h-screen max-w-4xl mx-auto space-y-64 px-4 py-12 md:py-32">
+          <div className="w-full inline-flex flex-col md:flex-row gap-2 bg-primary-light aspect-[21/9] rounded-xl p-4">
+            <div className="w-full md:w-2/3 inline-flex flex-col justify-between space-y-4">
+              <p className="text-4xl">Welcome stranger</p>
+              <p className="text-2xl">
+                Who am I, you ask? Well, I&apos;m Dennis. Your enthusiastic
+                student who&apos;s got big dreams of changing the world with my
+                billion-dollar startup idea (which, admittedly, changes on the
+                daily). I&apos;ll admin, I can be a bit to ambitious at times,
+                but that&apos;s just a reflection of my passion!
+              </p>
+              {/* TODO: Add animation on hover move to right and back */}
+              {/* TODO: Change the placement of the image on mobile. From below text to above text */}
+              <Link
+                href="/about"
+                className="mt-2 md:mt-0 inline-flex flex-row gap-2 justify-center items-center py-2 px-8 bg-secondary-light text-primary-light rounded-md"
+              >
+                Read my bio
                 <svg
                   aria-hidden="true"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="2"
+                  stroke-width="2"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                 >
                   <path
                     d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                   ></path>
                 </svg>
-              </span>
-              <span>
-                <Link
-                  href="#"
-                  className="group text-sky-600 transition duration-300"
-                >
-                  See more
-                  <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-sky-600"></span>
-                </Link>
-              </span>
-            </p>
-            <p className="text-5xl font-medium">Dennis Moes,</p>
-            <p className="text-2xl text-tertiary-light">
-              Wannabe movie critic & software engineer
-            </p>
+              </Link>
+            </div>
+            <div className="w-full md:w-1/3 aspect-square relative rounded-md overflow-hidden">
+              <Image
+                src={SelfPortrait}
+                alt="Me describing plans for our group project to the class"
+                sizes="100%"
+                style={{ objectFit: 'cover' }}
+                fill
+              />
+            </div>
           </div>
-          <button
-            onClick={scrollToSecondSection}
-            className="mt-8 p-4 bg-primary-light rounded-xl animate-wiggle"
-          >
-            <svg
-              aria-hidden="true"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4"
-            >
-              <path
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              ></path>
-            </svg>
-          </button>
-        </section>
-        <section id="short-bio" className="min-h-screen" ref={secondSection}>
-          <div className="max-w-3xl mx-auto">
-            <div className="flex flex-row gap-2 w-full">
-              <div className="w-2/3 bg-primary-light p-4 rounded-xl">
-                <p className="text-3xl">Hello, nice to meet you!</p>
-                <p className="text-tertiary-light">
-                  Who am I? I&apos;m your overly excited student who wants to
-                  conquer the world with his developing coding skills by making
-                  the next big thing. Also a bit to ambitious sometimes.
-                </p>
-                <Link
-                  href="#"
-                  className="mt-4 inline-flex flex-row items-center py-2 w-full justify-center rounded-md bg-secondary-light text-primary-light"
-                >
-                  Keep reading my bio{' '}
-                  <svg
-                    aria-hidden="true"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-4 h-4"
-                  >
-                    <path
-                      d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    ></path>
-                  </svg>
-                </Link>
+
+          <div>
+            <p className="text-4xl">My toolbox</p>
+            <p className="text-2xl">
+              The skills, tools, technologies and expierences I use to bring my
+              projects to life
+            </p>
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-primary-light w-full aspect-square rounded-xl p-6 inline-flex items-start justify-between flex-col">
+                <div className="bg-secondary-light p-4 rounded-md aspect-square text-center">
+                  <p className="text-5xl">🎓</p>
+                </div>
+                <div>
+                  <p className="text-4xl text-secondary-light mb-1">
+                    Education
+                  </p>
+                  <ul className="list-disc list-inside">
+                    <li>
+                      Software Engineer{' '}
+                      <HoverableLink href="#" label="Regio College" /> 2019-2021
+                    </li>
+                    <li>
+                      Software Engineer <HoverableLink href="#" label="HvA" />{' '}
+                      2021-2025
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div className="w-1/3 bg-red-200">
-                <p>Hello</p>
+              <div className="bg-primary-light w-full aspect-square rounded-xl p-6 inline-flex items-start justify-between flex-col">
+                <div className="bg-secondary-light p-4 rounded-md aspect-square text-center">
+                  <p className="text-5xl">💻</p>
+                </div>
+                <div>
+                  <p className="text-4xl text-secondary-light mb-1">
+                    Previous experience
+                  </p>
+                  <ul className="list-disc list-inside">
+                    <li>Redesign in progress</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="bg-primary-light w-full aspect-square rounded-xl p-6 inline-flex items-start justify-between flex-col">
+                <div className="bg-secondary-light p-4 rounded-md aspect-square text-center">
+                  <p className="text-5xl">🌎</p>
+                </div>
+                <div>
+                  <p className="text-4xl text-secondary-light mb-1">
+                    Languages
+                  </p>
+                  <ul className="list-disc list-inside">
+                    <li>🇳🇱 Dutch fluent</li>
+                    <li>🇬🇧 English C1</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="bg-primary-light w-full aspect-square rounded-xl p-6 inline-flex items-start justify-between flex-col">
+                <div className="bg-secondary-light p-4 rounded-md aspect-square text-center">
+                  <p className="text-5xl">👨🏻‍💻</p>
+                </div>
+                <div>
+                  <p className="text-4xl text-secondary-light mb-1">Skills</p>
+                  <ul className="list-disc list-inside">
+                    <li>Python, TypeScript, Java, MySQL</li>
+                    <li>React, React Native, Vue, Flutter, Django</li>
+                    <li>Scrum, Git</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-        </section>
-        <section id="toolbox">
-          <div className="max-w-3xl mx-auto">
-            <p>My toolbox</p>
+
+          <div>
+            <p className="text-4xl">My projects</p>
+            <p className="text-2xl">
+              Here are the highlighted projects I want to feature
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+              <ProjectCard
+                icon="📚"
+                title="Journal"
+                description="Beautiful journal app for macOS with over 1K users"
+              />
+              <ProjectCard
+                icon="💈"
+                title="Rioll"
+                description="3D printed and IoT kits for makers"
+              />
+            </div>
+            <div className="w-full">
+              <Link
+                href="/projects"
+                className="w-full mt-2 md:mt-0 inline-flex flex-row gap-2 justify-center items-center py-2 px-8 bg-secondary-light text-primary-light rounded-md"
+              >
+                View all projects
+              </Link>
+            </div>
           </div>
         </section>
       </main>
