@@ -1,40 +1,14 @@
 [
   {
-    "icon": "📚",
-    "title": "Journal",
-    "description": "Beautiful journal app for macOS with over 1K users",
-    "slug": "journal",
-    "tags": ["macOS", "Swift", "AppKit", "Cocoa", "Objective-C"],
-    "banner": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80",
-    "content": [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce aliquam elementum urna, ut egestas arcu feugiat sit amet. Vestibulum mollis ultrices consectetur. Pellentesque dignissim, lacus at posuere dapibus, massa est convallis erat, ut commodo augue risus non lacus. Praesent vel nunc ante. Donec justo quam, auctor id elementum in, rutrum sed purus. Ut eget sapien sit amet arcu posuere pretium. Sed magna nisi, viverra nec lacus et, facilisis tempus ipsum. Sed ut dolor sed est maximus cursus. Suspendisse efficitur aliquet ante, eu dapibus sapien tincidunt vitae. Nullam tristique non urna in finibus.",
-
-      "Morbi vitae sapien id massa aliquam vehicula. Donec consequat feugiat tortor vitae fringilla. Morbi quis tellus aliquet, imperdiet leo sed, consectetur est. Suspendisse eget dictum ex. Phasellus ut lobortis eros, nec consequat ligula. Sed nec nisi congue, condimentum ante eu, porta est. Sed quis purus mi. Ut eget lacus luctus metus mattis maximus eu at nisl. Donec nec arcu sed lectus fringilla venenatis. Nulla et risus mauris.",
-
-      "Pellentesque hendrerit lacus dolor. Praesent commodo posuere ornare. Nunc pellentesque massa et enim lacinia aliquet. Mauris vel ligula ex. Donec et metus sagittis, sagittis elit id, porta tellus. Nunc lorem quam, posuere non magna quis, tempus semper nulla. Suspendisse potenti. Donec pretium, nunc vel tincidunt fermentum, eros risus volutpat justo, ut ornare sem risus ac erat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam auctor nisl risus, eu consequat risus pulvinar in. Integer tincidunt, tortor eget euismod ultrices, urna metus mollis orci, dignissim tempus tellus purus at purus. Vivamus aliquet lacus nisi, in hendrerit eros porta et.",
-
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nibh lacus, imperdiet vel erat ac, sollicitudin rhoncus ipsum. Aliquam eu nisl sed leo dapibus vulputate nec non erat. Curabitur fringilla venenatis orci, eget efficitur odio vulputate ut. Curabitur tincidunt eleifend magna in viverra. Praesent euismod, velit eget semper volutpat, tellus arcu fermentum enim, eget vestibulum nunc arcu et justo. Ut ac porta justo, nec viverra ex. In vitae tortor turpis. Nulla non est et nisi tempus aliquet eu non justo. Nulla vitae ullamcorper dolor. Sed vehicula nisi vel risus molestie aliquam. Donec orci urna, tincidunt eu dolor ac, faucibus lacinia ante. Duis quis imperdiet est.",
-
-      "Proin neque eros, tristique sit amet metus ut, rhoncus vulputate arcu. Proin lacinia efficitur malesuada. Duis ut leo a arcu finibus semper. In pellentesque eget purus non placerat. Proin lacinia ac felis sit amet eleifend. Praesent a malesuada augue. Praesent in condimentum nisi."
-    ]
+    "icon": "🛞",
+    "title": "Car Dealership",
+    "description": "Second hand car dealership website on the blockchain",
+    "href": "https://github.com/kingdennis-crypto/Car-Dealership"
   },
   {
-    "icon": "💊",
-    "title": "Rioll",
-    "description": "This was my first ever coding project in C#",
-    "slug": "rioll",
-    "tags": ["macOS", "Swift", "AppKit", "Cocoa", "Objective-C"],
-    "banner": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80",
-    "content": [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce aliquam elementum urna, ut egestas arcu feugiat sit amet. Vestibulum mollis ultrices consectetur. Pellentesque dignissim, lacus at posuere dapibus, massa est convallis erat, ut commodo augue risus non lacus. Praesent vel nunc ante. Donec justo quam, auctor id elementum in, rutrum sed purus. Ut eget sapien sit amet arcu posuere pretium. Sed magna nisi, viverra nec lacus et, facilisis tempus ipsum. Sed ut dolor sed est maximus cursus. Suspendisse efficitur aliquet ante, eu dapibus sapien tincidunt vitae. Nullam tristique non urna in finibus.",
-
-      "Morbi vitae sapien id massa aliquam vehicula. Donec consequat feugiat tortor vitae fringilla. Morbi quis tellus aliquet, imperdiet leo sed, consectetur est. Suspendisse eget dictum ex. Phasellus ut lobortis eros, nec consequat ligula. Sed nec nisi congue, condimentum ante eu, porta est. Sed quis purus mi. Ut eget lacus luctus metus mattis maximus eu at nisl. Donec nec arcu sed lectus fringilla venenatis. Nulla et risus mauris.",
-
-      "Pellentesque hendrerit lacus dolor. Praesent commodo posuere ornare. Nunc pellentesque massa et enim lacinia aliquet. Mauris vel ligula ex. Donec et metus sagittis, sagittis elit id, porta tellus. Nunc lorem quam, posuere non magna quis, tempus semper nulla. Suspendisse potenti. Donec pretium, nunc vel tincidunt fermentum, eros risus volutpat justo, ut ornare sem risus ac erat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam auctor nisl risus, eu consequat risus pulvinar in. Integer tincidunt, tortor eget euismod ultrices, urna metus mollis orci, dignissim tempus tellus purus at purus. Vivamus aliquet lacus nisi, in hendrerit eros porta et.",
-
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nibh lacus, imperdiet vel erat ac, sollicitudin rhoncus ipsum. Aliquam eu nisl sed leo dapibus vulputate nec non erat. Curabitur fringilla venenatis orci, eget efficitur odio vulputate ut. Curabitur tincidunt eleifend magna in viverra. Praesent euismod, velit eget semper volutpat, tellus arcu fermentum enim, eget vestibulum nunc arcu et justo. Ut ac porta justo, nec viverra ex. In vitae tortor turpis. Nulla non est et nisi tempus aliquet eu non justo. Nulla vitae ullamcorper dolor. Sed vehicula nisi vel risus molestie aliquam. Donec orci urna, tincidunt eu dolor ac, faucibus lacinia ante. Duis quis imperdiet est.",
-
-      "Proin neque eros, tristique sit amet metus ut, rhoncus vulputate arcu. Proin lacinia efficitur malesuada. Duis ut leo a arcu finibus semper. In pellentesque eget purus non placerat. Proin lacinia ac felis sit amet eleifend. Praesent a malesuada augue. Praesent in condimentum nisi."
-    ]
+    "icon": "🍴",
+    "title": "My Recipe App",
+    "description": "A mobile app full of great recipes",
+    "href": "https://github.com/kingdennis-crypto/MyRecipeApp"
   }
 ]

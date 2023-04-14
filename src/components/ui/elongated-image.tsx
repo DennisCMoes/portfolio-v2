@@ -39,11 +39,6 @@ export default function ElongatedImage({
           style={{ objectFit: isFullSize ? 'cover' : 'contain' }}
           fill
         />
-        {/* {!isFullSize && (
-          <div className="z-10 absolute bottom-4 right-4">
-            <p className="text-secondary-dark">CHANGE</p>
-          </div>
-        )} */}
       </div>
       {description && (
         <small className="block text-tertiary leading-tight">

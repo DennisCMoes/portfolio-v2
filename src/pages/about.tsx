@@ -34,14 +34,14 @@ export default function About() {
               Here are the two most notable things
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {ProjectData.map((project, index) => (
               <ProjectCard
                 key={index}
                 icon={project.icon}
                 title={project.title}
                 description={project.description}
-                slug={project.slug}
+                href={project.href}
               />
             ))}
           </div>

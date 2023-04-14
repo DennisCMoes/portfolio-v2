@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
-const ACTIVE_LINK = ''
+const ACTIVE_LINK = 'font-medium'
 const NOT_ACTIVE_LINK = 'text-tertiary'
 
 export default function Navbar() {
