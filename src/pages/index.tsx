@@ -1,13 +1,6 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
-import { useRef } from 'react'
-import Image from 'next/image'
-
-import SelfPortrait from '../../public/images/self-portrait.jpeg'
-import HoverableLink from '@/components/ui/hoverable-link'
-import SkillCard from '@/components/ui/skill-card'
-import ProjectCard from '@/components/project-card'
 
 const inter = Inter({ subsets: ['latin'], weight: '400' })
 
@@ -21,25 +14,25 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main
-        className={`${inter.className} bg-background-light text-secondary-light`}
+        className={`${inter.className} bg-background-light text-secondary-light dark:bg-background-dark dark:text-secondary-dark`}
       >
         <section className="min-h-screen max-w-4xl grid items-center justify-center mx-auto space-y-64 px-4">
-          <div className="-mt-48">
-            <p>Hello, my name is</p>
-            <p className="text-7xl font-semibold">Dennis Moes</p>
-            <p className="text-5xl">I build things</p>
+          <div className="-mt-48 space-y-4">
+            <div>
+              <p>Hi, my name is</p>
+              <p className="text-7xl font-semibold">Dennis Moes</p>
+              <p className="text-5xl">I build things</p>
+            </div>
             <p>
               I&apos;m a software engineer student who is based in Amsterdam. I
               mostly build (and occasionally design) products
             </p>
-            <div className="mt-4">
-              <Link
-                href="/about"
-                className="bg-secondary-light text-primary-light py-3 px-10 rounded-xl"
-              >
-                Read my bio
-              </Link>
-            </div>
+            <Link
+              href="/about"
+              className="flex items-center bg-secondary-light text-primary-light py-4 px-12 max-w-fit rounded-md"
+            >
+              Read my bio
+            </Link>
           </div>
         </section>
       </main>

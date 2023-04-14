@@ -1,11 +1,12 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
-import ProjectCard from '@/components/project-card'
+import ProjectCard from '@/components/ui/project-card'
 import Image from 'next/image'
 
 import MeImage from '../../public/images/me-explaining.jpeg'
 import MeCoding from '../../public/svg/me-coding.svg'
 import HoverableLink from '@/components/ui/hoverable-link'
+import ElongatedImage from '@/components/ui/elongated-image'
 
 const inter = Inter({ subsets: ['latin'], weight: '400' })
 
@@ -16,9 +17,9 @@ export default function About() {
         <title>About</title>
       </Head>
       <main
-        className={`${inter.className} bg-background-light min-h-screen px-4 py-12 md:py-32`}
+        className={`${inter.className} bg-background-light text-secondary-light dark:bg-background-dark dark:text-secondary-dark min-h-screen px-4 py-12 md:py-32`}
       >
-        <section className="max-w-4xl mx-auto space-y-12 text-secondary-light text-2xl md:text-3xl">
+        <section className="max-w-4xl mx-auto space-y-12 text-2xl md:text-2xl">
           <div>
             <p>
               I love working on my{' '}
@@ -44,20 +45,10 @@ export default function About() {
               description="3D printed and IoT kits for makers"
             />
           </div>
-          <div>
-            <div className="relative w-full overflow-hidden aspect-square md:aspect-[21/9] bg-primary-light inline-flex items-center justify-center rounded-xl">
-              <Image
-                src={MeImage}
-                alt="Me describing plans for our group project to the class"
-                sizes="100%"
-                style={{ objectFit: 'cover' }}
-                fill
-              />
-            </div>
-            <small className="mt-0 text-tertiary">
-              Me describing the plan for our group project
-            </small>
-          </div>
+          <ElongatedImage
+            image={MeImage}
+            description="Me describing the plan for our group project"
+          />
           <div>
             <div className="space-y-8">
               <p>
@@ -86,31 +77,14 @@ export default function About() {
                 games on my Nintendo Switch, reading a newspaper or watching AFC
                 Ajax.
               </p>
-
-              {/* <p>
-                Also I do love playing Mario Kart in my free time and I support
-                AFC Ajax. And when I&apos;m not coding I&apos;m out there having
-                fun and cracking the worst dad jokes. Random, but did you know
-                that Amsterdam North is located in the north? I know I was also
-                shocked.
-              </p> */}
             </div>
           </div>
-          <div>
-            <div className="relative w-full aspect-square md:aspect-[21/9] bg-secondary-light inline-flex items-center justify-center rounded-xl">
-              <Image
-                src={MeCoding}
-                className="p-8"
-                alt="help"
-                sizes="100%"
-                style={{ objectFit: 'contain' }}
-                fill
-              />
-            </div>
-            <small className="mt-0 text-tertiary">
-              Me sitting behind my desk coding
-            </small>
-          </div>
+          <ElongatedImage
+            image={MeCoding}
+            description="Me sitting behind my desk coding"
+            isFullSize={false}
+            darkMode={true}
+          />
           <div className="space-y-8">
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste

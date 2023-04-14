@@ -9,14 +9,22 @@ module.exports = {
       colors: {
         background: {
           light: '#FFFFFF',
+          dark: '#262626',
+        },
+        'card-primary': {
+          light: '#F0F0F0',
           dark: '#2F2F2F',
+        },
+        'card-secondary': {
+          light: '#DCDCDC',
+          dark: '#262626',
         },
         primary: {
           light: '#F0F0F0',
-          dark: '#262626',
+          dark: '#2F2F2F',
         },
         secondary: {
-          light: '#272727',
+          light: '#323232',
           dark: '#F7F7F7',
         },
         tertiary: {
