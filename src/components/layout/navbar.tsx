@@ -1,6 +1,18 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+
+const ACTIVE_LINK = ''
+const NOT_ACTIVE_LINK = 'text-tertiary'
 
 export default function Navbar() {
+  const router = useRouter()
+  const [path, setPath] = useState<string>('')
+
+  useEffect(() => {
+    setPath(router.pathname)
+  }, [router])
+
   return (
     <nav className="w-full py-2 px-4 md:px-0 inline-flex items-center justify-center bg-background-light dark:bg-background-dark text-secondary-light dark:text-secondary-dark">
       <div className="max-w-4xl w-full flex-row inline-flex justify-between">
@@ -24,9 +36,24 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="inline-flex items-center justify-between gap-4 md:gap-12">
-          <Link href="/">Home</Link>
-          <Link href="/about">About</Link>
-          <Link href="/projects">Projects</Link>
+          <Link
+            href="/"
+            className={path === '/' ? ACTIVE_LINK : NOT_ACTIVE_LINK}
+          >
+            Home
+          </Link>
+          <Link
+            href="/about"
+            className={path === '/about' ? ACTIVE_LINK : NOT_ACTIVE_LINK}
+          >
+            About
+          </Link>
+          <Link
+            href="/projects"
+            className={path === '/projects' ? ACTIVE_LINK : NOT_ACTIVE_LINK}
+          >
+            Projects
+          </Link>
         </div>
       </div>
     </nav>

@@ -12,7 +12,7 @@ export default function Projects() {
         <title>Projects | Coming soon</title>
       </Head>
       <main
-        className={`${inter.className} bg-primary-light min-h-screen flex items-center justify-center`}
+        className={`${inter.className} bg-primary-light min-h-screen flex items-center justify-center p-4`}
       >
         <div className="max-w-3xl space-y-2">
           <p className="text-7xl font-semibold">Coming Soon</p>

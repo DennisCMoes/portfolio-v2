@@ -29,23 +29,23 @@ export default function ElongatedImage({
   return (
     <div>
       <div
-        className={`relative w-full overflow-hidden aspect-square md:aspect-[21/9] inline-flex items-center justify-center rounded-xl transition-colors ${bgColor}`}
+        className={`relative w-full overflow-hidden aspect-square md:aspect-[21/9] inline-flex items-center justify-center rounded-xl transition-colors select-none ${bgColor}`}
       >
         <Image
           src={image}
-          className={isFullSize ? '' : 'p-8'}
+          className={`${isFullSize ? '' : 'p-8'} pointer-events-none`}
           alt="Hello"
           sizes="100%"
           style={{ objectFit: isFullSize ? 'cover' : 'contain' }}
           fill
         />
-        {!isFullSize && (
+        {/* {!isFullSize && (
           <div className="z-10 absolute bottom-4 right-4">
-            {/* <p>CHANGE</p> */}
+            <p className="text-secondary-dark">CHANGE</p>
           </div>
-        )}
+        )} */}
       </div>
-      <small className="mt-0 text-tertiary">{description}</small>
+      <small className="block text-tertiary leading-tight">{description}</small>
     </div>
   )
 }
