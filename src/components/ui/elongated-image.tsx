@@ -2,8 +2,8 @@ import Image, { StaticImageData } from 'next/image'
 import { useEffect, useState } from 'react'
 
 type Props = {
-  image: StaticImageData
-  description: string
+  image: StaticImageData | string
+  description?: string
   isFullSize?: boolean
   darkMode?: boolean
 }
@@ -34,7 +34,7 @@ export default function ElongatedImage({
         <Image
           src={image}
           className={`${isFullSize ? '' : 'p-8'} pointer-events-none`}
-          alt="Hello"
+          alt={description ?? 'Image'}
           sizes="100%"
           style={{ objectFit: isFullSize ? 'cover' : 'contain' }}
           fill
@@ -45,7 +45,11 @@ export default function ElongatedImage({
           </div>
         )} */}
       </div>
-      <small className="block text-tertiary leading-tight">{description}</small>
+      {description && (
+        <small className="block text-tertiary leading-tight">
+          {description}
+        </small>
+      )}
     </div>
   )
 }

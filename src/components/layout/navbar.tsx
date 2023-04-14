@@ -38,19 +38,21 @@ export default function Navbar() {
         <div className="inline-flex items-center justify-between gap-4 md:gap-12">
           <Link
             href="/"
-            className={path === '/' ? ACTIVE_LINK : NOT_ACTIVE_LINK}
+            className={path.includes('/') ? ACTIVE_LINK : NOT_ACTIVE_LINK}
           >
             Home
           </Link>
           <Link
             href="/about"
-            className={path === '/about' ? ACTIVE_LINK : NOT_ACTIVE_LINK}
+            className={path.includes('/about') ? ACTIVE_LINK : NOT_ACTIVE_LINK}
           >
             About
           </Link>
           <Link
             href="/projects"
-            className={path === '/projects' ? ACTIVE_LINK : NOT_ACTIVE_LINK}
+            className={
+              path.includes('/projects') ? ACTIVE_LINK : NOT_ACTIVE_LINK
+            }
           >
             Projects
           </Link>

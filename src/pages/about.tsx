@@ -41,6 +41,7 @@ export default function About() {
                 icon={project.icon}
                 title={project.title}
                 description={project.description}
+                slug={project.slug}
               />
             ))}
           </div>
