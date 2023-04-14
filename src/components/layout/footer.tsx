@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import HoverableLink from '../ui/hoverable-link'
-import SocialButton from '../ui/social-button'
 
 export default function Footer() {
   function getYear(): number {
