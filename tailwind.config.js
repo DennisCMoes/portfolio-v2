@@ -4,7 +4,6 @@ import colors from 'tailwindcss/colors'
 module.exports = {
   darkMode: 'class',
   content: ['./src/pages/**/*.tsx', './src/components/**/*.tsx'],
-  purge: ['./src/pages/**/*.tsx', './src/components/**/*.tsx'],
   theme: {
     extend: {
       colors: {
