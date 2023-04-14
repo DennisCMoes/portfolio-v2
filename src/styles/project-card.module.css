@@ -1,0 +1,10 @@
+.btn {
+  clip-path: inset(4px round 12px);
+  transition: all 0.3s ease-in-out;
+}
+
+@media (min-width: 768px) {
+  .btn:hover {
+    clip-path: inset(0px round 14px);
+  }
+}
