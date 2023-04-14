@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import HoverableLink from '../ui/hoverable-link'
+import SocialButton from '../ui/social-button'
 
 export default function Footer() {
   function getYear(): number {
@@ -8,13 +9,19 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-primary-light p-4 w-full inline-flex items-center justify-center flex-col">
-      <div className="max-w-4xl w-full text-2xl text-left space-y-2">
-        <p>
-          I designed and built this website with NextJS. Check on{' '}
-          <HoverableLink href="#" label="GitHub" /> for the code.
-        </p>
-        <p>Thanks for visitng & have a nice day!</p>
+    <footer className="bg-primary-light p-4 w-full inline-flex flex-row items-center justify-between">
+      <div>
+        <p>{getYear()} | &copy; Dennis Moes. All rights reserved</p>
+      </div>
+      <div className="inline-flex gap-2">
+        <HoverableLink
+          href="https://github.com/kingdennis-crypto"
+          label="GitHub"
+        />
+        <HoverableLink
+          href="https://linkedin.com/in/dennismoes"
+          label="LinkedIn"
+        />
       </div>
     </footer>
   )
