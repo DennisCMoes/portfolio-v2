@@ -16,6 +16,26 @@ export default function About() {
     <>
       <Head>
         <title>About</title>
+        <meta
+          name="description"
+          content="The about page of my personal website"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content="About Dennis Moes" />
+        <meta
+          property="og:url"
+          content="https://portfolio-v2-bay-chi.vercel.app/about"
+        />
+        <meta
+          property="og:image"
+          content="https://portfolio-v2-bay-chi.vercel.app/images/pages/about-page.png"
+        />
+        <meta property="og:type" content="website" /> {/* Website or article */}
+        <meta
+          property="og:description"
+          content="Here you can find a description of my career and life"
+        />
       </Head>
       <main
         className={`${inter.className} bg-background-light text-secondary-light dark:bg-background-dark dark:text-secondary-dark min-h-screen px-4 py-12 md:py-32`}
