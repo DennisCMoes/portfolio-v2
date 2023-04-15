@@ -10,6 +10,26 @@ export default function Projects() {
     <>
       <Head>
         <title>Projects | Coming soon</title>
+        <meta
+          name="description"
+          content="The projects page of my personal website"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content="A list of my projects projects" />
+        <meta
+          property="og:url"
+          content="https://portfolio-v2-bay-chi.vercel.app/"
+        />
+        <meta
+          property="og:image"
+          content="https://portfolio-v2-bay-chi.vercel.app/images/pages/projects-page.png"
+        />
+        <meta property="og:type" content="website" /> {/* Website or article */}
+        <meta
+          property="og:description"
+          content="When finished you can find all my projects on this page"
+        />
       </Head>
       <main className={`${inter.className} bg-primary-light`}>
         <section className="min-h-screen max-w-4xl grid items-center justify-center mx-auto px-4">
