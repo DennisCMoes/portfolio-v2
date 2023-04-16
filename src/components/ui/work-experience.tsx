@@ -16,22 +16,19 @@ export default function WorkExperience({
   tags,
 }: Props) {
   return (
-    <div className="inline-flex flex-row w-full text-lg">
-      <div className="w-2/6">
+    <div className="inline-flex flex-col md:flex-row w-full text-lg">
+      <div className="w-full md:w-2/6">
         <p>
           {start} - {end}
         </p>
       </div>
-      <div className="w-4/6">
+      <div className="w-full md:w-4/6">
         <p className="text-xl font-semibold">{title}</p>
         <p className="text-base text-tertiary">{company}</p>
         <p className="text-base">{description}</p>
         <div className="inline-flex text-tertiary flex-row text-sm space-x-2">
-          {tags.map((tag, index) => (
-            <>
-              <p key={index}>{tag}</p>
-              {index !== tags.length - 1 && <p>•</p>}
-            </>
+          {tags.map((tag: string, index: number) => (
+            <p key={index}>{tag}</p>
           ))}
         </div>
       </div>

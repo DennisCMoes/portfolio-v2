@@ -6,7 +6,7 @@ import Footer from '@/components/layout/footer'
 
 import type { AppProps } from 'next/app'
 
-import { Affix, Transition, rem } from '@mantine/core'
+import { Transition } from '@mantine/core'
 import { useWindowScroll } from '@mantine/hooks'
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -18,23 +18,28 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Navbar />
-      <Component {...pageProps} />
-      {/* FIXME: The footer clips with the scroll back button */}
-      <Affix position={{ bottom: rem(20), right: rem(20) }}>
-        <Transition transition="slide-up" mounted={scroll.y > 0}>
-          {(transitionStyles) => (
-            <button
-              style={transitionStyles}
-              className="flex items-center bg-secondary-light text-primary-light py-2 px-4 rounded-md"
-              onClick={scrollToTop}
-            >
-              Scroll to top
-            </button>
-          )}
-        </Transition>
-      </Affix>
-      <Footer />
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <div className="flex-1">
+          {/* ORIGINAL NEXTJS COMPONENT */}
+          <Component {...pageProps} />
+          {/* SCROLL TO TOP BUTTON */}
+          <div className="w-full inline-flex sticky bottom-5 right-5 justify-end px-4 mb-4">
+            <Transition transition="slide-up" mounted={scroll.y > 100}>
+              {(transitionStyles) => (
+                <button
+                  style={transitionStyles}
+                  className="flex items-center bg-secondary-light text-primary-light py-2 px-4 rounded-md"
+                  onClick={scrollToTop}
+                >
+                  Scroll to top
+                </button>
+              )}
+            </Transition>
+          </div>
+        </div>
+        <Footer />
+      </div>
     </>
   )
 }
