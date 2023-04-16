@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import HoverableLink from '../ui/hoverable-link'
 
 export default function Footer() {
