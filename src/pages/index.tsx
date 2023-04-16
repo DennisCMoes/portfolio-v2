@@ -1,8 +1,22 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
+import SkillCard from '@/components/ui/skill-card'
+import ToolCard from '@/components/ui/tool-card'
+import WorkExperience from '@/components/ui/work-experience'
+
+import WorkExperienceList from '@/data/work.json'
 
 const inter = Inter({ subsets: ['latin'], weight: '400' })
+
+type Experience = {
+  title: string
+  description: string
+  company: string
+  start: string
+  end: string
+  tags: string[]
+}
 
 // TODO: Work on OG:tags and seo optimization
 export default function Home() {
@@ -34,7 +48,10 @@ export default function Home() {
       <main
         className={`${inter.className} bg-background-light text-secondary-light dark:bg-background-dark dark:text-secondary-dark`}
       >
-        <section className="min-h-screen max-w-4xl grid items-center justify-center mx-auto space-y-64 px-4">
+        <section
+          id="banner"
+          className="min-h-screen max-w-4xl grid items-center justify-center mx-auto space-y-64 px-4"
+        >
           <div className="-mt-48 space-y-4">
             <div>
               <p className="text-xl text-tertiary">Hi, my name is</p>
@@ -65,6 +82,23 @@ export default function Home() {
                 ></path>
               </svg>
             </Link>
+          </div>
+        </section>
+        <section
+          id="work-experience"
+          className="min-h-screen max-w-4xl mb-32 mx-auto space-y-12 text-2xl md:text-2xl"
+        >
+          <div>
+            <p>Work experience</p>
+            <p className="text-base">
+              From working as a cashier to co-founding, this is my range of work
+              experience.
+            </p>
+          </div>
+          <div className="inline-flex flex-col w-full space-y-8">
+            {WorkExperienceList.map((work: any, index) => (
+              <WorkExperience key={index} {...work} />
+            ))}
           </div>
         </section>
       </main>

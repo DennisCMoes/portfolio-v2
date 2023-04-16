@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Student-assistent",
+    "description": "Assisting students in their first year and helping them with programming-related questions.",
+    "company": "Hogeschool van Amsterdam",
+    "start": "sep. 2022",
+    "end": "present",
+    "tags": ["Java", "HTML", "CSS", "JavaScript", "MySQL"]
+  },
+  {
+    "title": "Junior Software Developer",
+    "description": "Building and maintaining a web application that enables users to easily create digital work orders, input materials, hours and questionnaires, take photos, obtain customer signatures or direct payments, and maintain organized records.",
+    "company": "Crafter B.V.",
+    "start": "sep. 2022",
+    "end": "nov. 2022",
+    "tags": ["Django", "MySQL", "TypeScript", "Vue.js"]
+  },
+  {
+    "title": "Co-founder",
+    "description": "I was responsible for designing and developing responsive React Native applications, following best practices for the entire software development life cycle including coding standards, code reviews, source control management, and build processes. This involved working with various languages, platforms, frameworks, and content management systems.",
+    "company": "Next Gen Atlas",
+    "start": "apr. 2021",
+    "end": "jul. 2022",
+    "tags": ["React-native", "JavaScript", "React", "WordPress", "Firebase"]
+  },
+  {
+    "title": "Junior software-engineer",
+    "description": "I was responsible for designing and building an application that enables users to access a virtual desktop, collaborating with experienced programmers to devise, design and market technologies, and constructing scalable, fault-tolerant index and query systems that are easy to manage and use.",
+    "company": "EWD215",
+    "start": "aug. 2020",
+    "end": "mar 2021",
+    "tags": ["Python", "MySQL", "Wordpress"]
+  },
+  {
+    "title": "Kassa medewerker",
+    "description": "As a cashier, I was involved with processing customer transactions, handling cash and other payment methods, and providing customer service.",
+    "company": "Albert Heijn Vos Supermarkten",
+    "start": "jun. 2019",
+    "end": "aug. 2021",
+    "tags": []
+  }
+]
