@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import HoverableLink from '../ui/hoverable-link'
 
 export default function Footer() {
@@ -16,10 +15,12 @@ export default function Footer() {
         <HoverableLink
           href="https://github.com/kingdennis-crypto"
           label="GitHub"
+          isBold={false}
         />
         <HoverableLink
           href="https://linkedin.com/in/dennismoes"
           label="LinkedIn"
+          isBold={false}
         />
       </div>
     </footer>

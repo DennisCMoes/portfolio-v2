@@ -7,14 +7,37 @@ const NOT_ACTIVE_LINK = 'text-tertiary'
 
 export default function Navbar() {
   const router = useRouter()
+
   const [path, setPath] = useState<string>('')
+  const [hasScrolled, setHasScrolled] = useState<boolean>(false)
 
   useEffect(() => {
     setPath(router.pathname)
   }, [router])
 
+  /**
+   * Check if the user has scrolled
+   */
+  const handleScroll = () => {
+    setHasScrolled(window.scrollY > 20)
+  }
+
+  useEffect(() => {
+    // Listen to the scroll event
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    // Remove the listener on page leave
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
-    <nav className="w-full py-2 px-4 md:px-0 inline-flex items-center justify-center bg-background-light dark:bg-background-dark text-secondary-light dark:text-secondary-dark">
+    <nav
+      className={`w-full py-2 px-4 md:px-0 inline-flex items-center justify-center bg-background-light dark:bg-background-dark text-secondary-light dark:text-secondary-dark sticky top-0 z-10 ${
+        hasScrolled && 'shadow-sm transition-shadow duration-300'
+      }`}
+    >
       <div className="max-w-4xl w-full flex-row inline-flex justify-between">
         <div>
           <Link href="/">
