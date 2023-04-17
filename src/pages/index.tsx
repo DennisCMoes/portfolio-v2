@@ -45,9 +45,7 @@ export default function Home() {
           content="This will be the index page to my personal website"
         />
       </Head>
-      <main
-        className={`${inter.className} bg-background-light text-secondary-light dark:bg-background-dark dark:text-secondary-dark`}
-      >
+      <main className={inter.className}>
         <section
           id="banner"
           className="min-h-screen max-w-4xl grid items-center justify-center mx-auto space-y-64 px-4"
@@ -67,7 +65,7 @@ export default function Home() {
             <div className="flex flex-row gap-2">
               <button
                 onClick={() => scrollToSecondSection()}
-                className="flex items-center bg-secondary-light text-primary-light p-4 transition-all md:hover:px-6 max-w-fit rounded-md"
+                className="flex items-center bg-primary-dark text-primary-light dark:bg-primary-light dark:text-primary-dark p-4 transition-all md:hover:px-6 max-w-fit rounded-md"
               >
                 <svg
                   aria-hidden="true"
@@ -87,7 +85,7 @@ export default function Home() {
               </button>
               <Link
                 href="/about"
-                className="flex items-center bg-secondary-light text-primary-light py-4 px-12 md:hover:px-14 transition-all max-w-fit rounded-md"
+                className="flex items-center bg-primary-dark text-primary-light dark:bg-primary-light dark:text-primary-dark py-4 px-12 md:hover:px-14 transition-all max-w-fit rounded-md"
               >
                 Read my bio
                 <svg
@@ -110,7 +108,7 @@ export default function Home() {
         <section
           id="work-experience"
           ref={secondSection}
-          className="min-h-screen max-w-4xl mb-32 mx-auto space-y-12 text-2xl md:text-2xl px-4"
+          className="min-h-screen max-w-4xl pb-32 mx-auto space-y-12 text-2xl md:text-2xl px-4"
         >
           <div>
             <p>Work experience</p>

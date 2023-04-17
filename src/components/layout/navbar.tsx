@@ -34,7 +34,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`w-full py-2 px-4 md:px-0 inline-flex items-center justify-center bg-background-light dark:bg-background-dark text-secondary-light dark:text-secondary-dark sticky top-0 z-10 ${
+      className={`w-full py-2 px-4 md:px-0 inline-flex items-center justify-center bg-background-light dark:bg-primary-dark text-primary-dark dark:text-primary-light sticky top-0 z-10 ${
+        // TODO: Add if not dark mode add shadow
         hasScrolled && 'shadow-sm transition-shadow duration-300'
       }`}
     >

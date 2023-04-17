@@ -16,17 +16,15 @@ export default function ProjectCard({ icon, title, description, href }: Props) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`${styles.btn} group cursor-pointer bg-card-primary-light dark:bg-card-primary-dark w-full aspect-square p-6 inline-flex items-start justify-between flex-col`}
+      className={`${styles.btn} group cursor-pointer bg-primary-light dark:bg-primary-dark w-full aspect-square p-6 inline-flex items-start justify-between flex-col`}
     >
       {/* TODO: Add darker color that's just darker than the card */}
-      <div className="bg-card-secondary-light dark:bg-card-secondary-dark p-4 rounded-md aspect-square text-center">
+      <div className="bg-secondary-light dark:bg-secondary-dark p-4 rounded-md aspect-square text-center">
         <p className="text-5xl">{icon}</p>
       </div>
       <div>
-        <p className="text-4xl md:text-5xl text-secondary-light dark:text-secondary-dark">
-          {title}
-        </p>
-        <p className="-mb-8 md:group-hover:mb-0 transition-all duration-300 text-2xl md:text-3xl text-tertiary-light dark:text-tertiary-dark">
+        <p className="text-4xl md:text-5xl">{title}</p>
+        <p className="-mb-8 md:group-hover:mb-0 transition-all duration-300 text-2xl md:text-3xl text-tertiary-light">
           {description}
         </p>
         <div className="text-tertiary-light dark:text-tertiary-dark group-hover:delay-100 delay-0 duration-300 opacity-0 md:group-hover:opacity-100 transition-opacity text-lg inline-flex flex-row items-center">

@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen bg-background-light dark:bg-background-dark text-primary-dark dark:text-primary-light">
         <Navbar />
         <div className="flex-1">
           {/* ORIGINAL NEXTJS COMPONENT */}
@@ -29,7 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
               {(transitionStyles) => (
                 <button
                   style={transitionStyles}
-                  className="flex items-center bg-secondary-light text-primary-light py-2 px-4 rounded-md"
+                  className="flex items-center bg-primary-dark text-primary-light dark:bg-primary-light dark:text-primary-dark py-2 px-4 rounded-md"
                   onClick={scrollToTop}
                 >
                   Scroll to top

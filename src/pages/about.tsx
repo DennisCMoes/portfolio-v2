@@ -37,9 +37,7 @@ export default function About() {
           content="Here you can find a description of my career and life"
         />
       </Head>
-      <main
-        className={`${inter.className} bg-background-light text-secondary-light dark:bg-background-dark dark:text-secondary-dark min-h-screen px-4 py-12 md:py-32`}
-      >
+      <main className={`${inter.className} min-h-screen px-4 py-12 md:py-32`}>
         <section className="max-w-4xl mx-auto space-y-12 text-2xl md:text-2xl">
           <div className="space-y-4">
             <p>

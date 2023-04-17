@@ -31,7 +31,7 @@ export default function Projects() {
           content="When finished you can find all my projects on this page"
         />
       </Head>
-      <main className={`${inter.className} bg-primary-light`}>
+      <main className={inter.className}>
         <section className="min-h-screen max-w-4xl grid items-center justify-center mx-auto px-4">
           <div className="-mt-48 space-y-4">
             <div>
@@ -42,8 +42,8 @@ export default function Projects() {
               </p>
             </div>
             <Link
-              href="/about"
-              className="flex items-center bg-secondary-light text-primary-light py-4 px-12 md:hover:px-14 transition-all max-w-fit rounded-md"
+              href="/"
+              className="flex items-center bg-primary-dark text-primary-light py-4 px-12 md:hover:px-14 transition-all max-w-fit rounded-md"
             >
               <svg
                 aria-hidden="true"

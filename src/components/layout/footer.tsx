@@ -7,7 +7,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-primary-light p-4 w-full inline-flex flex-row items-center justify-between">
+    <footer className="bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light p-4 w-full inline-flex flex-row items-center justify-between">
       <div>
         <p>{getYear()} | &copy; Dennis Moes. All rights reserved</p>
       </div>

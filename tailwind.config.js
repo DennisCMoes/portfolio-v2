@@ -11,27 +11,21 @@ module.exports = {
           light: '#FFFFFF',
           dark: '#262626',
         },
-        'card-primary': {
-          light: '#F0F0F0',
-          dark: '#2F2F2F',
-        },
-        'card-secondary': {
-          light: '#DCDCDC',
-          dark: '#262626',
-        },
         primary: {
           light: '#F0F0F0',
           dark: '#2F2F2F',
         },
         secondary: {
-          light: '#323232',
-          dark: '#F7F7F7',
+          light: '#DCDCDC',
+          dark: '#262626',
         },
         tertiary: {
           light: '#A8A8A8',
           DEFAULT: '#ADADAD',
           dark: '#ADADAD',
         },
+        quatinary: '',
+        quinary: '',
       },
       keyframes: {
         wiggle: {
