@@ -39,7 +39,7 @@ export default function Projects() {
               </p>
             </div>
             <Link
-              href="/about"
+              href="/"
               className="flex items-center bg-secondary-light text-primary-light py-4 px-12 md:hover:px-14 transition-all max-w-fit rounded-md"
             >
               <svg
