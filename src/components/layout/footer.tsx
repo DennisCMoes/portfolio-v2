@@ -15,10 +15,12 @@ export default function Footer() {
         <HoverableLink
           href="https://github.com/kingdennis-crypto"
           label="GitHub"
+          isBold={false}
         />
         <HoverableLink
           href="https://linkedin.com/in/dennismoes"
           label="LinkedIn"
+          isBold={false}
         />
       </div>
     </footer>

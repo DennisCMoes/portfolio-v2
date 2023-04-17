@@ -13,8 +13,10 @@ export default function Home() {
   const secondSection = useRef<HTMLElement>(null)
 
   function scrollToSecondSection() {
+    // Get the scrollable position of the second section and add a negative offset
     const positionY =
-      secondSection.current!.getBoundingClientRect().top + window.screenY + -100
+      secondSection.current!.getBoundingClientRect().top + window.screenY - 100
+    // Scroll to said position
     window.scrollTo({ top: positionY, behavior: 'smooth' })
   }
 
@@ -61,6 +63,7 @@ export default function Home() {
               computer applications in Amsterdam. I spend most of my time
               building cool things (and sometimes making them look pretty too).
             </p>
+            {/* TODO: Change the hover animations so that it will flow out of the other side */}
             <div className="flex flex-row gap-2">
               <button
                 onClick={() => scrollToSecondSection()}
