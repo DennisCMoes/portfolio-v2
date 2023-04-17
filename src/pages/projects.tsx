@@ -17,13 +17,10 @@ export default function Projects() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content="A list of my projects projects" />
-        <meta
-          property="og:url"
-          content="https://portfolio-v2-bay-chi.vercel.app/"
-        />
+        <meta property="og:url" content="https://dennismoes.com/" />
         <meta
           property="og:image"
-          content="https://portfolio-v2-bay-chi.vercel.app/images/pages/projects-page.png"
+          content="https://dennismoes.com/images/pages/projects-page.png"
         />
         <meta property="og:type" content="website" /> {/* Website or article */}
         <meta
