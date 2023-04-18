@@ -19,7 +19,7 @@ export default function ProjectCard({ icon, title, description, href }: Props) {
       className={`${styles.btn} group cursor-pointer bg-primary-light dark:bg-primary-dark w-full aspect-square p-6 inline-flex items-start justify-between flex-col`}
     >
       {/* TODO: Add darker color that's just darker than the card */}
-      <div className="bg-secondary-light dark:bg-secondary-dark p-4 rounded-md aspect-square text-center">
+      <div className="bg-secondary-light dark:bg-secondary-dark transition-colors duration-300 p-4 rounded-md aspect-square text-center">
         <p className="text-5xl">{icon}</p>
       </div>
       <div>

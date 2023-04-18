@@ -1,8 +1,9 @@
 import { Html, Head, Main, NextScript } from 'next/document'
+import { useState } from 'react'
 
 export default function Document() {
   return (
-    <Html lang="en" className="dark">
+    <Html lang="en">
       <Head />
       <body>
         <Main />
