@@ -23,13 +23,10 @@ export default function About() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content="About Dennis Moes" />
-        <meta
-          property="og:url"
-          content="https://portfolio-v2-bay-chi.vercel.app/about"
-        />
+        <meta property="og:url" content="https://dennismoes.com/about" />
         <meta
           property="og:image"
-          content="https://portfolio-v2-bay-chi.vercel.app/images/pages/about-page.png"
+          content="https://dennismoes.com/images/pages/about-page.png"
         />
         <meta property="og:type" content="website" /> {/* Website or article */}
         <meta
