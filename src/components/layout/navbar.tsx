@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import ThemeSwitcher from '../ui/theme-switcher'
 
 const ACTIVE_LINK = 'font-medium'
 const NOT_ACTIVE_LINK = 'text-tertiary'
@@ -34,7 +35,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`w-full py-2 px-4 md:px-0 inline-flex items-center justify-center bg-background-light dark:bg-background-dark text-secondary-light dark:text-secondary-dark sticky top-0 z-10 ${
+      className={`w-full py-2 px-4 md:px-0 inline-flex items-center justify-center transition-colors duration-300 bg-background-light dark:bg-primary-dark text-primary-dark dark:text-primary-light sticky top-0 z-10 ${
+        // TODO: Add if not dark mode add shadow
         hasScrolled && 'shadow-sm transition-shadow duration-300'
       }`}
     >
@@ -57,6 +59,7 @@ export default function Navbar() {
               ></path>
             </svg>
           </Link>
+          {/* <ThemeSwitcher /> */}
         </div>
         <div className="inline-flex items-center justify-between gap-4 md:gap-12">
           <Link

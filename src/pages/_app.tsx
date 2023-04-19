@@ -8,6 +8,7 @@ import type { AppProps } from 'next/app'
 
 import { Transition } from '@mantine/core'
 import { useWindowScroll } from '@mantine/hooks'
+import { ThemeProvider } from 'next-themes'
 
 export default function App({ Component, pageProps }: AppProps) {
   const [scroll, scrollTo] = useWindowScroll()
@@ -17,8 +18,8 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   return (
-    <>
-      <div className="flex flex-col min-h-screen">
+    <ThemeProvider attribute="class" enableSystem={true}>
+      <div className="flex flex-col min-h-screen transition-colors duration-300 bg-background-light dark:bg-background-dark text-primary-dark dark:text-primary-light">
         <Navbar />
         <div className="flex-1">
           {/* ORIGINAL NEXTJS COMPONENT */}
@@ -29,7 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
               {(transitionStyles) => (
                 <button
                   style={transitionStyles}
-                  className="flex items-center bg-secondary-light text-primary-light py-2 px-4 rounded-md"
+                  className="flex items-center bg-primary-dark text-primary-light dark:bg-primary-light dark:text-primary-dark py-2 px-4 rounded-md"
                   onClick={scrollToTop}
                 >
                   Scroll to top
@@ -40,6 +41,6 @@ export default function App({ Component, pageProps }: AppProps) {
         </div>
         <Footer />
       </div>
-    </>
+    </ThemeProvider>
   )
 }

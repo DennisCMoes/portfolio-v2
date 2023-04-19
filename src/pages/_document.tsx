@@ -1,10 +1,9 @@
-import Footer from '@/components/layout/footer'
-import Navbar from '@/components/layout/navbar'
 import { Html, Head, Main, NextScript } from 'next/document'
+import { useState } from 'react'
 
 export default function Document() {
   return (
-    <Html lang="en" className="">
+    <Html lang="en">
       <Head />
       <body>
         <Main />
