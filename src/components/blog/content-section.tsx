@@ -2,6 +2,7 @@ import Image from 'next/image'
 import ContentText from './content-text'
 import { ReactNode } from 'react'
 import ContentImage from './content-image'
+import ContentCode from './content-code'
 
 export default function ContentSection({ type, data }: any) {
   function returnContent(): ReactNode {
@@ -10,6 +11,8 @@ export default function ContentSection({ type, data }: any) {
         return <ContentText text={data.content} />
       case 'image':
         return <ContentImage href={data.href} />
+      case 'code':
+        return <ContentCode code={data.code} />
       default:
         return <p>Something went wrong</p>
     }

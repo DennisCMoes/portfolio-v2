@@ -22,6 +22,13 @@
       }
     },
     {
+      "type": "code",
+      "data": {
+        "language": "typescript",
+        "code": "const a = 1;\nconst b = 2;\nconst c = a + b;\nconsole.log(c);\n\n<p>\nLong code that will force Prism to have a horizontal scrollbar, by default, scroll behavior is handled by ScrollArea component, but it can be changed to native browser scrollbars\n</p>"
+      }
+    },
+    {
       "type": "text",
       "data": {
         "content": "Integer ac finibus tellus, id aliquam elit. Duis ut odio quis leo aliquet euismod vitae eu purus. Etiam elit orci, blandit eu purus in, facilisis malesuada diam. In tincidunt risus auctor sollicitudin mattis. Nam id enim rhoncus, condimentum est et, vehicula justo. Pellentesque condimentum magna quis eros eleifend, cursus commodo nisi aliquet. Sed at vehicula eros, in faucibus odio. Suspendisse vel volutpat purus, non egestas orci. Nullam id ex et justo aliquam tincidunt. Quisque euismod tincidunt massa ac condimentum. Nunc urna nisi, cursus non purus eget, rhoncus feugiat lorem. In id tempus enim. Curabitur vel ligula sed ex convallis vestibulum sit amet quis tortor. Mauris tincidunt luctus pretium. Vestibulum eget felis tellus."
