@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Project from '@/types/Project'
 import styles from '@/styles/project-card.module.css'
 
 type Props = {
