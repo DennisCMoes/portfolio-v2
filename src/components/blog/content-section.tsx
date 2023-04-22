@@ -8,11 +8,11 @@ export default function ContentSection({ type, data }: any) {
   function returnContent(): ReactNode {
     switch (type) {
       case 'text':
-        return <ContentText text={data.content} />
+        return <ContentText {...data} />
       case 'image':
-        return <ContentImage href={data.href} />
+        return <ContentImage {...data} />
       case 'code':
-        return <ContentCode code={data.code} />
+        return <ContentCode {...data} />
       default:
         return <p>Something went wrong</p>
     }

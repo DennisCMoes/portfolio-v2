@@ -9,6 +9,7 @@ import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'], weight: '400' })
 
+// TODO: Add a PDF generator: https://pspdfkit.com/blog/2022/how-to-convert-html-to-pdf-using-react/
 export default function ProjectDetail() {
   function getTimeDisplay(): string {
     // Nov 21, 2023
@@ -41,14 +42,16 @@ export default function ProjectDetail() {
                 <p key={index}>{item}</p>
               ))}
             </div>
-            <Link
-              href="https://github.com"
-              className="flex items-center bg-primary-dark text-primary-light dark:bg-primary-light dark:text-primary-dark py-2 px-12 md:hover:px-14 transition-all max-w-fit rounded-md text-lg mt-4"
-              target="_blank"
-              rel="noopener primaryerrer"
-            >
-              Repository
-            </Link>
+            {Project.github && (
+              <Link
+                href={Project.github}
+                className="flex items-center bg-primary-dark text-primary-light dark:bg-primary-light dark:text-primary-dark py-2 px-12 md:hover:px-14 transition-all max-w-fit rounded-md text-lg mt-4"
+                target="_blank"
+                rel="noopener primaryerrer"
+              >
+                Repository
+              </Link>
+            )}
           </div>
           <div>
             <div className="relative w-full inline-flex items-center justify-center aspect-video rounded-xl overflow-hidden">
