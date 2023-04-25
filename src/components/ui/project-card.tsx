@@ -1,14 +1,13 @@
 import Link from 'next/link'
 import styles from '@/styles/project-card.module.css'
+import { ProjectCardProps as Props } from '@/types/Props'
 
-type Props = {
-  icon: string
-  title: string
-  description: string
-  href: string
-}
-
-export default function ProjectCard({ icon, title, description, href }: Props) {
+export default function ProjectCard({
+  icon,
+  title,
+  description,
+  href,
+}: Props): JSX.Element {
   // TODO: Make sure it will always be no less and no more than 2 lines of text
   return (
     <Link
