@@ -1,4 +1,4 @@
-import { WorkExperienceProps as Props } from '@/types/Props'
+import { WorkExperienceProps as Props } from '@/types/props'
 
 export default function WorkExperience({
   title,

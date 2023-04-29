@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { ElongatedImageProps as Props } from '@/types/Props'
+import { ElongatedImageProps as Props } from '@/types/props'
 
 export default function ElongatedImage({
   image,

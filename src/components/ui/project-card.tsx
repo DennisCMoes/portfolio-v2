@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import styles from '@/styles/project-card.module.css'
-import { ProjectCardProps as Props } from '@/types/Props'
+import { ProjectCardProps as Props } from '@/types/props'
 
 export default function ProjectCard({
   icon,

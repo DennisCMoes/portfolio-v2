@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { HoverableLinkProps as Props } from '@/types/Props'
+import { HoverableLinkProps as Props } from '@/types/props'
 
 // FIXME: The underline will clip through the letters of the word if it is a long letter like 'j' or 'g'
 export default function HoverableLink({
