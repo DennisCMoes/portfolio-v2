@@ -29,3 +29,10 @@ export type ProjectCardProps = {
   description: string
   href: string
 }
+
+export type HighlightedProjectsProps = {
+  icon: string
+  title: string
+  description: string
+  href: string
+}

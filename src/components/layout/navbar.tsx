@@ -1,12 +1,12 @@
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { useWindowScroll } from '@mantine/hooks'
+import { usePathname } from 'next/navigation'
 
 const ACTIVE_LINK = 'font-medium'
 const NOT_ACTIVE_LINK = 'text-tertiary'
 
 export default function Navbar(): JSX.Element {
-  const router = useRouter()
+  const pathname = usePathname()
   const [scroll] = useWindowScroll()
 
   /**
@@ -16,7 +16,7 @@ export default function Navbar(): JSX.Element {
    * @returns The class for a active or non active link
    */
   function getLinkClass(path: string): string {
-    return router.pathname === path ? ACTIVE_LINK : NOT_ACTIVE_LINK
+    return pathname === path ? ACTIVE_LINK : NOT_ACTIVE_LINK
   }
 
   return (
