@@ -26,8 +26,8 @@ export default function RootLayoutPage({ children }: { children: ReactNode }) {
                 <Transition transition="slide-up" mounted={scroll.y > 100}>
                   {(transitionStyles) => (
                     <button
-                      style={transitionStyles}
-                      className="flex items-center bg-primary-dark text-primary-light dark:bg-primary-light dark:text-primary-dark py-2 px-4 rounded-md"
+                      style={{ ...transitionStyles, transitionProperty: 'all' }}
+                      className="flex items-center bg-primary-dark text-primary-light dark:bg-primary-light dark:text-primary-dark py-2 px-4 rounded-md md:hover:px-6"
                       onClick={scrollToTop}
                     >
                       Scroll to top
