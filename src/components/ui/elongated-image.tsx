@@ -1,19 +1,14 @@
-import Image, { StaticImageData } from 'next/image'
+'use client'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
-
-type Props = {
-  image: StaticImageData | string
-  description?: string
-  isFullSize?: boolean
-  darkMode?: boolean
-}
+import { ElongatedImageProps as Props } from '@/types/props'
 
 export default function ElongatedImage({
   image,
   description,
   isFullSize = true,
   darkMode = false,
-}: Props) {
+}: Props): JSX.Element {
   const [bgColor, setBgColor] = useState<string>('')
 
   useEffect(() => {

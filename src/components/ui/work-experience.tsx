@@ -1,11 +1,4 @@
-type Props = {
-  title: string
-  description: string
-  company: string
-  start: string
-  end: string
-  tags: string[]
-}
+import { WorkExperienceProps as Props } from '@/types/props'
 
 export default function WorkExperience({
   title,
@@ -14,7 +7,7 @@ export default function WorkExperience({
   start,
   end,
   tags,
-}: Props) {
+}: Props): JSX.Element {
   return (
     <div className="inline-flex flex-col md:flex-row w-full text-lg">
       <div className="w-full md:w-2/6">

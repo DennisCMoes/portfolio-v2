@@ -1,11 +1,5 @@
 import Link from 'next/link'
-
-type Props = {
-  href: string
-  label: string
-  newTab?: boolean
-  isBold?: boolean
-}
+import { HoverableLinkProps as Props } from '@/types/props'
 
 // FIXME: The underline will clip through the letters of the word if it is a long letter like 'j' or 'g'
 export default function HoverableLink({
@@ -13,7 +7,7 @@ export default function HoverableLink({
   label,
   newTab = true,
   isBold = true,
-}: Props) {
+}: Props): JSX.Element {
   return (
     <Link
       target={newTab ? '_blank' : ''}

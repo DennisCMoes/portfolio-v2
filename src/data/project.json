@@ -1,0 +1,39 @@
+{
+  "title": "Title of my project",
+  "created": "2021-07-30T12:00:00.000Z",
+  "updated": "2021-07-30T12:00:00.000Z",
+  "tags": ["Tag1", "Tag2", "Tag3", "Tag4"],
+  "github": "https://github.com",
+  "banner": {
+    "href": "https://images.unsplash.com/photo-1505238680356-667803448bb6",
+    "alt": "Banner"
+  },
+  "sections": [
+    {
+      "type": "text",
+      "data": {
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean molestie placerat tellus congue porta. Morbi rutrum lorem at tellus malesuada elementum. Aenean et nisi eu ante vulputate consectetur sit amet quis augue. Curabitur malesuada magna fermentum fringilla sodales. Sed ante ligula, laoreet et scelerisque ac, posuere rutrum augue. Pellentesque non porttitor neque, vitae volutpat ante. Sed maximus dictum feugiat. Proin a enim lobortis, interdum ex eget, ultricies ex. Etiam at interdum tellus. Vestibulum at lectus finibus, egestas nibh vitae, aliquam dolor. Integer condimentum enim luctus vehicula lobortis. Mauris malesuada non libero a vestibulum. Integer tempus dolor in orci efficitur vestibulum."
+      }
+    },
+    {
+      "type": "image",
+      "data": {
+        "href": "https://images.unsplash.com/photo-1627399270231-7d36245355a9",
+        "alt": "Description of the image"
+      }
+    },
+    {
+      "type": "code",
+      "data": {
+        "language": "typescript",
+        "code": "const a = 1;\nconst b = 2;\nconst c = a + b;\nconsole.log(c);\n\n<p>\nLong code that will force Prism to have a horizontal scrollbar, by default, scroll behavior is handled by ScrollArea component, but it can be changed to native browser scrollbars\n</p>"
+      }
+    },
+    {
+      "type": "text",
+      "data": {
+        "text": "Integer ac finibus tellus, id aliquam elit. Duis ut odio quis leo aliquet euismod vitae eu purus. Etiam elit orci, blandit eu purus in, facilisis malesuada diam. In tincidunt risus auctor sollicitudin mattis. Nam id enim rhoncus, condimentum est et, vehicula justo. Pellentesque condimentum magna quis eros eleifend, cursus commodo nisi aliquet. Sed at vehicula eros, in faucibus odio. Suspendisse vel volutpat purus, non egestas orci. Nullam id ex et justo aliquam tincidunt. Quisque euismod tincidunt massa ac condimentum. Nunc urna nisi, cursus non purus eget, rhoncus feugiat lorem. In id tempus enim. Curabitur vel ligula sed ex convallis vestibulum sit amet quis tortor. Mauris tincidunt luctus pretium. Vestibulum eget felis tellus."
+      }
+    }
+  ]
+}

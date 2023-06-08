@@ -1,6 +1,6 @@
 import HoverableLink from '../ui/hoverable-link'
 
-export default function Footer() {
+export default function Footer(): JSX.Element {
   function getYear(): number {
     const now = new Date()
     return now.getFullYear()

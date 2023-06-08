@@ -1,43 +1,28 @@
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import ThemeSwitcher from '../ui/theme-switcher'
+import { useWindowScroll } from '@mantine/hooks'
+import { usePathname } from 'next/navigation'
 
 const ACTIVE_LINK = 'font-medium'
 const NOT_ACTIVE_LINK = 'text-tertiary'
 
-export default function Navbar() {
-  const router = useRouter()
-
-  const [path, setPath] = useState<string>('')
-  const [hasScrolled, setHasScrolled] = useState<boolean>(false)
-
-  useEffect(() => {
-    setPath(router.pathname)
-  }, [router])
+export default function Navbar(): JSX.Element {
+  const pathname = usePathname()
+  const [scroll] = useWindowScroll()
 
   /**
-   * Check if the user has scrolled
+   * Check if the current page is the same as the one the user wants to check for.
+   *
+   * @param {string} path The path we want to check for
+   * @returns The class for a active or non active link
    */
-  const handleScroll = () => {
-    setHasScrolled(window.scrollY > 20)
+  function getLinkClass(path: string): string {
+    return pathname === path ? ACTIVE_LINK : NOT_ACTIVE_LINK
   }
-
-  useEffect(() => {
-    // Listen to the scroll event
-    window.addEventListener('scroll', handleScroll, { passive: true })
-
-    // Remove the listener on page leave
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
 
   return (
     <nav
-      className={`w-full py-2 px-4 md:px-0 inline-flex items-center justify-center transition-colors duration-300 bg-background-light dark:bg-primary-dark text-primary-dark dark:text-primary-light sticky top-0 z-10 ${
-        // TODO: Add if not dark mode add shadow
-        hasScrolled && 'shadow-sm transition-shadow duration-300'
+      className={`w-full py-2 px-4 md:px-0 inline-flex items-center justify-center transition-all duration-300 bg-background-light dark:bg-primary-dark text-primary-dark dark:text-primary-light sticky top-0 z-10 dark:shadow-none ${
+        scroll.y > 25 && 'shadow-sm'
       }`}
     >
       <div className="max-w-4xl w-full flex-row inline-flex justify-between">
@@ -59,27 +44,15 @@ export default function Navbar() {
               ></path>
             </svg>
           </Link>
-          {/* <ThemeSwitcher /> */}
         </div>
         <div className="inline-flex items-center justify-between gap-4 md:gap-12">
-          <Link
-            href="/"
-            className={path === '/' ? ACTIVE_LINK : NOT_ACTIVE_LINK}
-          >
+          <Link href="/" className={getLinkClass('/')}>
             Home
           </Link>
-          <Link
-            href="/about"
-            className={path.includes('/about') ? ACTIVE_LINK : NOT_ACTIVE_LINK}
-          >
+          <Link href="/about" className={getLinkClass('/about')}>
             About
           </Link>
-          <Link
-            href="/projects"
-            className={
-              path.includes('/projects') ? ACTIVE_LINK : NOT_ACTIVE_LINK
-            }
-          >
+          <Link href="/projects" className={getLinkClass('/projects')}>
             Projects
           </Link>
         </div>

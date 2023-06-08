@@ -1,10 +1,18 @@
 [
   {
+    "title": "Werkstudent R&D",
+    "description": "Researching and programming a proof of concept to demonstrate the feasibility of a transforming the current HIX application to a webbased application. This involved working with various languages, platforms, frameworks, and content management systems.",
+    "company": "Chipsoft",
+    "start": "apr. 2023",
+    "end": "present",
+    "tags": ["C#", "TypeScript"]
+  },
+  {
     "title": "Student-assistent",
     "description": "Assisting students in their first year and helping them with programming-related questions.",
     "company": "Hogeschool van Amsterdam",
     "start": "sep. 2022",
-    "end": "present",
+    "end": "jun. 2023",
     "tags": ["Java", "HTML", "CSS", "JavaScript", "MySQL"]
   },
   {
