@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
 }
 
-export async function fetchProjects() {
+async function fetchProjects() {
   return getAllProjects()
 }
 
