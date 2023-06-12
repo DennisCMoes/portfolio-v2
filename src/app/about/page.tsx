@@ -15,11 +15,7 @@ export const metadata: Metadata = {
   },
 }
 
-const delay = (ms: number) => new Promise((res) => setTimeout(res, ms))
-
 async function getHighlighted() {
-  // await delay(5000)
-
   return ProjectData
 }
 
