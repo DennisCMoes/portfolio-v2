@@ -1,6 +1,6 @@
 import path from 'path'
 import fs from 'fs'
-import matter from 'gray-matter'
+import matter, { GrayMatterFile } from 'gray-matter'
 import { ProjectData } from '@/types/props'
 
 const POST_DIRECTORY: string = path.resolve('./posts')
@@ -28,6 +28,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectData> {
     const content = matter.read(
       path.join(POST_DIRECTORY, `${slug}.md`)
     ) as ProjectData
+
     return content
   } catch (error: any) {
     throw Error(error.message)

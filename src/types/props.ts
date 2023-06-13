@@ -53,6 +53,4 @@ export type ProjectData = {
     date: string
     repository: string
   }
-  content: string
-  isEmpty: boolean
 } & GrayMatterFile<string>
