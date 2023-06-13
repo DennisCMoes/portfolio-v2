@@ -4,12 +4,7 @@ import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import {
-  gruvboxDark,
-  atomDark,
-  darcula,
-  dracula,
-} from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import * as Component from '@/components/ui/markdown-components'
 import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis'
 
@@ -51,6 +46,18 @@ export default function ProjectDetailPage({ data, content }: any) {
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeAccessibleEmojis]}
         components={{
+          table: Component.Table,
+          thead: Component.TableHead,
+          tr: Component.TableRow,
+          th: Component.TableHeadCell,
+          td: Component.TableCell,
+          tbody: Component.TableBody,
+          ul: Component.UnorderedList,
+          ol: Component.OrderedList,
+          h1: Component.Heading1,
+          h2: Component.Heading2,
+          h3: Component.Heading3,
+          p: Component.Paragraph,
           code({ node, inline, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || '')
 
@@ -72,40 +79,22 @@ export default function ProjectDetailPage({ data, content }: any) {
               </code>
             )
           },
-          table: Component.Table,
-          thead: Component.TableHead,
-          tr: Component.TableRow,
-          th: Component.TableHeadCell,
-          td: Component.TableCell,
-          // td: ({ children, ...props }) => {
-          //   return (
-          //     <Component.CustomElement elementType="td" {...props}>
-          //       {children}
-          //     </Component.CustomElement>
-          //   )
-          // },
-          tbody: Component.TableBody,
-          ul: Component.UnorderedList,
-          ol: Component.OrderedList,
-          h1: Component.Heading1,
-          h2: Component.Heading2,
-          h3: Component.Heading3,
-          // img: ({ src, alt }) => ( // FIXME: Causes hydration error
-          //   <div className="flex flex-col rounded-md overflow-hidden">
-          //     <div className="w-full relative aspect-video">
-          //       <Image
-          //         src={src!}
-          //         alt={alt!}
-          //         sizes="100%"
-          //         fill
-          //         style={{ objectFit: 'cover' }}
-          //       />
-          //     </div>
-          //     <div className="block mt-8">
-          //       <small className="block text-tertiary leading-tight">{alt}</small>
-          //     </div>
-          //   </div>
-          // ),
+          img: ({ src, alt }: any): JSX.Element => {
+            return (
+              <div className="flex flex-col mb-4">
+                <div className="relative aspect-video overflow-hidden rounded-md">
+                  <Image
+                    src={src!}
+                    alt={alt!}
+                    sizes="100%"
+                    style={{ objectFit: 'cover' }}
+                    fill
+                  />
+                </div>
+                <div>{alt}</div>
+              </div>
+            )
+          },
         }}
       >
         {content}

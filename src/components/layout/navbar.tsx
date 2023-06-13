@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { useWindowScroll } from '@mantine/hooks'
 import { usePathname } from 'next/navigation'
 
-const ACTIVE_LINK = 'font-medium'
-const NOT_ACTIVE_LINK = 'text-tertiary'
+const ACTIVE_LINK = 'font-medium hover:text-primary-dark/75'
+const NOT_ACTIVE_LINK = 'text-tertiary hover:text-tertiary/75'
 
 export default function Navbar(): JSX.Element {
   const pathname = usePathname()
@@ -16,7 +16,16 @@ export default function Navbar(): JSX.Element {
    * @returns The class for a active or non active link
    */
   function getLinkClass(path: string): string {
-    return pathname === path ? ACTIVE_LINK : NOT_ACTIVE_LINK
+    // console.log('PATH', path)
+    // console.log('PATHNAME', pathname)
+
+    const currentRoute = pathname === path
+
+    const styling = `transition-colors ${
+      currentRoute ? ACTIVE_LINK : NOT_ACTIVE_LINK
+    }`
+
+    return styling
   }
 
   return (
@@ -26,7 +35,7 @@ export default function Navbar(): JSX.Element {
       }`}
     >
       <div className="max-w-4xl w-full flex-row inline-flex justify-between">
-        <div>
+        <div className="flex flex-row items-center justify-center space-x-1.5">
           <Link href="/">
             <svg
               aria-hidden="true"
@@ -44,6 +53,8 @@ export default function Navbar(): JSX.Element {
               ></path>
             </svg>
           </Link>
+          {/* <p className="text-xl text-gray-400">/</p>
+          <p className="text-xl">{PATH_DIR[pathname]}</p> */}
         </div>
         <div className="inline-flex items-center justify-between gap-4 md:gap-12">
           <Link href="/" className={getLinkClass('/')}>

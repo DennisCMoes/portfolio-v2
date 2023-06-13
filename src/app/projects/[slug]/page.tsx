@@ -1,40 +1,37 @@
-import path from 'path'
-import matter from 'gray-matter'
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata } from 'next'
 import ProjectDetailPage from '@/components/staticPages/project-detail-page'
-import { getAllProjects, getProjectBySlug } from '@/utils/api'
+import { getProjectBySlug } from '@/utils/api'
+import { notFound } from 'next/navigation'
+import { ProjectDetailPageParams as Props } from '@/types/props'
 
-type Props = {
-  params: { slug: string }
-}
-
-// https://dribbble.com/shots/21187320-Editorial-themes
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const markdown = await getProjectBySlug(params.slug)
+  const post: any = await getData(params.slug)
 
   return {
-    title: markdown.data.title,
-    description: 'Project detail page',
+    title: post?.data?.title || 'Project not found',
+    description: post?.data?.description || 'This project was not found',
   }
 }
 
-async function fetchData() {
-  getAllProjects(false)
-
-  const dir = path.resolve('./src/data/projects')
-  const markdownPath = path.join(dir, 'project1.md')
-
-  const data = matter.read(markdownPath)
-
-  return data
+async function getData(slug: string) {
+  try {
+    const post = await getProjectBySlug(slug)
+    return post
+  } catch (error) {
+    return undefined
+  }
 }
 
 export default async function ProjectDetail({ params }: any) {
-  const detail = await getProjectBySlug(params.slug)
+  const detail = await getData(params.slug)
+
+  if (!detail) {
+    notFound()
+  }
 
   return (
     <div>
-      <ProjectDetailPage data={detail.data} content={detail.content} />
+      <ProjectDetailPage data={detail!.data} content={detail!.content} />
     </div>
   )
 }

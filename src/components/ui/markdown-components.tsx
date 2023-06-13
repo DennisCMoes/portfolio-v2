@@ -1,5 +1,5 @@
 import SyntaxHighlighter from 'react-syntax-highlighter'
-import { gruvboxDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 type Props = {
   children: React.ReactNode
@@ -106,3 +106,35 @@ export const Heading3 = ({ children, ...props }: any) => (
     {children}
   </h3>
 )
+
+export const Image = ({ src, alt }: any): JSX.Element => {
+  return (
+    <div className="flex flex-col mb-4">
+      <div className="relative aspect-video overflow-hidden rounded-md">
+        <Image
+          src={src!}
+          alt={alt!}
+          sizes="100%"
+          style={{ objectFit: 'cover' }}
+          fill
+        />
+      </div>
+      <div>{alt}</div>
+    </div>
+  )
+}
+
+export const Paragraph = ({ children }: any) => {
+  // Render without P wrapper
+  if (
+    children &&
+    children[0] &&
+    children.length === 1 &&
+    children[0].props &&
+    children[0].props.src
+  ) {
+    return children
+  }
+
+  return <p>{children}</p>
+}
