@@ -1,33 +1,39 @@
 import path from 'path'
 import fs from 'fs'
 import matter, { GrayMatterFile } from 'gray-matter'
-import { ProjectData } from '@/types/props'
+import { FullProject, ProjectMetaData } from '@/types/props'
 
 const POST_DIRECTORY: string = path.resolve('./posts')
 
 // TODO: Add function to remove element from object so that it doesn't over share information
 export async function getAllProjects(
   withContent = false
-): Promise<ProjectData[]> {
+): Promise<ProjectMetaData[] | FullProject[]> {
   const posts = fs.readdirSync(POST_DIRECTORY)
-  const readPosts: any[] = []
+  const readPosts: GrayMatterFile<string>[] = []
 
   posts.forEach((post) => {
     const content = matter.read(path.join(POST_DIRECTORY, post))
 
-    readPosts.push(withContent ? content : content.data)
+    readPosts.push(content)
   })
 
-  return readPosts.sort((a: any, b: any) => {
+  readPosts.sort((a: any, b: any) => {
     return new Date(b.date).valueOf() - new Date(a.date).valueOf()
   })
+
+  return withContent
+    ? (readPosts as FullProject[])
+    : (readPosts.map((post) => post.data) as ProjectMetaData[])
 }
 
-export async function getProjectBySlug(slug: string): Promise<ProjectData> {
+export async function getProjectBySlug(
+  slug: string
+): Promise<ProjectMetaData | FullProject> {
   try {
     const content = matter.read(
       path.join(POST_DIRECTORY, `${slug}.md`)
-    ) as ProjectData
+    ) as FullProject
 
     return content
   } catch (error: any) {

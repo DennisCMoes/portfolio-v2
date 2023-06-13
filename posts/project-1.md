@@ -1,6 +1,7 @@
 ---
-title: 'Welcome to my markdown document'
+title: 'My markdown document'
 slug: 'project-1'
+description: 'A test project description for checking'
 coverImage: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80'
 technologies: [TypeScript, MySQL]
 date: '2023-06-05T05:35:07.322Z'

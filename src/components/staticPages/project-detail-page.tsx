@@ -40,7 +40,6 @@ export default function ProjectDetailPage({ data, content }: any) {
           style={{ objectFit: 'cover' }}
           className="rounded-md"
         />
-        h pdi
       </div>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}

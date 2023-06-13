@@ -1,7 +1,8 @@
 ---
 title: 'Project 2 Post'
 slug: 'project-2'
-coverImage: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80'
+description: 'Another test project description'
+coverImage: 'https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80'
 technologies: [TypeScript, MySQL]
 date: '2023-06-10T05:35:07.322Z'
 repository: 'https://github.com/dylanwe/fizzy-fitness-app'

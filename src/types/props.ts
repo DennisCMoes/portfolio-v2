@@ -44,13 +44,16 @@ export type ProjectDetailPageParams = {
   }
 }
 
-export type ProjectData = {
-  data: {
-    title: string
-    slug: string
-    coverImage: string
-    technologies: string[]
-    date: string
-    repository: string
-  }
+export type ProjectMetaData = {
+  title: string
+  description: string
+  slug: string
+  coverImage: string
+  technologies: string[]
+  date: string
+  repository: string
+}
+
+export type FullProject = {
+  data: ProjectMetaData
 } & GrayMatterFile<string>
