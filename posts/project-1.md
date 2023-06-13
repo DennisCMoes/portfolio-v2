@@ -1,11 +1,10 @@
 ---
-title: "Welcome to my markdown document"
-slug: "project-1"
-coverImage: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
-technologies: [ TypeScript, MySQL ]
+title: 'Welcome to my markdown document'
+slug: 'project-1'
+coverImage: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80'
+technologies: [TypeScript, MySQL]
 date: '2023-06-05T05:35:07.322Z'
 repository: 'https://github.com/dylanwe/fizzy-fitness-app'
-
 # title: 'Fizzy'
 # excerpt: 'Helping you make and keep track of your workouts.'
 # coverImage: '/assets/blog/fizzy/cover.png'
@@ -20,6 +19,7 @@ repository: 'https://github.com/dylanwe/fizzy-fitness-app'
 # ogImage:
 #   url: '/assets/blog/fizzy/cover.png'
 ---
+
 ## Introduction
 
 This document showcases various Markdown semantics and includes some beautiful photos from Unsplash.
@@ -71,13 +71,13 @@ Check out [Unsplash](https://unsplash.com/) for stunning photos.
 ## Table
 
 | Col-1 | Col-2 | Col-3 | Col-4 | Col-5 |
-|-------|-------|-------|-------|-------|
+| ----- | ----- | ----- | ----- | ----- |
 | Item1 | Item1 | Item1 | Item1 | Item1 |
 | Item2 | Item2 | Item2 | Item2 | Item2 |
 
-| a | b  |  c |  d  |
-|---|----|----|-----|
-| - | :- | -: | :-: |
+| a   | b   | c   | d   |
+| --- | --- | --- | --- |
+| -   | :-  | -:  | :-: |
 
 ## Code
 
@@ -94,7 +94,7 @@ def greet():
 
 ```javascript
 const func = () => {
-    console.log("Hello, world!")
+  console.log('Hello, world!')
 }
 ```
 

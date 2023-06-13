@@ -6,7 +6,7 @@ h1 {
 h2 {
   @apply text-2xl;
   @apply mt-8;
-  @apply font-medium
+  @apply font-medium;
 }
 
 h3 {
@@ -16,5 +16,5 @@ h3 {
 img {
   @apply rounded-md;
   @apply aspect-video;
-  @apply my-8
+  @apply my-8;
 }
