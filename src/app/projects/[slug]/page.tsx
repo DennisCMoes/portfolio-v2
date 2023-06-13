@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import ProjectDetailPage from '@/components/staticPages/project-detail-page'
 import { getProjectBySlug } from '@/utils/api'
 import { notFound } from 'next/navigation'
-import { ProjectDetailPageParams as Props } from '@/types/props'
+import { FullProject, ProjectDetailPageParams as Props } from '@/types/props'
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post: any = await getData(params.slug)
@@ -23,7 +23,7 @@ async function getData(slug: string) {
 }
 
 export default async function ProjectDetail({ params }: any) {
-  const detail = await getData(params.slug)
+  const detail = (await getData(params.slug)) as FullProject
 
   if (!detail) {
     notFound()

@@ -30,7 +30,7 @@ export default function ProjectCard({ project }: Props) {
     >
       <div
         ref={imageElement}
-        className="relative opacity-0 group-hover:opacity-100 group-hover:delay-100 delay-0 group-hover:duration-500 duration-150 transition-opacity rounded-md bg-white aspect-video"
+        className="relative h-0 group-hover:h-60 duration-500 transition-all bg-white aspect-video rounded-md"
       >
         <Image
           src={project.coverImage}
@@ -42,6 +42,7 @@ export default function ProjectCard({ project }: Props) {
         />
       </div>
       <div
+        // TODO: Add mobile support
         className="transition-all duration-300"
         style={{ marginTop: isHovering ? 10 : -height }}
       >

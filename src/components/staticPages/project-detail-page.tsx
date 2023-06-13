@@ -21,7 +21,7 @@ export default function ProjectDetailPage({ data, content }: any) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto py-12">
+    <div className="max-w-4xl mx-auto py-12 px-4">
       <div className="space-y-2 mb-4">
         <h1 className="text-4xl font-semibold">{data.title}</h1>
         <p className="text-gray-500 font-bold">{getFormattedDate()}</p>

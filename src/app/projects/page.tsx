@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { getAllProjects } from '@/utils/api'
-import Link from 'next/link'
 import ProjectCard from '@/app/projects/card'
 import { ProjectMetaData } from '@/types/props'
 
@@ -25,24 +24,63 @@ async function fetchProjects(): Promise<ProjectMetaData[]> {
 export default async function Projects() {
   const projects: ProjectMetaData[] = await fetchProjects()
 
+  // TODO: Fix the sorting
+  const sortArray = (a: any, b: any) => {
+    return new Date(a.date).valueOf() - new Date(b.date).valueOf()
+  }
+
+  const divideArray = (index: number, arrayIndex: number) => {
+    switch (arrayIndex) {
+      case 0:
+        return index % 3 === 0
+      case 1:
+        return (index + 1) % 3 === 0
+      case 2:
+        return (index + 2) % 3 === 0
+      default:
+        return false
+    }
+  }
+
   return (
-    <div className="max-w-6xl mx-auto py-12">
-      <p>PROJECTS</p>
-      <div className="grid grid-cols-3 gap-4">
-        {projects.map((project: ProjectMetaData, index: number) => (
-          // <Link
-          //   href={`/projects/${project.slug}`}
-          //   key={index}
-          //   className="bg-red-200 p-4"
-          // >
-          //   <p>{project.title}</p>
-          // </Link>
-          <ProjectCard key={index} project={project} />
-          // <p>{JSON.stringify(project)}</p>
-        ))}
-        <Link href={`/projects/2`} className="bg-red-200 p-4">
-          <p>Wrong page</p>
-        </Link>
+    <div className="max-w-6xl mx-auto py-12 px-4">
+      <p className="text-4xl font-semibold mb-4">Projects</p>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="flex flex-col gap-4">
+          {/* <ProjectCard
+            project={{
+              coverImage: '',
+              date: '',
+              description: 'This is an intentional broken link',
+              repository: '',
+              slug: '2',
+              technologies: [],
+              title: 'Wrong page',
+            }}
+          /> */}
+          {projects
+            .sort(sortArray)
+            .filter((_, index) => divideArray(index, 0))
+            .map((project: ProjectMetaData, index: number) => (
+              <ProjectCard key={index} project={project} />
+            ))}
+        </div>
+        <div className="flex flex-col gap-4">
+          {projects
+            .sort(sortArray)
+            .filter((_, index) => divideArray(index, 1))
+            .map((project: ProjectMetaData, index: number) => (
+              <ProjectCard key={index} project={project} />
+            ))}
+        </div>
+        <div className="flex flex-col gap-4">
+          {projects
+            .sort(sortArray)
+            .filter((_, index) => divideArray(index, 2))
+            .map((project: ProjectMetaData, index: number) => (
+              <ProjectCard key={index} project={project} />
+            ))}
+        </div>
       </div>
     </div>
   )
