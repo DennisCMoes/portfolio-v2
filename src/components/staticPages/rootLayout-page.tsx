@@ -5,7 +5,11 @@ import Navbar from '@/components/layout/navbar'
 import { Transition } from '@mantine/core'
 import { useWindowScroll } from '@mantine/hooks'
 import { ThemeProvider } from 'next-themes'
+import { Inter } from 'next/font/google'
 import { ReactNode } from 'react'
+import { Analytics } from '@vercel/analytics/react'
+
+const inter = Inter({ subsets: ['latin'], weight: '400' })
 
 export default function RootLayoutPage({ children }: { children: ReactNode }) {
   const [scroll, scrollTo] = useWindowScroll()
@@ -15,7 +19,7 @@ export default function RootLayoutPage({ children }: { children: ReactNode }) {
   }
 
   return (
-    <html lang="en">
+    <html lang="en" className={inter.className}>
       <body>
         {/* FIXME: When outcommented there is an error about extra css styling */}
         {/* <ThemeProvider attribute="class" enableSystem={true}> */}
@@ -40,6 +44,7 @@ export default function RootLayoutPage({ children }: { children: ReactNode }) {
           <Footer />
         </div>
         {/* </ThemeProvider> */}
+        <Analytics />
       </body>
     </html>
   )
