@@ -10,6 +10,7 @@ type Props = {
   project: ProjectMetaData
 }
 
+// TODO: Add mobile hover support
 export default function ProjectCard({ project }: Props) {
   const [height, setHeight] = useState<number>(0)
   const [isHovering, setIsHovering] = useState<boolean>(false)
@@ -98,9 +99,11 @@ export default function ProjectCard({ project }: Props) {
             ref={descriptionElement}
             className="mt-2 absolute bottom-6 min-h-fit opacity-0 group-hover:opacity-100 transition-all group-hover:delay-200 delay-0 -space-y-1 text-tertiary-light duration-200"
           >
-            <div className="inline-flex flex-wrap flex-row gap-x-2 text-sm">
+            <div className="inline-flex flex-wrap flex-row text-sm divide-solid divide-x-2 divide-secondary-light">
               {project.technologies.map((item, index) => (
-                <p key={index}>{item}</p>
+                <p key={index} className="first:pl-0 px-1">
+                  {item}
+                </p>
               ))}
             </div>
             <p className="text-2xl md:text-3xl">{project.description}</p>
