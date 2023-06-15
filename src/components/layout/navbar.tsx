@@ -12,14 +12,11 @@ export default function Navbar(): JSX.Element {
   /**
    * Check if the current page is the same as the one the user wants to check for.
    *
-   * @param {string} path The path we want to check for
+   * @param {RegExp} regex The pattern we want to check for
    * @returns The class for a active or non active link
    */
-  function getLinkClass(path: string): string {
-    // console.log('PATH', path)
-    // console.log('PATHNAME', pathname)
-
-    const currentRoute = pathname === path
+  function getLinkClass(regex: RegExp): string {
+    const currentRoute = regex.test(pathname)
 
     const styling = `transition-colors ${
       currentRoute ? ACTIVE_LINK : NOT_ACTIVE_LINK
@@ -57,13 +54,13 @@ export default function Navbar(): JSX.Element {
           <p className="text-xl">{PATH_DIR[pathname]}</p> */}
         </div>
         <div className="inline-flex items-center justify-between gap-4 md:gap-12">
-          <Link href="/" className={getLinkClass('/')}>
+          <Link href="/" className={getLinkClass(/^\/$/gm)}>
             Home
           </Link>
-          <Link href="/about" className={getLinkClass('/about')}>
+          <Link href="/about" className={getLinkClass(/about/gm)}>
             About
           </Link>
-          <Link href="/projects" className={getLinkClass('/projects')}>
+          <Link href="/projects" className={getLinkClass(/.projects/gm)}>
             Projects
           </Link>
         </div>
