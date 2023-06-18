@@ -88,10 +88,17 @@ export default function ProjectCard({ project }: Props) {
             </div>
           </div>
         </div>
-        <div className="p-6">
+        <div className="p-6  text-primary-light group-hover:text-primary-dark">
+          <div className="duration-300 transition-all inline-flex flex-wrap flex-row text-sm">
+            {project.technologies.map((item, index) => (
+              <p key={index} className="first:pl-0 px-1">
+                #{item}
+              </p>
+            ))}
+          </div>
           <p
             style={{ marginBottom: isHovering ? height + 6 : 0 }}
-            className="transition-all duration-300 text-4xl md:text-5xl text-primary-light group-hover:text-primary-dark"
+            className="transition-all duration-300 text-4xl md:text-5xl"
           >
             {project.title}
           </p>
@@ -99,13 +106,6 @@ export default function ProjectCard({ project }: Props) {
             ref={descriptionElement}
             className="mt-2 absolute bottom-6 min-h-fit opacity-0 group-hover:opacity-100 transition-all group-hover:delay-200 delay-0 -space-y-1 text-tertiary-light duration-200"
           >
-            <div className="inline-flex flex-wrap flex-row text-sm divide-solid divide-x-2 divide-secondary-light">
-              {project.technologies.map((item, index) => (
-                <p key={index} className="first:pl-0 px-1">
-                  {item}
-                </p>
-              ))}
-            </div>
             <p className="text-2xl md:text-3xl">{project.description}</p>
           </div>
         </div>

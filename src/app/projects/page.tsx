@@ -25,7 +25,7 @@ export default async function Projects() {
   const projects: ProjectMetaData[] = await fetchProjects()
 
   const sortArray = (a: any, b: any) => {
-    return new Date(a.date).valueOf() - new Date(b.date).valueOf()
+    return new Date(b.date).valueOf() - new Date(a.date).valueOf()
   }
 
   return (
