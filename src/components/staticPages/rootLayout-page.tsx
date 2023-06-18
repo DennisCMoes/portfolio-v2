@@ -44,7 +44,7 @@ export default function RootLayoutPage({ children }: { children: ReactNode }) {
           <Footer />
         </div>
         {/* </ThemeProvider> */}
-        <Analytics />
+        <Analytics debug={false} />
       </body>
     </html>
   )
