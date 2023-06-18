@@ -1,4 +1,4 @@
-import ProjectCard from '@/components/ui/project-card'
+import ProjectCard from '@/app/about/card'
 
 import MeImage from '../../../public/images/me-explaining.jpeg'
 import MeCoding from '../../../public/svg/me-coding.svg'
