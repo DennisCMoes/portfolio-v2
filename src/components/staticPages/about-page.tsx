@@ -1,7 +1,10 @@
 import ProjectCard from '@/app/about/card'
 
-import MeImage from '../../../public/images/me-explaining.jpeg'
-import MeCoding from '../../../public/svg/me-coding.svg'
+// Images
+import BlockchainPresentation from '@public/images/blockchain-presentation.jpg'
+import MeImage from '@public/images/me-explaining.jpeg'
+import MeCoding from '@public/svg/me-coding.svg'
+
 import HoverableLink from '@/components/ui/hoverable-link'
 import ElongatedImage from '@/components/ui/elongated-image'
 import { Inter } from 'next/font/google'
@@ -17,7 +20,7 @@ export default function AboutPage({
 }) {
   return (
     <main className={`${inter.className} min-h-screen px-4 py-12 md:py-32`}>
-      <section className="max-w-4xl mx-auto space-y-12 text-2xl md:text-2xl">
+      <section className="max-w-4xl mx-auto space-y-12 text-xl">
         <div className="space-y-4">
           <p>
             Hello stranger! My name is Dennis and I&apos;m a software
@@ -95,6 +98,13 @@ export default function AboutPage({
           isFullSize={false}
           darkMode={true}
         />
+        <div>
+          <p>Some more text</p>
+          <ElongatedImage
+            image={BlockchainPresentation}
+            description="Presenting our blockchain project"
+          />
+        </div>
       </section>
     </main>
   )

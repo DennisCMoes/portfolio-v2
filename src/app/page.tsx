@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import WorkExperienceList from '@/data/work.json'
-import HomePage from '../components/staticPages/home-page'
+import HomePage from '@/components/staticPages/home-page'
 
 export const metadata: Metadata = {
   title: 'Home',

@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import AboutPage from '../../components/staticPages/about-page'
+import AboutPage from '@/components/staticPages/about-page'
 
 import ProjectData from '@/data/projects.json'
 

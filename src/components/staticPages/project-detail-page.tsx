@@ -1,19 +1,28 @@
 'use client'
 
 import Image from 'next/image'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import * as Component from '@/components/ui/markdown-components'
-import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis'
 import Link from 'next/link'
 
-// TODO: Add table styling
-// TODO: Maybe use this plugin: https://github.com/kevin940726/remark-codesandbox
-// https://github.com/remarkjs/remark/blob/main/doc/plugins.md#list-of-plugins
+// Markdown
+import ReactMarkdown from 'react-markdown'
+import * as Component from '@/components/ui/markdown-components'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism'
+
+// Remark plugins
+import remarkGfm from 'remark-gfm'
+import remarkUnwrapImages from 'remark-unwrap-images'
+
+// Rehype plugins
+import rehypeVideo from 'rehype-video'
+import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis'
+
 export default function ProjectDetailPage({ data, content }: any) {
-  function getFormattedDate() {
+  /**
+   * Returns a formatted date string.
+   * @returns {string} The formatted date string.
+   */
+  function getFormattedDate(): string {
     return new Intl.DateTimeFormat('en', {
       month: 'long',
       day: 'numeric',
@@ -28,7 +37,7 @@ export default function ProjectDetailPage({ data, content }: any) {
           <p className="text-gray-500 font-bold">{getFormattedDate()}</p>
           <h1 className="text-4xl font-semibold">{data.title}</h1>
         </div>
-        <div className="flex flex-row justify-between items-center">
+        <div className="flex flex-row justify-between items-center space-x-2">
           <Link
             href={data.repository}
             target="_blank"
@@ -37,36 +46,42 @@ export default function ProjectDetailPage({ data, content }: any) {
             className="transition-colors duration-300 text-primary-dark hover:text-primary-light bg-primary-light hover:bg-primary-dark font-medium rounded-md text-sm px-8 py-2.5 text-center inline-flex items-center justify-center border-2 border-primary-dark"
           >
             <svg
-              aria-hidden="true"
-              className="w-5 h-5 mr-2 -ml-1"
-              fill="currentColor"
-              viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5 mr-1 -ml-1"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>
+              <path
+                d="M5.315 2.1c.791 -.113 1.9 .145 3.333 .966l.272 .161l.16 .1l.397 -.083a13.3 13.3 0 0 1 4.59 -.08l.456 .08l.396 .083l.161 -.1c1.385 -.84 2.487 -1.17 3.322 -1.148l.164 .008l.147 .017l.076 .014l.05 .011l.144 .047a1 1 0 0 1 .53 .514a5.2 5.2 0 0 1 .397 2.91l-.047 .267l-.046 .196l.123 .163c.574 .795 .93 1.728 1.03 2.707l.023 .295l.007 .272c0 3.855 -1.659 5.883 -4.644 6.68l-.245 .061l-.132 .029l.014 .161l.008 .157l.004 .365l-.002 .213l-.003 3.834a1 1 0 0 1 -.883 .993l-.117 .007h-6a1 1 0 0 1 -.993 -.883l-.007 -.117v-.734c-1.818 .26 -3.03 -.424 -4.11 -1.878l-.535 -.766c-.28 -.396 -.455 -.579 -.589 -.644l-.048 -.019a1 1 0 0 1 .564 -1.918c.642 .188 1.074 .568 1.57 1.239l.538 .769c.76 1.079 1.36 1.459 2.609 1.191l.001 -.678l-.018 -.168a5.03 5.03 0 0 1 -.021 -.824l.017 -.185l.019 -.12l-.108 -.024c-2.976 -.71 -4.703 -2.573 -4.875 -6.139l-.01 -.31l-.004 -.292a5.6 5.6 0 0 1 .908 -3.051l.152 -.222l.122 -.163l-.045 -.196a5.2 5.2 0 0 1 .145 -2.642l.1 -.282l.106 -.253a1 1 0 0 1 .529 -.514l.144 -.047l.154 -.03z"
+                strokeWidth="0"
+                fill="currentColor"
+              ></path>
             </svg>
             GitHub
           </Link>
-          <div className="inline-flex flex-row gap-2 text-gray-500 font-medium">
+          <div className="inline-flex flex-row gap-x-2 text-gray-500 font-medium items-end justify-end flex-wrap">
             {data.technologies.map((item: any, index: number) => (
               <p key={index}>#{item}</p>
             ))}
           </div>
         </div>
       </div>
-      <div className="w-full relative aspect-video">
+      <div className="w-full relative aspect-[4/3] mb-4">
         <Image
           src={data.coverImage}
           alt={'Cover image'}
           sizes="100%"
           fill
-          style={{ objectFit: 'cover' }}
-          className="rounded-md"
+          className="rounded-md object-cover"
         />
       </div>
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
+        remarkPlugins={[remarkGfm, remarkUnwrapImages]}
         rehypePlugins={[rehypeAccessibleEmojis]}
         components={{
           table: Component.Table,
@@ -81,40 +96,80 @@ export default function ProjectDetailPage({ data, content }: any) {
           h2: Component.Heading2,
           h3: Component.Heading3,
           p: Component.Paragraph,
+          a({ href, children }: any) {
+            return (
+              <Link
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-blue-600 hover:underline"
+              >
+                {children}
+              </Link>
+            )
+          },
           code({ node, inline, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || '')
 
             // TODO: Add copy to clipboard button
-            return !inline && match ? (
-              <SyntaxHighlighter
-                {...props}
-                style={darcula}
-                language={match[1]}
-                PreTag="div"
-                customStyle={{ borderRadius: 6 }}
-                showLineNumbers={true}
-              >
-                {String(children).replace(/\n$/, '')}
-              </SyntaxHighlighter>
-            ) : (
-              <code {...props} className={className}>
-                {children}
-              </code>
-            )
+            if (!inline && match) {
+              return (
+                <SyntaxHighlighter
+                  {...props}
+                  style={darcula}
+                  language={match[1]}
+                  PreTag="div"
+                  customStyle={{ borderRadius: 6 }}
+                  showLineNumbers={true}
+                >
+                  {String(children).replace(/\n$/, '')}
+                </SyntaxHighlighter>
+              )
+            } else if (inline) {
+              return (
+                <code
+                  {...props}
+                  className={`inline-code bg-primary-dark text-primary-light rounded-sm px-1 py-0.5`}
+                >
+                  {children}
+                </code>
+              )
+            } else {
+              return (
+                <code {...props} className={className}>
+                  {children}
+                </code>
+              )
+            }
           },
-          img: ({ src, alt }: any): JSX.Element => {
+          img({ src, alt }: any): JSX.Element {
             return (
               <div className="flex flex-col mb-4">
-                <div className="relative aspect-video overflow-hidden rounded-md">
-                  <Image
-                    src={src!}
-                    alt={alt!}
-                    sizes="100%"
-                    style={{ objectFit: 'cover' }}
-                    fill
-                  />
-                </div>
-                <div>{alt}</div>
+                {src.endsWith('.mp4') ? (
+                  <div className="relative aspect-video overflow-hidden rounded-md">
+                    <video
+                      src={src!}
+                      className="object-cover"
+                      autoPlay
+                      loop
+                      muted
+                    >
+                      <source src={src!} type="video/mp4" />
+                      Your browser does not support the video tag
+                    </video>
+                  </div>
+                ) : (
+                  <div className="relative aspect-[4/3] md:aspect-video overflow-hidden rounded-md">
+                    <Image
+                      src={src!}
+                      alt={alt!}
+                      sizes="100%"
+                      className="object-cover"
+                      fill
+                    />
+                  </div>
+                )}
+                <div className="text-sm text-tertiary-light">{alt}</div>
               </div>
             )
           },
