@@ -1,10 +1,11 @@
 'use client'
 
 import { ProjectMetaData } from '@/types/props'
+import { useEffect, useRef, useState } from 'react'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '@/styles/project-card.module.css'
-import { useEffect, useRef, useState } from 'react'
 
 type Props = {
   project: ProjectMetaData
@@ -13,6 +14,8 @@ type Props = {
 
 // TODO: Add mobile hover support
 export default function ProjectCard({ project, index }: Props) {
+  const DELAY = (index + 1) * 125
+
   const [height, setHeight] = useState<number>(0)
   const [isHovering, setIsHovering] = useState<boolean>(false)
   const descriptionElement = useRef<HTMLParagraphElement>(null)
@@ -38,7 +41,7 @@ export default function ProjectCard({ project, index }: Props) {
       onMouseLeave={() => handleHover(false)}
       href={`/projects/${project.slug}`}
       className={`group relative flex flex-col rounded-lg bg-primary-light overflow-hidden aspect-square ${styles.btn} ${styles.fadeInUp}`}
-      style={{ animationDelay: `${(index + 1) * 125}ms` }}
+      style={{ animationDelay: `${DELAY}ms` }}
     >
       <div className="absolute aspect-square w-full h-full opacity-100 group-hover:opacity-0 duration-500 z-10">
         <Image

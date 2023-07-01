@@ -1,6 +1,7 @@
-import { Metadata } from 'next'
-import { getAllProjects } from '@/utils/api'
 import ProjectCard from '@/app/projects/card'
+
+import { Metadata } from 'next'
+import { getAllProjectData } from '@/utils/api'
 import { ProjectMetaData } from '@/types/props'
 
 export const metadata: Metadata = {
@@ -17,27 +18,20 @@ export const metadata: Metadata = {
 }
 
 async function fetchProjects(): Promise<ProjectMetaData[]> {
-  const data: ProjectMetaData[] = (await getAllProjects()) as ProjectMetaData[]
-  return data
+  return await getAllProjectData()
 }
 
 export default async function Projects() {
   const projects: ProjectMetaData[] = await fetchProjects()
 
-  const sortArray = (a: any, b: any) => {
-    return new Date(b.date).valueOf() - new Date(a.date).valueOf()
-  }
-
   return (
     // TODO: Add mobile and large desktop support
     <div className="max-w-6xl mx-auto py-12 px-4">
-      <p className="text-4xl font-semibold mb-4">Projects</p>
+      <p className={`text-4xl font-semibold mb-4`}>Projects</p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
-        {projects
-          .sort(sortArray)
-          .map((project: ProjectMetaData, index: number) => (
-            <ProjectCard key={index} project={project} />
-          ))}
+        {projects.map((project: ProjectMetaData, index: number) => (
+          <ProjectCard key={index} project={project} index={index} />
+        ))}
       </div>
     </div>
   )
