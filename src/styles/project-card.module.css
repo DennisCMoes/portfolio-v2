@@ -3,34 +3,8 @@
   transition: all 0.3s ease-in-out;
 }
 
-.fadeInUp {
-  animation: fadeInUp forwards 1.5s ease-in-out;
-  transform: translateY(5%);
-  opacity: 0;
-}
-
 @media (min-width: 768px) {
   .btn:hover {
     clip-path: inset(0px round 14px);
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeInUp {
-  0% {
-    transform: translateY(5%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0%);
-    opacity: 1;
   }
 }
