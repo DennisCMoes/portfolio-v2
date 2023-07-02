@@ -96,7 +96,7 @@ export const Heading1 = ({ children, ...props }: any) => (
 )
 
 export const Heading2 = ({ children, ...props }: any) => (
-  <h2 {...props} className="text-2xl font-medium mb-2 mt-8">
+  <h2 {...props} className="text-3xl font-medium mb-2 mt-8">
     {children}
   </h2>
 )
@@ -108,33 +108,53 @@ export const Heading3 = ({ children, ...props }: any) => (
 )
 
 export const Image = ({ src, alt }: any): JSX.Element => {
-  return (
-    <div className="flex flex-col mb-4">
-      <div className="relative aspect-video overflow-hidden rounded-md">
-        <Image
-          src={src!}
-          alt={alt!}
-          sizes="100%"
-          style={{ objectFit: 'cover' }}
-          fill
-        />
+  console.log('SRC', src)
+
+  if (src.endsWidth('.mp4')) {
+    return (
+      <div className="flex flex-col mb-4">
+        <div className="relative aspect-video overflow-hidden rounded-md">
+          <video src={src!} style={{ objectFit: 'cover' }} autoPlay loop muted>
+            Your browser does not support the video tag
+          </video>
+        </div>
+        <div>{alt}</div>
       </div>
-      <div>{alt}</div>
-    </div>
-  )
+    )
+  } else {
+    return (
+      <div className="flex flex-col mb-4">
+        <div className="relative aspect-video overflow-hidden rounded-md">
+          <Image
+            src={src!}
+            alt={alt!}
+            sizes="100%"
+            style={{ objectFit: 'cover' }}
+            fill
+          />
+        </div>
+        <div>
+          {alt} - {src}
+        </div>
+      </div>
+    )
+  }
 }
 
 export const Paragraph = ({ children }: any) => {
   // Render without P wrapper
-  if (
-    children &&
-    children[0] &&
-    children.length === 1 &&
-    children[0].props &&
-    children[0].props.src
-  ) {
-    return children
-  }
+  return <p className="text-xl my-4">{children}</p>
+}
 
-  return <p>{children}</p>
+export const Link = ({ href, children }: any) => {
+  return (
+    <Link
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="font-medium text-blue-600 hover:underline"
+    >
+      {children}
+    </Link>
+  )
 }
