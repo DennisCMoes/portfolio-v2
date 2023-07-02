@@ -1,6 +1,6 @@
 [
   {
-    "title": "Werkstudent R&D",
+    "title": "Working student R&D",
     "description": "Researching and programming a proof of concept to demonstrate the feasibility of a transforming the current HIX application to a webbased application. This involved working with various languages, platforms, frameworks, and content management systems.",
     "company": "Chipsoft",
     "start": "apr. 2023",
@@ -36,11 +36,11 @@
     "description": "I was responsible for designing and building an application that enables users to access a virtual desktop, collaborating with experienced programmers to devise, design and market technologies, and constructing scalable, fault-tolerant index and query systems that are easy to manage and use.",
     "company": "EWD215",
     "start": "aug. 2020",
-    "end": "mar 2021",
+    "end": "mar. 2021",
     "tags": ["Python", "MySQL", "Wordpress"]
   },
   {
-    "title": "Kassa medewerker",
+    "title": "Cashier",
     "description": "As a cashier, I was involved with processing customer transactions, handling cash and other payment methods, and providing customer service.",
     "company": "Albert Heijn Vos Supermarkten",
     "start": "jun. 2019",

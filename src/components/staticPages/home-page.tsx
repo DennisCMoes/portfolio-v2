@@ -1,18 +1,24 @@
 'use client'
 
 import Link from 'next/link'
-import WorkExperience from '@/components/ui/work-experience'
 import SocialBtn from '@/app/socialBtn'
 import HoverableLink from '@/components/ui/hoverable-link'
+import WorkExperience from '@/components/ui/work-experience'
 
 import { useRef } from 'react'
-import { WorkExperienceProps } from '@/types/props'
+import { WorkExperienceProps as Work } from '@/types/props'
+import { EducationProps as Education } from '@/types/props'
+import EducationCard from '@/app/educationCard'
+
+type Props = {
+  workExperience: Work[]
+  educationExperience: Education[]
+}
 
 export default function HomePage({
-  WorkExperienceList,
-}: {
-  WorkExperienceList: WorkExperienceProps[]
-}) {
+  workExperience,
+  educationExperience,
+}: Props) {
   const secondSection = useRef<HTMLElement>(null)
 
   function scrollToSecondSection() {
@@ -88,6 +94,11 @@ export default function HomePage({
         className="max-w-4xl mx-auto pb-32 space-y-12 text-2xl px-4"
       >
         Education
+        <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-2">
+          {educationExperience.map((education: Education, index: number) => (
+            <EducationCard key={index} education={education} />
+          ))}
+        </div>
       </section>
       <section
         id="work-experience"
@@ -101,7 +112,7 @@ export default function HomePage({
           </p>
         </div>
         <div className="inline-flex flex-col w-full space-y-8">
-          {WorkExperienceList.map((work: any, index: number) => (
+          {workExperience.map((work: Work, index: number) => (
             <WorkExperience key={index} {...work} />
           ))}
         </div>

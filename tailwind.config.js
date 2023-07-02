@@ -32,14 +32,13 @@ module.exports = {
         quinary: '',
       },
       keyframes: {
-        wiggle: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
+        fadeInUp: {
+          '0%': { transform: 'translateY(5%)', opacity: 0 },
+          '100%': { transform: 'translateY(0%)', opacity: 1 },
         },
       },
-      // TODO: Make this animation more smoother
       animation: {
-        wiggle: 'wiggle 2s ease infinite',
+        fadeInUp: 'fadeInUp forwards 1.5s ease-in-out',
       },
     },
   },

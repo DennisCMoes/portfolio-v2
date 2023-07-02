@@ -1,6 +1,9 @@
 import { Metadata } from 'next'
-import WorkExperienceList from '@/data/work.json'
 import HomePage from '@/components/staticPages/home-page'
+
+// Data
+import WorkExperienceList from '@/data/work.json'
+import EducationList from '@/data/education.json'
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -15,5 +18,10 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
-  return <HomePage WorkExperienceList={WorkExperienceList} />
+  return (
+    <HomePage
+      workExperience={WorkExperienceList}
+      educationExperience={EducationList}
+    />
+  )
 }

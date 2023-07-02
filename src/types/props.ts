@@ -10,6 +10,13 @@ export type WorkExperienceProps = {
   tags: string[]
 }
 
+export type EducationProps = {
+  school: string
+  degree: string
+  start: string
+  end: string
+}
+
 export type ElongatedImageProps = {
   image: StaticImageData | string
   description?: string
@@ -52,6 +59,7 @@ export type ProjectMetaData = {
   technologies: string[]
   date: string
   repository: string
+  draft: boolean
 }
 
 export type FullProject = {
