@@ -1,13 +1,12 @@
 'use client'
-import { useRef } from 'react'
-import { Inter } from 'next/font/google'
+
 import Link from 'next/link'
 import WorkExperience from '@/components/ui/work-experience'
-import { WorkExperienceProps } from '@/types/props'
 import SocialBtn from '@/app/socialBtn'
 import HoverableLink from '@/components/ui/hoverable-link'
 
-const inter = Inter({ subsets: ['latin'], weight: '400' })
+import { useRef } from 'react'
+import { WorkExperienceProps } from '@/types/props'
 
 export default function HomePage({
   WorkExperienceList,
@@ -26,12 +25,9 @@ export default function HomePage({
   }
 
   return (
-    <main className={inter.className}>
-      <section
-        id="banner"
-        className="min-h-screen max-w-4xl grid items-center justify-center mx-auto space-y-64 px-4"
-      >
-        <div className="-mt-48 space-y-4">
+    <>
+      <section id="banner" className="min-h-screen max-w-4xl grid mx-auto px-4">
+        <div className="space-y-4 mt-80">
           <div>
             <p className="text-xl text-tertiary">Hi, my name is</p>
             <p className="text-7xl font-semibold">Dennis Moes</p>
@@ -110,6 +106,6 @@ export default function HomePage({
           ))}
         </div>
       </section>
-    </main>
+    </>
   )
 }
