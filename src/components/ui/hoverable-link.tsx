@@ -17,7 +17,7 @@ export default function HoverableLink({
       target={newTab ? '_blank' : ''}
       rel={newTab ? 'noopener noreferrer' : ''}
       href={href}
-      className={`text-transparent transition-colors bg-clip-text bg-gradient-to-r from-cyan-500 to-emerald-500 ${
+      className={`text-transparent transition-colors bg-clip-text bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-600 hover:to-emerald-600 ${
         isBold && 'font-bold'
       }`}
     >
