@@ -6,6 +6,7 @@ coverImage: '/projects/VelocitySales/coverImage.png'
 technologies: [Nextjs, TypeScript, Ethers.js]
 date: '2023-03-28T00:00:00.000Z'
 repository: 'https://github.com/kingdennis-crypto/Car-Dealership'
+draft: false
 ---
 
 For one of my classes in my blockchain semester I needed to make a second hand car dealership that would communicate and store data on the ethereum blockchain. So I decided to use NextJS and Ethers.js to handle the website and communication with the blockchain.

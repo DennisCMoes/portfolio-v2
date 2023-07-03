@@ -6,6 +6,7 @@ coverImage: '/projects/MyRecipeApp/coverImage.png'
 technologies: [React Native, Expo]
 date: '2021-07-22T00:00:00.000Z'
 repository: 'https://github.com/kingdennis-crypto/MyRecipeApp'
+draft: false
 ---
 
 Welcome to "My Recipe App", a mobile application with an extensive collection of delightful recipes retrieved by calling a external API. This project holds a special place in my hearts as it marks my true first venture into coding with React Native, without relying on tutorials. Prior to this, I had gained experience by watching tutorials and working on practice projects to familiarize myself with the framework.

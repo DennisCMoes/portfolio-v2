@@ -37,6 +37,8 @@ export async function getProject(slug: string): Promise<FullProject> {
  * @returns {Promise<FullProject[]>} - An array of all projects.
  */
 export async function getAllProjects(): Promise<FullProject[]> {
+  const excludeDrafts = ENVIRONMENT === 'production'
+
   try {
     // Read the names of all files in the POST_DIRECTORY
     const posts: string[] = await fs.readdir(POST_DIRECTORY)
@@ -54,7 +56,9 @@ export async function getAllProjects(): Promise<FullProject[]> {
       return new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
     })
 
-    return projects
+    return excludeDrafts
+      ? projects.filter((project: FullProject) => !project.data.draft)
+      : projects
   } catch (error: any) {
     throw new Error(`Error while retrieving all the projects: ${error.message}`)
   }

@@ -6,6 +6,7 @@ coverImage: '/projects/MusicBox/coverImage.png'
 technologies: [Flutter]
 date: '2022-08-10T00:00:00.000Z'
 repository: 'https://github.com/kingdennis-crypto/MusicBox'
+draft: false
 ---
 
 After making a few projects in React Native I decided to venture to the Flutter ecosystem. Once again just like with React Native I followed a few tutorials until I was confident enough to make my own application. And this is it. A app called Music Box. This app is more of a functional design for a music player app. There is a small homescreen with the top songs of the year and when you press it, it will be selected and show in the music player.
