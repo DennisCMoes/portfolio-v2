@@ -1,13 +1,13 @@
-.link-underline {
+/* .link-underline {
   border-bottom-width: 0;
   background-image: linear-gradient(transparent, transparent),
     linear-gradient(#fff, #fff);
   background-size: 0 2px;
   background-position: 0 100%;
   background-repeat: no-repeat;
-  /* transition: background-size 0.3s ease-out; */
-  transition: background-size 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* easeOutQuart */
-  
+  - transition: background-size 0.3s ease-out;
+  transition: background-size 0.5s cubic-bezier(0.25, 1, 0.5, 1); 
+  aseOutQuart
 }
 .link-underline-black {
   background-image: linear-gradient(transparent, transparent),
@@ -17,4 +17,63 @@
 .link-underline:hover {
   background-size: 100% 2px;
   background-position: 0 100%;
+} */
+
+/* a {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+
+  font-weight: bold;
+  
 }
+
+a::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  border-radius: 4px;
+  background-image: linear-gradient(transparent, transparent),
+    linear-gradient(#06b6d4, #10b981);
+  bottom: 0.5px;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-out;
+}
+
+a:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+} */
+
+
+/* a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a {
+  background:
+    linear-gradient(
+      to right,
+      rgba(100, 200, 200, 1),
+      rgba(100, 200, 200, 1)
+    ),
+    linear-gradient(
+      to right,
+      rgba(255, 0, 0, 1),
+      rgba(255, 0, 180, 1),
+      rgba(0, 100, 200, 1)
+  );
+  background-size: 100% 3px, 0 3px;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 400ms;
+  bottom: -2px;
+}
+
+a:hover {
+  background-size: 0 3px, 100% 3px;
+} */

@@ -1,5 +1,9 @@
+// import '@/styles/link.css'
+
 import Link from 'next/link'
 import { HoverableLinkProps as Props } from '@/types/props'
+
+import styles from '@/styles/link.module.css'
 
 // FIXME: The underline will clip through the letters of the word if it is a long letter like 'j' or 'g'
 export default function HoverableLink({
@@ -13,7 +17,7 @@ export default function HoverableLink({
       target={newTab ? '_blank' : ''}
       rel={newTab ? 'noopener noreferrer' : ''}
       href={href}
-      className={`text-transparent transition-colors bg-clip-text bg-gradient-to-r from-cyan-500 to-emerald-500 ${
+      className={`text-transparent transition-colors bg-clip-text bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-600 hover:to-emerald-600 ${
         isBold && 'font-bold'
       }`}
     >

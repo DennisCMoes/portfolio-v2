@@ -21,7 +21,7 @@ export default function ProjectCard({
         <p className="text-5xl">{icon}</p>
       </div>
       <div>
-        <p className="text-4xl md:text-5xl">{title}</p>
+        <p className="text-4xl md:text-5xl mb-0.5">{title}</p>
         <p className="-mb-8 md:group-hover:mb-0 transition-all duration-300 text-2xl md:text-3xl text-tertiary-light">
           {description}
         </p>
@@ -34,7 +34,7 @@ export default function ProjectCard({
             strokeWidth="2"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
-            className="ml-1 w-4 h-4"
+            className="ml-1 w-4 h-4 mt-0.5"
           >
             <path
               d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"

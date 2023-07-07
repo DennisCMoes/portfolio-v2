@@ -1,3 +1,4 @@
+import { GrayMatterFile } from 'gray-matter'
 import { StaticImageData } from 'next/image'
 
 export type WorkExperienceProps = {
@@ -7,6 +8,13 @@ export type WorkExperienceProps = {
   start: string
   end: string
   tags: string[]
+}
+
+export type EducationProps = {
+  school: string
+  degree: string
+  start: string
+  end: string
 }
 
 export type ElongatedImageProps = {
@@ -36,3 +44,24 @@ export type HighlightedProjectsProps = {
   description: string
   href: string
 }
+
+export type ProjectDetailPageParams = {
+  params: {
+    slug: string
+  }
+}
+
+export type ProjectMetaData = {
+  title: string
+  description: string
+  slug: string
+  coverImage: string
+  technologies: string[]
+  date: string
+  repository: string
+  draft: boolean
+}
+
+export type FullProject = {
+  data: ProjectMetaData
+} & GrayMatterFile<string>

@@ -1,7 +1,5 @@
 import { Metadata } from 'next'
-import AboutPage from '../../components/staticPages/about-page'
-
-import ProjectData from '@/data/projects.json'
+import AboutPage from '@/components/staticPages/about-page'
 
 export const metadata: Metadata = {
   title: 'About',
@@ -15,16 +13,6 @@ export const metadata: Metadata = {
   },
 }
 
-const delay = (ms: number) => new Promise((res) => setTimeout(res, ms))
-
-async function getHighlighted() {
-  // await delay(5000)
-
-  return ProjectData
-}
-
 export default async function About() {
-  const highlightedProjects = await getHighlighted()
-
-  return <AboutPage highlightedProjects={highlightedProjects} />
+  return <AboutPage />
 }

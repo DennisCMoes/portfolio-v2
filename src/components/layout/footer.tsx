@@ -1,4 +1,4 @@
-import HoverableLink from '../ui/hoverable-link'
+import HoverableLink from '@/components/ui/hoverable-link'
 
 export default function Footer(): JSX.Element {
   function getYear(): number {
