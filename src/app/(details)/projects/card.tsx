@@ -18,6 +18,7 @@ export default function ProjectCard({ project, index }: Props) {
 
   const [height, setHeight] = useState<number>(0)
   const [isHovering, setIsHovering] = useState<boolean>(false)
+  const [isMobile, setIsMobile] = useState<boolean>(false)
   const descriptionElement = useRef<HTMLParagraphElement>(null)
 
   const handleHover = (hover: boolean) => setIsHovering(hover)
@@ -28,6 +29,10 @@ export default function ProjectCard({ project, index }: Props) {
 
     window.open(project.repository, '_blank')
   }
+
+  useEffect(() => {
+    setIsMobile(screen.width < 768)
+  }, [])
 
   useEffect(() => {
     if (!descriptionElement.current) return
@@ -104,14 +109,16 @@ export default function ProjectCard({ project, index }: Props) {
               ))}
             </div>
             <p
-              style={{ marginBottom: isHovering ? height + 6 : 0 }}
+              style={{ marginBottom: isHovering && !isMobile ? height + 6 : 0 }}
               className="transition-all duration-300 text-4xl md:text-5xl"
             >
               {project.title}
             </p>
             <div
               ref={descriptionElement}
-              className="mt-2 absolute bottom-6 right-6 left-6 min-h-fit opacity-0 group-hover:opacity-100 transition-all group-hover:delay-200 delay-0 -space-y-1 text-tertiary-light duration-200"
+              className={`mt-2 absolute bottom-6 right-6 left-6 min-h-fit opacity-0 transition-all group-hover:delay-200 delay-0 -space-y-1 text-tertiary-light duration-200 ${
+                !isMobile && 'group-hover:opacity-100'
+              }`}
             >
               <p className="text-2xl md:text-3xl">{project.description}</p>
             </div>
