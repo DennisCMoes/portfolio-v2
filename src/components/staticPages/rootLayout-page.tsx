@@ -29,9 +29,7 @@ export default function RootLayoutPage({ children }: { children: ReactNode }) {
           <main className={`${inter.className} flex-1 min-h-screen px-4`}>
             {children}
           </main>
-          <Footer />
-        </div>
-        {/* <div className="w-full inline-flex sticky bottom-5 right-5 justify-end px-4 mb-4">
+          <div className="w-full inline-flex sticky bottom-5 right-5 justify-end px-4 mb-4">
             <Transition transition="slide-up" mounted={scroll.y > 100}>
               {(transitionStyles) => (
                 <button
@@ -43,7 +41,9 @@ export default function RootLayoutPage({ children }: { children: ReactNode }) {
                 </button>
               )}
             </Transition>
-          </div> */}
+          </div>
+          <Footer />
+        </div>
         {/* </ThemeProvider> */}
         <Analytics debug={false} />
       </body>

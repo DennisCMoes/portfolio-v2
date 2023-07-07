@@ -56,6 +56,7 @@ export async function getAllProjects(): Promise<FullProject[]> {
       return new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
     })
 
+    // Exclude draft projects if we are in production
     return excludeDrafts
       ? projects.filter((project: FullProject) => !project.data.draft)
       : projects

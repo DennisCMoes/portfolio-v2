@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import SocialBtn from '@/app/socialBtn'
+import SocialBtn from '@/app/social-btn'
 import HoverableLink from '@/components/ui/hoverable-link'
 import WorkExperience from '@/components/ui/work-experience'
 
@@ -33,16 +33,13 @@ export default function HomePage({
   return (
     <>
       <section id="banner" className="min-h-screen max-w-4xl grid mx-auto px-4">
-        <div className="space-y-4 mt-80">
+        <div className="space-y-4 mt-16 md:mt-40">
           <div>
             <p className="text-xl text-tertiary">Hi, my name is</p>
             <p className="text-7xl font-semibold">Dennis Moes</p>
             <p className="text-5xl">And I build things</p>
           </div>
           <p className="text-xl">
-            {/* I&apos;m a student software engineer learning to make fancy computer
-            applications in Amsterdam. I spend most of my time building cool
-            things (and sometimes making them look pretty too). */}
             I&apos;m a Software Engineer student at the{' '}
             <HoverableLink
               label="Amsterdam University Of Applied Sciences"
@@ -56,7 +53,7 @@ export default function HomePage({
               className="cursor-pointer"
               onClick={() => scrollToSecondSection()}
             >
-              <SocialBtn label="Work">
+              <SocialBtn label="Details">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M6 9l6 6l6 -6"></path>
               </SocialBtn>
@@ -88,7 +85,7 @@ export default function HomePage({
           </div>
         </div>
       </section>
-      <section
+      {/* <section
         id="education"
         ref={secondSection}
         className="max-w-4xl mx-auto pb-32 space-y-12 text-2xl px-4"
@@ -99,9 +96,10 @@ export default function HomePage({
             <EducationCard key={index} education={education} />
           ))}
         </div>
-      </section>
+      </section> */}
       <section
         id="work-experience"
+        ref={secondSection}
         className="min-h-screen max-w-4xl pb-32 mx-auto space-y-12 text-2xl md:text-2xl px-4"
       >
         <div>

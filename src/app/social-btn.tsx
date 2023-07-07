@@ -50,6 +50,7 @@ export default function SocialBtn({ label, children }: Props) {
       </svg>
       <div
         ref={textElement}
+        style={{ marginLeft: isMobile ? 4 : 0 }}
         className="pointer-events-none md:absolute right-4 md:opacity-0 group-hover:opacity-100 duration-100 group-hover:duration-300 delay-0 group-hover:delay-200"
       >
         <p>{label}</p>

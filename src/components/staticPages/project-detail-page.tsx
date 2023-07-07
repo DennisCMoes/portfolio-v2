@@ -37,7 +37,7 @@ export default function ProjectDetailPage({ data, content }: any) {
           <p className="text-gray-500 font-bold">{getFormattedDate()}</p>
           <h1 className="text-4xl font-semibold">{data.title}</h1>
         </div>
-        <div className="flex flex-row justify-between items-center space-x-2">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-1">
           <Link
             href={data.repository}
             target="_blank"
