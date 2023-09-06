@@ -1,5 +1,5 @@
 {
-  "extends": ["next/core-web-vitals", "next", "prettier"],
+  "extends": ["next/core-web-vitals", "next"],
   "rules": {
     "no-unreachable": "error",
     "camelcase": ["error", { "ignoreImports": true }]
