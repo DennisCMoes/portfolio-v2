@@ -1,14 +1,9 @@
 'use client'
 
+import { Link } from '@/types'
 import { useEffect, useRef, useState } from 'react'
 
-type Props = {
-  label: string
-  children: React.ReactNode
-  href?: string
-}
-
-export default function SocialBtn({ label, children }: Props) {
+export default function SocialBtn({ label, children }: Link) {
   const textElement = useRef<HTMLDivElement>(null)
 
   const [isHovering, setIsHovering] = useState<boolean>(false)

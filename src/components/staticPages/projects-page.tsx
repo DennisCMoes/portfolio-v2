@@ -1,6 +1,6 @@
 'use client'
 
-import ProjectCard from '@/app/(details)/projects/card'
+import ProjectCard from '@/components/ui/cards/project-card'
 import { ProjectMetaData } from '@/types/props'
 
 type Props = {

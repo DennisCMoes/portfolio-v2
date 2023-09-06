@@ -4,7 +4,6 @@ import Navbar from '@/components/layout/navbar'
 
 import { Transition } from '@mantine/core'
 import { useWindowScroll } from '@mantine/hooks'
-import { ThemeProvider } from 'next-themes'
 import { Inter } from 'next/font/google'
 import { ReactNode } from 'react'
 import { Analytics } from '@vercel/analytics/react'
@@ -34,7 +33,7 @@ export default function RootLayoutPage({ children }: { children: ReactNode }) {
               {(transitionStyles) => (
                 <button
                   style={{ ...transitionStyles, transitionProperty: 'all' }}
-                  className="flex items-center bg-primary-dark text-primary-light dark:bg-primary-light dark:text-primary-dark py-2 px-4 rounded-md md:hover:px-6"
+                  className="transition-colors duration-300 text-primary-dark hover:text-primary-light bg-primary-light hover:bg-primary-dark font-medium rounded-md text-sm px-8 py-2.5 text-center inline-flex items-center justify-center border-2 border-primary-dark"
                   onClick={scrollToTop}
                 >
                   Scroll to top

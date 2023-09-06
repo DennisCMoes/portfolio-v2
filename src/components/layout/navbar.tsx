@@ -50,8 +50,6 @@ export default function Navbar(): JSX.Element {
               ></path>
             </svg>
           </Link>
-          {/* <p className="text-xl text-gray-400">/</p>
-          <p className="text-xl">{PATH_DIR[pathname]}</p> */}
         </div>
         <div className="inline-flex items-center justify-between gap-4 md:gap-12">
           <Link href="/" className={getLinkClass(/^\/$/gm)}>
