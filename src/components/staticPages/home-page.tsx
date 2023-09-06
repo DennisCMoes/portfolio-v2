@@ -1,24 +1,42 @@
 'use client'
 
 import Link from 'next/link'
-import SocialBtn from '@/app/social-btn'
-import HoverableLink from '@/components/ui/hoverable-link'
+import SocialBtn from '@/components/ui/buttons/social-btn'
+import HoverableLink from '@/components/ui/buttons/hoverable-link'
 import WorkExperience from '@/components/ui/work-experience'
 
 import { useRef } from 'react'
 import { WorkExperienceProps as Work } from '@/types/props'
-import { EducationProps as Education } from '@/types/props'
-import EducationCard from '@/app/educationCard'
+
+import { motion } from 'framer-motion'
+import { Variants } from 'framer-motion'
 
 type Props = {
   workExperience: Work[]
-  educationExperience: Education[]
 }
 
-export default function HomePage({
-  workExperience,
-  educationExperience,
-}: Props) {
+// TODO: Navbar as last
+const CONTAINER: Variants = {
+  hidden: { opacity: 1, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.6,
+    },
+  },
+}
+
+const ITEM: Variants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+}
+
+export default function HomePage({ workExperience }: Props) {
   const secondSection = useRef<HTMLElement>(null)
 
   function scrollToSecondSection() {
@@ -33,13 +51,24 @@ export default function HomePage({
   return (
     <>
       <section id="banner" className="min-h-screen max-w-4xl grid mx-auto px-4">
-        <div className="space-y-4 mt-16 md:mt-40">
-          <div>
-            <p className="text-xl text-tertiary">Hi, my name is</p>
-            <p className="text-7xl font-semibold">Dennis Moes</p>
-            <p className="text-5xl">And I build things</p>
-          </div>
-          <p className="text-xl">
+        <motion.div
+          variants={CONTAINER}
+          initial="hidden"
+          animate="visible"
+          className="space-y-4 mt-16 md:mt-40"
+        >
+          <motion.div variants={ITEM}>
+            <motion.p variants={ITEM} className="text-xl text-tertiary">
+              Hi, my name is
+            </motion.p>
+            <motion.p variants={ITEM} className="text-7xl font-semibold">
+              Dennis Moes
+            </motion.p>
+            <motion.p variants={ITEM} className="text-5xl">
+              And I build things
+            </motion.p>
+          </motion.div>
+          <motion.p variants={ITEM} className="text-xl">
             I&apos;m a Software Engineer student at the{' '}
             <HoverableLink
               label="Amsterdam University Of Applied Sciences"
@@ -47,8 +76,8 @@ export default function HomePage({
               newTab
             />{' '}
             who enjoys programming and making it look pretty.
-          </p>
-          <div className="flex flex-row flex-wrap gap-2">
+          </motion.p>
+          <motion.div variants={ITEM} className="flex flex-row flex-wrap gap-2">
             <div
               className="cursor-pointer"
               onClick={() => scrollToSecondSection()}
@@ -82,21 +111,9 @@ export default function HomePage({
                 <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>
               </SocialBtn>
             </Link>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
-      {/* <section
-        id="education"
-        ref={secondSection}
-        className="max-w-4xl mx-auto pb-32 space-y-12 text-2xl px-4"
-      >
-        Education
-        <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-2">
-          {educationExperience.map((education: Education, index: number) => (
-            <EducationCard key={index} education={education} />
-          ))}
-        </div>
-      </section> */}
       <section
         id="work-experience"
         ref={secondSection}
