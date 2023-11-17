@@ -6,7 +6,7 @@ import MeImage from '@public/images/me-explaining.jpeg'
 import MeCoding from '@public/svg/me-coding.svg'
 
 // Components
-import HoverableLink from '@/components/ui/hoverable-link'
+import HoverableLink from '@/components/ui/buttons/hoverable-link'
 import ElongatedImage from '@/components/ui/elongated-image'
 
 export default function AboutPage() {

@@ -16,6 +16,7 @@ import remarkUnwrapImages from 'remark-unwrap-images'
 // Rehype plugins
 import rehypeVideo from 'rehype-video'
 import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis'
+import { useState } from 'react'
 
 export default function ProjectDetailPage({ data, content }: any) {
   /**
@@ -92,6 +93,7 @@ export default function ProjectDetailPage({ data, content }: any) {
           tbody: Component.TableBody,
           ul: Component.UnorderedList,
           ol: Component.OrderedList,
+          li: Component.ListItem,
           h1: Component.Heading1,
           h2: Component.Heading2,
           h3: Component.Heading3,
@@ -129,7 +131,9 @@ export default function ProjectDetailPage({ data, content }: any) {
               return (
                 <code
                   {...props}
-                  className={`inline-code bg-primary-dark text-primary-light rounded-sm px-1 py-0.5`}
+                  className={
+                    'font-mono bg-gray-200 px-1 rounded border border-gray-300'
+                  }
                 >
                   {children}
                 </code>
@@ -142,10 +146,12 @@ export default function ProjectDetailPage({ data, content }: any) {
               )
             }
           },
-          img({ src, alt }: any): JSX.Element {
+          img({ src, alt, ...props }: any): JSX.Element {
+            const isMp4 = src.endsWith('.mp4')
+
             return (
               <div className="flex flex-col mb-4">
-                {src.endsWith('.mp4') ? (
+                {isMp4 ? (
                   <div className="relative aspect-video overflow-hidden rounded-md">
                     <video
                       src={src!}

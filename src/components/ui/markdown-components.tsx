@@ -1,5 +1,6 @@
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import JSXStyle from 'styled-jsx/style'
 
 type Props = {
   children: React.ReactNode
@@ -89,6 +90,10 @@ export const OrderedList = ({ children, ...props }: any): JSX.Element => {
   )
 }
 
+export const ListItem = ({ children, ...props }: any): JSX.Element => {
+  return <li>{children}</li>
+}
+
 export const Heading1 = ({ children, ...props }: any) => (
   <h1 {...props} className="text-4xl font-semibold mb-2 mt-8">
     {children}
@@ -96,52 +101,60 @@ export const Heading1 = ({ children, ...props }: any) => (
 )
 
 export const Heading2 = ({ children, ...props }: any) => (
-  <h2 {...props} className="text-3xl font-medium mb-2 mt-8">
+  <h2 {...props} className="text-3xl font-semibold mb-2 mt-8">
     {children}
   </h2>
 )
 
 export const Heading3 = ({ children, ...props }: any) => (
-  <h3 {...props} className="text-xl mb-2 mt-8">
+  <h3 {...props} className="text-xl font-semibold mb-2 mt-8">
     {children}
   </h3>
 )
 
 export const Image = ({ src, alt }: any): JSX.Element => {
-  console.log('SRC', src)
+  const isMp4 = src.endsWith('.mp4')
 
-  if (src.endsWidth('.mp4')) {
-    return (
-      <div className="flex flex-col mb-4">
-        <div className="relative aspect-video overflow-hidden rounded-md">
-          <video src={src!} style={{ objectFit: 'cover' }} autoPlay loop muted>
-            Your browser does not support the video tag
-          </video>
-        </div>
-        <div>{alt}</div>
-      </div>
-    )
-  } else {
-    return (
-      <div className="flex flex-col mb-4">
-        <div className="relative aspect-video overflow-hidden rounded-md">
-          <Image
-            src={src!}
-            alt={alt!}
-            sizes="100%"
-            style={{ objectFit: 'cover' }}
-            fill
-          />
-        </div>
-        <div>
-          {alt} - {src}
-        </div>
-      </div>
-    )
-  }
+  return (
+    <div className="flex flex-col mb-4">
+      {isMp4 ? (
+        <>
+          <div className="relative aspect-video overflow-hidden rounded-md">
+            <video
+              src={src!}
+              style={{ objectFit: 'cover' }}
+              autoPlay
+              loop
+              muted
+            >
+              Your browser does not support the video tag
+            </video>
+          </div>
+          <div>{alt}</div>
+        </>
+      ) : (
+        <>
+          <div className="relative aspect-video overflow-hidden rounded-md">
+            <Image
+              src={src!}
+              alt={alt!}
+              sizes="100%"
+              style={{ objectFit: 'cover' }}
+              // fill
+            />
+          </div>
+          <div>
+            {alt} - {src}
+          </div>
+        </>
+      )}
+    </div>
+  )
 }
 
-export const Paragraph = ({ children }: any) => {
+export const Paragraph = ({ children, ...props }: any) => {
+  // console.log(props)
+
   // Render without P wrapper
   return <p className="text-xl my-4">{children}</p>
 }

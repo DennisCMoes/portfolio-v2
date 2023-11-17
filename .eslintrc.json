@@ -1,6 +1,7 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": ["next/core-web-vitals", "next"],
   "rules": {
-    "no-unreachable": "error"
+    "no-unreachable": "error",
+    "camelcase": ["error", { "ignoreImports": true }]
   }
 }
