@@ -132,7 +132,7 @@ export default function ProjectDetailPage({ data, content }: any) {
                 <code
                   {...props}
                   className={
-                    "font-bold before:content-['`'] after:content-['`']"
+                    'font-mono bg-gray-200 px-1 rounded border border-gray-300'
                   }
                 >
                   {children}
