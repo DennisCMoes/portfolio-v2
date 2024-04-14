@@ -1,43 +1,24 @@
-import { GrayMatterFile } from 'gray-matter'
+import { CompileMDXResult } from 'next-mdx-remote/rsc'
+import { JSXElementConstructor, ReactElement } from 'react'
 
-type Prettify<T> = {
+export type Prettify<T> = {
   [K in keyof T]: T[K]
 }
 
-type Btn = {
-  label: string
-} & Children
-
-export type Children = {
-  children: React.ReactNode
-}
-
-export type Link = {
-  href?: string
-  newTab?: boolean
-} & Btn
-
-export type Button = {} & Btn
-
-export type ProjectMetaData = {
+export type ProjectMetadata = {
   title: string
   description: string
-  slug: string
-  coverImage: string
   technologies: string[]
   date: string
   repository: string
-  draft: boolean
 }
 
-export type Project = Prettify<
-  {
-    data: ProjectMetaData
-  } & GrayMatterFile<string>
->
+export type ProjectObject = {
+  content: ReactElement<any, string | JSXElementConstructor<any>>
+  metadata: ProjectMetadata
+}
 
-export type DetailPage = {
-  params: {
-    slug: string
-  }
+export type AllProjectsReturn = {
+  slug: string
+  metadata: ProjectMetadata
 }
