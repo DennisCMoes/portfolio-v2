@@ -1,8 +1,9 @@
 import path from 'path'
 import { promises as fs } from 'fs'
-import { ProjectMetadata, ProjectObject, AllProjectsReturn } from './types'
-import { compileMDX } from 'next-mdx-remote/rsc'
+import { ProjectMetadata, AllProjectsReturn } from './types'
+import { MDXRemoteSerializeResult } from 'next-mdx-remote/rsc'
 import ImageComponent from './components/ImageComponent'
+import { serialize } from 'next-mdx-remote/serialize'
 
 // Components that get imported in any of the MDX files
 const components = { ImageComponent }
@@ -29,20 +30,31 @@ export async function getAllProjects(): Promise<AllProjectsReturn[]> {
   return projects
 }
 
-export async function getProjectBySlug(
-  slug: string
-): Promise<ProjectObject | null> {
+export async function getProjectBySlug(slug: string): Promise<{
+  content: MDXRemoteSerializeResult<
+    Record<string, unknown>,
+    Record<string, unknown>
+  >
+  metadata: ProjectMetadata
+}> {
   const contentPath = path.join(postsDir, slug, 'post.mdx')
 
   const { metadata }: { metadata: ProjectMetadata } = await import(
     `./posts/${slug}/post.mdx`
   )
 
-  const content = await compileMDX({
-    source: await fs.readFile(contentPath, { encoding: 'utf-8' }),
-    options: { parseFrontmatter: true },
-    components,
-  })
+  const postFile = await fs.readFile(contentPath, { encoding: 'utf-8' })
+  const content = await serialize(postFile, { parseFrontmatter: true })
 
-  return { content: content.content, metadata }
+  return { content, metadata }
+
+  // const content = await compileMDX({
+  //   source: await fs.readFile(contentPath, { encoding: 'utf-8' }),
+  //   options: { parseFrontmatter: true },
+  //   components: components,
+  // })
+
+  // source.
+
+  // return { content: content.content, metadata }
 }

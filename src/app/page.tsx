@@ -5,5 +5,5 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
-  return <p>Hello!</p>
+  return <p className="text-3xl">Hello!</p>
 }
