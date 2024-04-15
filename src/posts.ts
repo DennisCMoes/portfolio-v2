@@ -9,13 +9,14 @@ const postsDir = path.resolve('src/posts')
 export async function getAllProjects(): Promise<AllProjectsReturn[]> {
   const filenames = await fs.readdir(postsDir)
 
-  const projects: { slug: string; metadata: ProjectMetadata }[] =
-    await Promise.all(
-      filenames.map(async (name) => {
-        const { metadata } = await import(`./posts/${name}/post.mdx`)
-        return { slug: name, metadata: { ...metadata } }
-      })
-    )
+  const projects: { slug: string; metadata: any }[] = await Promise.all(
+    filenames.map(async (name) => {
+      // const { metadata } = await import(`./posts/${name}/post.mdx`)
+      console.log('name', name)
+      const source = await getProjectBySlug(name)
+      return { slug: name, metadata: source.content.frontmatter }
+    })
+  )
 
   projects.sort((a: AllProjectsReturn, b: AllProjectsReturn) => {
     return (
@@ -24,6 +25,12 @@ export async function getAllProjects(): Promise<AllProjectsReturn[]> {
   })
 
   return projects
+}
+
+export async function getFeaturedProjects(): Promise<AllProjectsReturn[]> {
+  return (await getAllProjects()).filter(
+    (project) => project.metadata.isFeatured
+  )
 }
 
 export async function getProjectBySlug(slug: string): Promise<{
@@ -43,14 +50,4 @@ export async function getProjectBySlug(slug: string): Promise<{
   const content = await serialize(postFile, { parseFrontmatter: true })
 
   return { content, metadata }
-
-  // const content = await compileMDX({
-  //   source: await fs.readFile(contentPath, { encoding: 'utf-8' }),
-  //   options: { parseFrontmatter: true },
-  //   components: components,
-  // })
-
-  // source.
-
-  // return { content: content.content, metadata }
 }

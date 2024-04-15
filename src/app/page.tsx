@@ -1,13 +1,17 @@
+import FeaturedPostCard from '@/components/cards/featuredWorkCard'
 import LayoutContainer from '@/components/layout/container'
 import LinkButton from '@/components/linkButton'
-import CustomText from '@/components/posts/customText'
+import { getFeaturedProjects } from '@/posts'
+import { AllProjectsReturn } from '@/types'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Home',
 }
 
-export default function Home() {
+export default async function Home() {
+  const projects: AllProjectsReturn[] = await getFeaturedProjects()
+
   return (
     <LayoutContainer size="m">
       <h1 className="text-5xl">
@@ -20,6 +24,11 @@ export default function Home() {
         in my free time.
       </p>
       <LinkButton label="View work" destination="https://google.com" />
+
+      <p>Featured work</p>
+      {projects.map((project: AllProjectsReturn) => (
+        <FeaturedPostCard key={project.slug} project={project} />
+      ))}
     </LayoutContainer>
   )
 }

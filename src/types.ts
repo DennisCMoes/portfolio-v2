@@ -11,6 +11,7 @@ export type ProjectMetadata = {
   technologies: string[]
   date: string
   repository: string
+  isFeatured: boolean
 }
 
 export type ProjectObject = {
