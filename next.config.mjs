@@ -2,9 +2,7 @@ import createMDX from '@next/mdx'
 
 // Remark imports
 import remarkGfm from 'remark-gfm'
-
 // Rehype imports
-import rehypePrism from 'rehype-prism'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
