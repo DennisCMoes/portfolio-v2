@@ -2,9 +2,11 @@ import path from 'path'
 import { promises as fs } from 'fs'
 import { ProjectMetadata, ProjectObject, AllProjectsReturn } from './types'
 import { compileMDX } from 'next-mdx-remote/rsc'
+import ImageComponent from './components/ImageComponent'
 
 // Components that get imported in any of the MDX files
-const components = {}
+const components = { ImageComponent }
+
 const postsDir = path.resolve('src/posts')
 
 export async function getAllProjects(): Promise<AllProjectsReturn[]> {
