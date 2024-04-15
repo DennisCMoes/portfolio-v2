@@ -3,7 +3,7 @@
 import { ImageComponent } from '@/components/posts/ImageComponent'
 import CustomCodeBlock from '@/components/posts/customCodeBlock'
 import CustomText from '@/components/posts/customText'
-import LayoutContainer from '@/components/layout/Container'
+import LayoutContainer from '@/components/layout/container'
 
 import axios from 'axios'
 import { MDXComponents } from 'mdx/types'
@@ -42,7 +42,7 @@ export default function ProjectDetailPage({ params }: Params) {
       .catch((err) => {
         console.log(err)
       })
-  }, [])
+  }, [params.slug])
 
   const getFormattedDate = (date: string): string => {
     return new Intl.DateTimeFormat('en', {
@@ -65,7 +65,7 @@ export default function ProjectDetailPage({ params }: Params) {
         </>
       )}
       <ImageComponent url={getCoverImageUrl()} />
-      <LayoutContainer size="m">
+      <LayoutContainer size="m" classname="mt-4">
         {post && <MDXRemote {...post} components={components} />}
       </LayoutContainer>
     </LayoutContainer>

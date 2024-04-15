@@ -3,9 +3,10 @@ import { ReactNode } from 'react'
 type Params = {
   size: 'm' | 'l' | 'xl'
   children?: ReactNode
+  classname?: string
 }
 
-export default function LayoutContainer({ size, children }: Params) {
+export default function LayoutContainer({ size, children, classname }: Params) {
   const getContainerSize = (): string => {
     switch (size) {
       case 'm':
@@ -18,7 +19,7 @@ export default function LayoutContainer({ size, children }: Params) {
   }
 
   return (
-    <section className={`${getContainerSize()} mx-auto`}>
+    <section className={`${getContainerSize()} mx-auto ${classname}`}>
       {children && children}
     </section>
   )
