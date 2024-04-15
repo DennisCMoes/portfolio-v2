@@ -1,7 +1,8 @@
 'use client'
 
-import ImageComponent from '@/components/ImageComponent'
-import { CustomHeader } from '@/components/posts/customHeader'
+import { ImageComponent } from '@/components/posts/ImageComponent'
+import CustomHeader from '@/components/posts/customHeader'
+import LayoutContainer from '@/components/layout/Container'
 
 import axios from 'axios'
 import { MDXComponents } from 'mdx/types'
@@ -37,18 +38,16 @@ export default function ProjectDetailPage({ params }: Params) {
       .catch((err) => {
         console.log(err)
       })
-  }, [post])
+  }, [params.slug])
 
   const getCoverImageUrl = () => `/images/posts/${params.slug}/cover.jpg`
 
   return (
     <div>
       <ImageComponent url={getCoverImageUrl()} />
-      {post && <MDXRemote {...post} components={components} />}
-      {/* <LayoutContainer size="m"> */}
-      {/* <h1>{project?.metadata.title}</h1> */}
-      {/* <div>{project?.content}</div> */}
-      {/* </LayoutContainer> */}
+      <LayoutContainer size="m">
+        {post && <MDXRemote {...post} components={components} />}
+      </LayoutContainer>
     </div>
   )
 }

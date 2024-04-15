@@ -2,11 +2,7 @@ import path from 'path'
 import { promises as fs } from 'fs'
 import { ProjectMetadata, AllProjectsReturn } from './types'
 import { MDXRemoteSerializeResult } from 'next-mdx-remote/rsc'
-import ImageComponent from './components/ImageComponent'
 import { serialize } from 'next-mdx-remote/serialize'
-
-// Components that get imported in any of the MDX files
-const components = { ImageComponent }
 
 const postsDir = path.resolve('src/posts')
 

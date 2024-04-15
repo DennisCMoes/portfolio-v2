@@ -1,12 +1,12 @@
 import { ReactNode } from 'react'
 
-export const CustomHeader = ({
+export default function CustomHeader({
   level,
   children,
 }: {
   level: 1 | 2 | 3
   children: ReactNode
-}): JSX.Element => {
+}): JSX.Element {
   switch (level) {
     case 1:
       return <h1 className="text-3xl">{children}</h1>
