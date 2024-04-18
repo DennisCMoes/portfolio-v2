@@ -12,6 +12,7 @@ import { MDXComponents } from 'mdx/types'
 import { MDXRemote } from 'next-mdx-remote'
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { useEffect, useState } from 'react'
+import Loading from './loading'
 
 type Params = {
   params: {
@@ -57,7 +58,9 @@ export default function ProjectDetailPage({ params }: Params) {
 
   const getCoverImageUrl = () => `/posts/${params.slug}/images/cover.jpg`
 
-  return (
+  return post == null ? (
+    <Loading />
+  ) : (
     <LayoutContainer size="xl">
       {post && (
         <>
