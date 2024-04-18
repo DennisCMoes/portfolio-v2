@@ -25,11 +25,8 @@ main {
   }
 }
 
-.shadow-border {
-  box-shadow: 0 0 0 0px black;
-  transition: 0.3s all ease-in-out;
-}
-
-.shadow-border:hover {
-  box-shadow: 0 0 0 1px black;
+.featured-projects-card {
+  background-color: #f2f8f9;
+  z-index: 0;
+  overflow: hidden;
 }

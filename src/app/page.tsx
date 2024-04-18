@@ -1,4 +1,4 @@
-import FeaturedPostCard from '@/components/cards/featuredWorkCard'
+import FeaturedProjectCard from '@/components/cards/featuredProjectCard'
 import WorkExperienceCard from '@/components/cards/workExperienceCard'
 import LayoutContainer from '@/components/layout/container'
 import LinkButton from '@/components/linkButton'
@@ -34,7 +34,7 @@ export default async function Home() {
       <section>
         <SectionTitle label="Featured work" />
         {projects.map((project) => (
-          <FeaturedPostCard key={project.slug} project={project} />
+          <FeaturedProjectCard key={project.slug} project={project} />
         ))}
       </section>
 
