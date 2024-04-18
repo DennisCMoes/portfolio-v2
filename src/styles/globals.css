@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  min-height: 100vh;
+  position: relative;
+
+  padding-bottom: 2.5rem;
+}
+
+/* footer {
+  position: absolute;
+  bottom: 0;
+
+  height: 2.5rem;
+} */
+
+.hoverable-card {
+  clip-path: inset(4px round 12px);
+  transition: all 0.3s ease-in-out;
+}
+
+@media (min-width: 768px) {
+  .hoverable-card:hover {
+    clip-path: inset(0px round 14px);
+  }
+}
+
+.shadow-border {
+  box-shadow: 0 0 0 0px black;
+  transition: 0.3s all ease-in-out;
+}
+
+.shadow-border:hover {
+  box-shadow: 0 0 0 1px black;
+}

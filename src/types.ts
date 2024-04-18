@@ -1,5 +1,4 @@
-import { CompileMDXResult } from 'next-mdx-remote/rsc'
-import { JSXElementConstructor, ReactElement } from 'react'
+import { JSXElementConstructor, ReactElement, ReactNode } from 'react'
 
 export type Prettify<T> = {
   [K in keyof T]: T[K]
@@ -12,6 +11,7 @@ export type ProjectMetadata = {
   date: string
   repository: string
   isFeatured: boolean
+  gradient: string[]
 }
 
 export type ProjectObject = {
@@ -22,4 +22,19 @@ export type ProjectObject = {
 export type AllProjectsReturn = {
   slug: string
   metadata: ProjectMetadata
+}
+
+export type WorkExperience = {
+  startMonth: string
+  endMonth: string
+  title: string
+  company: string
+  description: string
+}
+
+export type ContactCard = {
+  label: string
+  value: string
+  href: string
+  icon: ReactNode
 }

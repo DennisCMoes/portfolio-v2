@@ -11,8 +11,6 @@ export async function getAllProjects(): Promise<AllProjectsReturn[]> {
 
   const projects: { slug: string; metadata: any }[] = await Promise.all(
     filenames.map(async (name) => {
-      // const { metadata } = await import(`./posts/${name}/post.mdx`)
-      console.log('name', name)
       const source = await getProjectBySlug(name)
       return { slug: name, metadata: source.content.frontmatter }
     })

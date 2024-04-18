@@ -1,10 +1,11 @@
 import { IconArrowRight } from '@tabler/icons-react'
-import Link from 'next/link'
 import { ReactNode } from 'react'
+import Link from 'next/link'
 
 type ButtonParams = {
   label: string
   destination: string
+  icon?: ReactNode
   classname?: string
   isLink?: boolean
 }
@@ -13,6 +14,7 @@ export default function LinkButton({
   label,
   destination,
   classname,
+  icon = <IconArrowRight />,
   isLink = true,
 }: ButtonParams) {
   if (isLink) {
@@ -22,8 +24,8 @@ export default function LinkButton({
         className={'group inline-flex flex-row gap-1 font-medium ' + classname}
       >
         <span>{label}</span>
-        <span className="group-hover:translate-x-2 transition-transform duration-300">
-          <IconArrowRight />
+        <span className="transition-transform duration-300 group-hover:translate-x-2">
+          {icon}
         </span>
       </Link>
     )
@@ -33,7 +35,7 @@ export default function LinkButton({
         className={'group inline-flex flex-row gap-1 font-medium ' + classname}
       >
         <span>{label}</span>
-        <span className="group-hover:translate-x-2 transition-transform duration-300">
+        <span className="transition-transform duration-300 group-hover:translate-x-2">
           <IconArrowRight />
         </span>
       </div>

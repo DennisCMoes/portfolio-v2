@@ -1,6 +1,8 @@
 'use client'
 
 import { ImageComponent } from '@/components/posts/ImageComponent'
+import { VideoComponent } from '@/components/posts/videoComponent'
+
 import CustomCodeBlock from '@/components/posts/customCodeBlock'
 import CustomText from '@/components/posts/customText'
 import LayoutContainer from '@/components/layout/container'
@@ -19,6 +21,7 @@ type Params = {
 
 const components: MDXComponents = {
   ImageComponent,
+  VideoComponent,
   p: ({ children }) => <CustomText level={0}>{children}</CustomText>,
   h1: ({ children }) => <CustomText level={1}>{children}</CustomText>,
   h2: ({ children }) => <CustomText level={2}>{children}</CustomText>,
@@ -52,7 +55,7 @@ export default function ProjectDetailPage({ params }: Params) {
     }).format(new Date(date))
   }
 
-  const getCoverImageUrl = () => `/images/posts/${params.slug}/cover.jpg`
+  const getCoverImageUrl = () => `/posts/${params.slug}/images/cover.jpg`
 
   return (
     <LayoutContainer size="xl">
