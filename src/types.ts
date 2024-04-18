@@ -32,9 +32,15 @@ export type WorkExperience = {
   description: string
 }
 
-export type ContactCard = {
-  label: string
-  value: string
+export type SocialLinkData = {
+  label?: string
   href: string
+  color: string
   icon: ReactNode
+}
+
+export type LinkData = {
+  label?: string
+  href: string
+  icon?: ReactNode
 }

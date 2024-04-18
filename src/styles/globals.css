@@ -3,18 +3,16 @@
 @tailwind utilities;
 
 body {
-  min-height: 100vh;
-  position: relative;
+  display: flex;
+  flex-direction: column; 
 
-  padding-bottom: 2.5rem;
+  min-height: 100vh;
 }
 
-/* footer {
-  position: absolute;
-  bottom: 0;
-
-  height: 2.5rem;
-} */
+main {
+  flex-grow: 1;
+  padding-bottom: 2rem;
+}
 
 .hoverable-card {
   clip-path: inset(4px round 12px);
