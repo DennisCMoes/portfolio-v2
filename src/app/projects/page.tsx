@@ -2,7 +2,7 @@ import ProjectCard from '@/components/cards/projectCard'
 import LayoutContainer from '@/components/layout/container'
 import SectionTitle from '@/components/sectionTitle'
 import { getAllProjects } from '@/posts'
-import { AllProjectsReturn, ProjectMetadata, ProjectObject } from '@/types'
+import { AllProjectsReturn } from '@/types'
 
 export default async function AllProjectsPage() {
   const projects: AllProjectsReturn[] = await getAllProjects()
