@@ -5,7 +5,7 @@ import LayoutContainer from '@/components/layout/container'
 import LinkButton from '@/components/linkButton'
 import SectionTitle from '@/components/sectionTitle'
 import { getFeaturedProjects } from '@/posts'
-import { AllProjectsReturn, WorkExperience } from '@/types'
+import { AllProjectsReturn, SvgCircle, WorkExperience } from '@/types'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -18,22 +18,40 @@ export default async function Home() {
   const getKey = (value: string) => value.replaceAll(' ', '-').toLowerCase()
 
   return (
-    <LayoutContainer size="m" classname="flex flex-col gap-12 pt-16">
-      <section>
-        <CustomLink
-          customClass="text-5xl"
-          href="/"
-          label="👋 Hey, I'm Dennis"
-        />
-        <h2 className="text-3xl">A backend engineer based in Amsterdam</h2>
-        <p>
-          I&apos;m Dennis, a backend engineer with some frontend experience in
-          Amsterdam, the Netherlands. I&apos;m currently working on personal
-          projects in my free time.
-        </p>
-        <LinkButton label="View work" destination="https://google.com" />
-      </section>
+    <LayoutContainer size="m" classname="flex flex-col gap-12 pt-8">
+      <section className="group relative overflow-hidden rounded-md bg-blue-500 px-8 py-12 text-white">
+        <div className="relative z-30">
+          <h1 className="text-5xl">👋 Hey, I&apos;m Dennis</h1>
+          <h2 className="text-3xl">A backend engineer based in Amsterdam</h2>
+          <p>
+            While my focus lies in backend development, I also have some
+            frontend experience. Currently, I&apos;m dedicating my free time to
+            working on personal projects.
+          </p>
+        </div>
 
+        {svgCircles.map((item, index) => (
+          <div
+            key={index}
+            className={`absolute z-10 transition-transform duration-500 group-hover:scale-110 ${item.absolutePosition}`}
+          >
+            <svg
+              height={item.size}
+              width={item.size}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                r={item.radius}
+                cx={item.centerXY}
+                cy={item.centerXY}
+                fill="transparent"
+                stroke-width={item.strokeWidth}
+                className="fill-transparent stroke-blue-600"
+              />
+            </svg>
+          </div>
+        ))}
+      </section>
       <section>
         <SectionTitle label="Featured work" />
         <div className="flex flex-col gap-4">
@@ -82,5 +100,29 @@ const workExperience: WorkExperience[] = [
       'Lorem ipsum magna reprehenderit, qui esse, officia, magna dolor ex aliquip sint sit. Quis cupidatat, in in, proident laborum ex, cupidatat et nostrud, tempor officia.',
     startMonth: 'apr. 2021',
     endMonth: 'jul. 2022',
+  },
+]
+
+const svgCircles: SvgCircle[] = [
+  {
+    size: 80,
+    radius: 25,
+    centerXY: 40,
+    strokeWidth: 16,
+    absolutePosition: 'bottom-8 right-4',
+  },
+  {
+    size: 140,
+    radius: 50,
+    centerXY: 70,
+    strokeWidth: 30,
+    absolutePosition: '-bottom-12 -left-12',
+  },
+  {
+    size: 120,
+    radius: 40,
+    centerXY: 60,
+    strokeWidth: 25,
+    absolutePosition: '-top-12 right-24',
   },
 ]

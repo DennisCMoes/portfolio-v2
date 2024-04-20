@@ -44,3 +44,11 @@ export type LinkData = {
   href: string
   icon?: ReactNode
 }
+
+export type SvgCircle = {
+  size: number
+  radius: number
+  centerXY: number
+  strokeWidth: number
+  absolutePosition: string
+}
