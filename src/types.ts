@@ -9,9 +9,9 @@ export type ProjectMetadata = {
   description: string
   technologies: string[]
   date: string
+  subtitle: string
   repository: string
   isFeatured: boolean
-  gradient: string[]
 }
 
 export type ProjectObject = {
@@ -40,9 +40,11 @@ export type SocialLinkData = {
 }
 
 export type LinkData = {
-  label?: string
   href: string
+  label?: string
   icon?: ReactNode
+  iconLeftRight?: 'left' | 'right'
+  tabBehaviour: 'keep' | 'new'
 }
 
 export type SvgCircle = {

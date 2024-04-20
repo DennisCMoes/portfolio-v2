@@ -13,6 +13,8 @@ import { MDXRemote } from 'next-mdx-remote'
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { useEffect, useState } from 'react'
 import Loading from './loading'
+import CustomLink from '@/components/customLink'
+import { IconArrowUpRight } from '@tabler/icons-react'
 
 type Params = {
   params: {
@@ -27,6 +29,15 @@ const components: MDXComponents = {
   h1: ({ children }) => <CustomText level={1}>{children}</CustomText>,
   h2: ({ children }) => <CustomText level={2}>{children}</CustomText>,
   h3: ({ children }) => <CustomText level={3}>{children}</CustomText>,
+  a: ({ href, children }) => (
+    <CustomLink
+      label={children as string}
+      href={href!}
+      icon={<IconArrowUpRight />}
+      customClass="underline"
+      tabBehaviour="new"
+    />
+  ),
   code: ({ className, children }) => (
     <CustomCodeBlock classname={className}>{children}</CustomCodeBlock>
   ),

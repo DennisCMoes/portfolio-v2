@@ -8,10 +8,6 @@ type CardParams = {
 
 export default function FeaturedProjectCard({ project }: CardParams) {
   const getIconUrl = () => `/posts/${project.slug}/images/icon.png`
-  const getGradientString = () =>
-    project.metadata.gradient
-      .map((gradient: string) => '#' + gradient)
-      .join(', ')
 
   return (
     <Link href={`/projects/${project.slug}`}>

@@ -1,8 +1,6 @@
 import FeaturedProjectCard from '@/components/cards/featuredProjectCard'
 import WorkExperienceCard from '@/components/cards/workExperienceCard'
-import CustomLink from '@/components/customLink'
 import LayoutContainer from '@/components/layout/container'
-import LinkButton from '@/components/linkButton'
 import SectionTitle from '@/components/sectionTitle'
 import { getFeaturedProjects } from '@/posts'
 import { AllProjectsReturn, SvgCircle, WorkExperience } from '@/types'
@@ -19,7 +17,7 @@ export default async function Home() {
 
   return (
     <LayoutContainer size="m" classname="flex flex-col gap-12 pt-8">
-      <section className="group relative overflow-hidden rounded-md bg-blue-500 px-8 py-12 text-white">
+      <section className="group relative overflow-hidden rounded-md bg-blue-500 px-8 py-16 text-white">
         <div className="relative z-30">
           <h1 className="text-5xl">👋 Hey, I&apos;m Dennis</h1>
           <h2 className="text-3xl">A backend engineer based in Amsterdam</h2>

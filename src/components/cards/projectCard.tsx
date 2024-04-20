@@ -46,7 +46,7 @@ export default function ProjectCard({ project }: CardParams) {
               ref={descriptionElement}
               className="absolute bottom-6 left-6 right-6 text-2xl opacity-0 transition-all delay-0 group-hover:opacity-100 group-hover:delay-200"
             >
-              {project.metadata.description}
+              {project.metadata.subtitle}
             </p>
           </div>
         </div>

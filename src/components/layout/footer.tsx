@@ -18,16 +18,23 @@ export default function Footer() {
           customClass="font-medium"
           href="/"
           label="&copy; Dennis Moes"
+          tabBehaviour="keep"
         />
         <div className="inline-flex flex-row gap-2">
-          <CustomLink href="https://google.com" icon={<IconMail size={26} />} />
+          <CustomLink
+            href="https://google.com"
+            icon={<IconMail size={26} />}
+            tabBehaviour="new"
+          />
           <CustomLink
             href="https://google.com"
             icon={<IconBrandLinkedin size={26} />}
+            tabBehaviour="new"
           />
           <CustomLink
             href="https://google.com"
             icon={<IconBrandGithub size={26} />}
+            tabBehaviour="new"
           />
         </div>
       </div>
