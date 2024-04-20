@@ -14,6 +14,21 @@ main {
   padding-bottom: 2rem;
 }
 
+.shadow-as-border {
+  transition: all 0.3s;
+}
+
+.shadow-as-border:hover {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px,
+              rgb(190, 190, 190) 0px 0px 0px 2px inset;
+}
+
+.featured-projects-card {
+  background-color: #f2f8f9;
+  z-index: 0;
+  overflow: hidden;
+}
+
 .hoverable-card {
   clip-path: inset(4px round 12px);
   transition: all 0.3s ease-in-out;
@@ -23,10 +38,4 @@ main {
   .hoverable-card:hover {
     clip-path: inset(0px round 14px);
   }
-}
-
-.featured-projects-card {
-  background-color: #f2f8f9;
-  z-index: 0;
-  overflow: hidden;
 }

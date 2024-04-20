@@ -1,5 +1,6 @@
 import FeaturedProjectCard from '@/components/cards/featuredProjectCard'
 import WorkExperienceCard from '@/components/cards/workExperienceCard'
+import CustomLink from '@/components/customLink'
 import LayoutContainer from '@/components/layout/container'
 import LinkButton from '@/components/linkButton'
 import SectionTitle from '@/components/sectionTitle'
@@ -19,10 +20,12 @@ export default async function Home() {
   return (
     <LayoutContainer size="m" classname="flex flex-col gap-12 pt-16">
       <section>
-        <h1 className="text-5xl">
-          👋 Hey, I&apos;m Dennis
-          <br />A backend engineer based in Amsterdam
-        </h1>
+        <CustomLink
+          customClass="text-5xl"
+          href="/"
+          label="👋 Hey, I'm Dennis"
+        />
+        <h2 className="text-3xl">A backend engineer based in Amsterdam</h2>
         <p>
           I&apos;m Dennis, a backend engineer with some frontend experience in
           Amsterdam, the Netherlands. I&apos;m currently working on personal
@@ -33,9 +36,11 @@ export default async function Home() {
 
       <section>
         <SectionTitle label="Featured work" />
-        {projects.map((project) => (
-          <FeaturedProjectCard key={project.slug} project={project} />
-        ))}
+        <div className="flex flex-col gap-4">
+          {projects.map((project) => (
+            <FeaturedProjectCard key={project.slug} project={project} />
+          ))}
+        </div>
       </section>
 
       <section>

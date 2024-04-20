@@ -38,7 +38,7 @@ export default function ProjectDetailPage({ params }: Params) {
   useEffect(() => {
     axios
       // TODO: Change the localhost url to a dynamic url
-      .get(`http://localhost:3000/projects/api/${params.slug}`)
+      .get(`/projects/api/${params.slug}`)
       .then((res) => {
         console.log(res)
         setPost(res.data.content)

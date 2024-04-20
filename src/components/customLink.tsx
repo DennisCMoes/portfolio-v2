@@ -6,7 +6,7 @@ export default function CustomLink(link: LinkData & { customClass?: string }) {
     <Link href={link.href} className={link.customClass}>
       <div className="group transition-colors duration-75 hover:text-blue-500 hover:duration-300">
         {link.icon && link.icon}
-        <p>{link.label && link.label}</p>
+        <span>{link.label && link.label}</span>
       </div>
     </Link>
   )
