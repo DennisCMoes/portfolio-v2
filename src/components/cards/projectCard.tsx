@@ -42,7 +42,7 @@ export default function ProjectCard({ project }: CardParams) {
         onMouseEnter={() => handleHover(true)}
         onMouseLeave={() => handleHover(false)}
         href={getSlug()}
-        className="hoverable-card group relative flex aspect-square flex-col rounded-lg bg-blue-400 text-white hover:bg-blue-500"
+        className="hoverable-card group relative flex aspect-square flex-col rounded-lg bg-gradient-to-br from-blue-400 to-blue-600 text-white"
       >
         <div className="relative flex h-full w-full flex-col justify-end">
           <div className="p-6">

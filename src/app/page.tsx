@@ -19,9 +19,11 @@ export default async function Home() {
     <LayoutContainer size="m" classname="flex flex-col gap-12 md:pt-8">
       <section className="group relative overflow-hidden rounded-md bg-blue-500 px-8 py-16 text-white">
         <div className="relative z-30">
-          <h1 className="text-5xl">👋 Hey, I&apos;m Dennis</h1>
-          <h2 className="text-3xl">A backend engineer based in Amsterdam</h2>
-          <p>
+          <h1 className="text-3xl md:text-5xl">👋 Hey, I&apos;m Dennis</h1>
+          <h2 className="text-xl md:text-3xl">
+            A backend engineer based in Amsterdam
+          </h2>
+          <p className="text-sm md:text-base">
             While my focus lies in backend development, I also have some
             frontend experience. Currently, I&apos;m dedicating my free time to
             working on personal projects.
