@@ -43,7 +43,7 @@ export default async function Home() {
                 cx={item.centerXY}
                 cy={item.centerXY}
                 fill="transparent"
-                stroke-width={item.strokeWidth}
+                strokeWidth={item.strokeWidth}
                 className="fill-transparent stroke-blue-600"
               />
             </svg>

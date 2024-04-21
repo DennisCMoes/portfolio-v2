@@ -19,14 +19,11 @@ main {
 }
 
 .shadow-as-border:hover {
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px,
-              rgb(190, 190, 190) 0px 0px 0px 2px inset;
-}
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px,
+              rgb(190, 190, 190) 0px 0px 0px 2px inset; */
 
-.featured-projects-card {
-  background-color: #f2f8f9;
-  z-index: 0;
-  overflow: hidden;
+  box-shadow: #bfdbfe 0px 1px 4px 0px,
+              #93c5fd 0px 0px 0px 3px inset;
 }
 
 .hoverable-card {

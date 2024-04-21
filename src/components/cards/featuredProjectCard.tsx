@@ -12,14 +12,14 @@ export default function FeaturedProjectCard({ project }: CardParams) {
   return (
     <Link href={`/projects/${project.slug}`}>
       <div className="shadow-as-border group relative flex flex-row gap-4 rounded-md hover:p-4">
-        <div className="h-24 w-16 rounded-sm bg-blue-500" />
-        <div>
+        <div className="h-16 w-6 rounded-sm bg-blue-500" />
+        <div className="w-full">
           <div className="text-xs text-gray-500">
             <p>{project.metadata.technologies.join(', ')}</p>
           </div>
           <p className="text-xl font-medium">{project.metadata.title}</p>
           <p className="line-clamp-2 text-sm text-gray-500">
-            {project.metadata.description}
+            {project.metadata.subtitle}
           </p>
         </div>
       </div>

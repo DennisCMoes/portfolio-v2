@@ -1,0 +1,83 @@
+---
+title: "Pong"
+subtitle: "Pong made with assembly for the 8086 architecture"
+descirption: ""
+technologies: ["Game"]
+date: "2024-03-13T00:00:00.000Z"
+repository: "/Pong"
+isFeatured: true
+---
+
+For one of my school courses we needed to make a few assignments in assembly x86_64. One of the assignments was to make a game, it was optional. I decided to make the game. They gave us a few options to create a game with. a gamelib to make games with, basic x86 assembly, or make one for the DOSBox which runs 8086 code, which means we are taking a time machine back in time.
+
+## Project overview
+
+My goal with this game was to make a game that could be played by one person against the computer, or with someone else against each other. As a competition. Because pong is a game with two paddles and one ball that goes side to side up and down and bounces back to the opposite side when hitting one of the sides or a paddle.
+
+So how did I develop this game? I first started with installing the DOSBox to my macbook, when that was finished and up and running I just openened a text file and started codeing and building.
+
+Because I couldn't figure out how to debug my pong game I was forced to build it and run it after each feature added or bug fix in my code. This was a bit annoying, but it forced me to plan more before coding, it forced me to think about all the features that I was going to implement and how I should implement them.
+
+## Code
+
+Provide a high-level overview of the key components of your assembly code. Explain how each part contributes to the functionality of the game.
+Include snippets of code to illustrate important concepts or algorithms used in your implementation.
+
+So, how does my game work under the hood? Well it is pretty simple, most of the game is just basic addition or subtraction mathematics. For example, where the ball is in the 2D space. But let's start with how I even draw the pixels to the screen.
+
+The 8086 assembly code uses the BIOS and this wonderful piece of tech has a few tricks up its sleeve, such as the 10 int mode. This mode tells the machine that I want to enable the video mode, this will remove all the text from the terminal and just output a empty screen containing the color of choice, in my case I choose black.
+
+After that it became simple, I made a subroutine that would draw a string to the screen on the given coördinates of my chosing
+
+```assembly
+; Draw a string on the given coordinates
+drawText proc near
+    mov ah, 02h      ; Set cursor position
+    mov bh, 00h      ; Set page number
+    int 10h          ; Execute
+
+    mov ah, 09h      ; Write string to the standard output
+    mov dx, bp       ; Load string into standard output
+    int 21h          ; Execute
+
+    ret
+drawText endp
+```
+
+While I could have done the same for all the times I would paint a pixel to the screen, it was not necessary because writing a pixel to the screen doesn't use a lot of code. Below we can see the code I used to draw a piece of the left paddle.
+
+```assembly
+mov ah, 0Ch             ; Set the configuration to writing a pixel
+mov dx, paddleLeftY     ; Set Y coordinates
+mov cx, paddleLeftX     ; Set X coordinates
+mov al, 00h             ; Choose black as color
+mov bh, 00h             ; Set the page number
+int 10h                 ; Execute
+```
+
+### AI implementation
+
+For the singleplayer we needed some sort of AI to compete against, so I tried to implement a very basic version of AI for the user to play against and try to win against. The issue is that I accidently made the AI unbeatable, as we can see in the code below, if the ball is above the paddle on the Y-axis it will move up, the same for going down. Even if it's just one pixel over or under.
+
+```assembly
+mov ax, ballY
+add ax, ballSize
+cmp ax, paddleLeftY
+jl  leftPaddleUp
+```
+
+So what happens in the code? First of all we put the coordinates of the ball in the ax register and we add the ballsize to it. This is because we want to check if the whole ball is above the ball and not just the top part. Then after we added the size we check where the left paddle is on the Y axis, and if the left paddle is below the ball, then the paddle will jump up.
+
+## Demo
+
+In the end we ended up with a working pong game, and here is a very brief GIF of how it looks playing, without the main menu, just the playfield
+
+<ImageComponent url="/posts/pong/videos/demo.gif" />
+
+## What have I learned?
+
+I have learned a few things making this game. Assembly is ruthless, it will not care for you in a way other languages do, it will not give you warning about wrong code. No it will just scream that it can't build. Also if you made a memory exception it will just scream segmentation fault, not where you made the error, just that you made an error. This makes it really hard to debug.
+
+And most importantly of all, I learned that planning and designing code beforehand is very important. If you're going to code in assembly without a plan, you're in for a wild ride. And it isn't going to be a fun one. So if you're going to start coding in assembly, go make a plan of which registers you want to use, how much memory you're going to use and all that stuff that is necessary for assembly.
+
+But even with all these annoyences. I still had a fun time and I am proud of the end game I made.

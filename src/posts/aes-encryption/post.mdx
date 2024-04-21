@@ -1,0 +1,47 @@
+---
+title: "AES encryption"
+subtitle: "Encrypt files and folders with the AES-256 encryption standard"
+descirption: ""
+technologies: ["Java"]
+date: "2024-01-10T00:00:00.000Z"
+repository: "/AES-File-Encryption"
+isFeatured: true
+---
+
+I made the project because I wanted to try and create with some encryption method. So I decided to go with one of the best encryption methods, namely, AES. And to be detailed enough, it is AES with 256 bits. It is secure becuase it scrambles the data using a secret key. And it does it by repeatedly changing the data in specific ways. These changes depend on the key. After it is scrambled it can be reversed back to the original data if using the original key.
+
+So how did I implement the code? I started with the key management including the saving to files and what not, afterwards I started implementing the actual encryption. The code can select a file and then encrypt the file using the AES encryption method
+
+## Code
+
+I started with making a singleton class for all my configurations, such as the path to the folder where all the keys are stored.
+
+```java
+public static ConfigurationHandler getInstance() {
+  if (ConfigurationHandler.instance == null) {
+      ConfigurationHandler.instance = new ConfigurationHandler();
+  }
+
+  if (instance.getProperty("KEY_PATH") == null) {
+      try {
+          Scanner scanner = new Scanner(System.in);
+          System.out.print("Please give the path to where the keys should be stored: ");
+          String keyPath = scanner.nextLine();
+
+          instance.setProperty("KEY_PATH", keyPath);
+          instance.saveProperties();
+      } catch (Exception ex) {
+          ex.printStackTrace();
+      }
+  }
+
+  return ConfigurationHandler.instance;
+}
+```
+
+Afterwards I started with 
+
+- Development
+- Code walkthrough
+- Security considerations
+- Reflections about the project/conclusion
