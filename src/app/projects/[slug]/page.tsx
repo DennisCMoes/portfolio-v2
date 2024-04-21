@@ -71,7 +71,7 @@ export default function ProjectDetailPage({ params }: Params) {
   }
 
   const getRepoHref = () =>
-    `https://github.com/kingdennis-crypto${post?.frontmatter.repository}`
+    `https://github.com/kingdennis-crypto/${post?.frontmatter.repository}`
 
   if (projectNotFound) {
     return notFound()
