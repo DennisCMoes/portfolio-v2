@@ -14,8 +14,9 @@ import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { useEffect, useState } from 'react'
 import Loading from './loading'
 import CustomLink from '@/components/customLink'
-import { IconArrowUpRight } from '@tabler/icons-react'
+import { IconArrowUpRight, IconBrandGithub } from '@tabler/icons-react'
 import DynamicIcon, { IconName } from '@/components/dynamicIcon'
+import Link from 'next/link'
 
 type Params = {
   params: {
@@ -66,19 +67,39 @@ export default function ProjectDetailPage({ params }: Params) {
     }).format(new Date(date))
   }
 
-  const getCoverImageUrl = () => `/posts/${params.slug}/images/cover.jpg`
+  const getRepoHref = () =>
+    `https://github.com/kingdennis-crypto${post?.frontmatter.repository}`
 
   return post == null ? (
     <Loading />
   ) : (
     <LayoutContainer size="m" classname="md:pt-8">
       <div className="relative flex aspect-video w-full items-end overflow-hidden rounded-md bg-gradient-to-br from-blue-400 to-blue-700 pl-4 text-white">
-        <div className="absolute -bottom-4 -right-4">
+        <Link
+          href={getRepoHref()}
+          className="absolute right-4 top-4"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="rounded-md bg-blue-100 p-2 hover:bg-blue-200">
+            <IconBrandGithub
+              stroke={2}
+              width={32}
+              height={32}
+              className="text-black"
+              // className="text-blue-100"
+            />
+          </div>
+        </Link>
+        <div className="absolute bottom-0 right-0">
           {/* TODO: Make a function to check if isMobile for dynamic size number */}
           <DynamicIcon iconName={post.frontmatter.icon as IconName} />
         </div>
         <div className="z-10 inline-flex flex-col">
           <CustomText level={1}>{post.frontmatter.title as string}</CustomText>
+          <CustomText level={-1}>
+            {(post.frontmatter.technologies as string[]).join(', ')}
+          </CustomText>
           <CustomText level={0}>
             {getFormattedDate(post.frontmatter.date as string)}
           </CustomText>

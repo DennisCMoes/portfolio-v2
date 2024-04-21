@@ -45,7 +45,7 @@ export default function ProjectCard({ project }: CardParams) {
         href={getSlug()}
         className="hoverable-card group relative flex aspect-square flex-col overflow-hidden rounded-lg bg-gradient-to-br from-blue-400 to-blue-700 text-white"
       >
-        <div className="absolute -bottom-4 -right-4">
+        <div className="absolute bottom-0 right-0">
           <DynamicIcon iconName={project.metadata.icon as IconName} />
         </div>
         <div className="relative flex h-full w-full flex-col justify-end">
