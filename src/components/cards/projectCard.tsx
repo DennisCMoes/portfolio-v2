@@ -50,6 +50,9 @@ export default function ProjectCard({ project }: CardParams) {
         </div>
         <div className="relative flex h-full w-full flex-col justify-end">
           <div className="p-6">
+            <p className="text-sm text-neutral-100">
+              {project.metadata.technologies.join(', ')}
+            </p>
             <p
               style={{
                 marginBottom: isMobile

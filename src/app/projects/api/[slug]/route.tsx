@@ -6,6 +6,10 @@ type Params = {
 }
 
 export async function GET(request: Request, context: { params: Params }) {
-  const project = await getProjectBySlug(context.params.slug)
-  return NextResponse.json(project)
+  try {
+    const project = await getProjectBySlug(context.params.slug)
+    return NextResponse.json(project)
+  } catch (ex) {
+    return NextResponse.json({ error: 'Project not found' }, { status: 404 })
+  }
 }

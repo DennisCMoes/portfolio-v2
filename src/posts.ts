@@ -38,14 +38,18 @@ export async function getProjectBySlug(slug: string): Promise<{
   >
   metadata: ProjectMetadata
 }> {
-  const contentPath = path.join(postsDir, slug, 'post.mdx')
+  try {
+    const contentPath = path.join(postsDir, slug, 'post.mdx')
 
-  const { metadata }: { metadata: ProjectMetadata } = await import(
-    `./posts/${slug}/post.mdx`
-  )
+    const { metadata }: { metadata: ProjectMetadata } = await import(
+      `./posts/${slug}/post.mdx`
+    )
 
-  const postFile = await fs.readFile(contentPath, { encoding: 'utf-8' })
-  const content = await serialize(postFile, { parseFrontmatter: true })
+    const postFile = await fs.readFile(contentPath, { encoding: 'utf-8' })
+    const content = await serialize(postFile, { parseFrontmatter: true })
 
-  return { content, metadata }
+    return { content, metadata }
+  } catch (ex) {
+    throw new Error('Project not found')
+  }
 }
