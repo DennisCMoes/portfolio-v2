@@ -9,14 +9,26 @@ type CardParams = {
 }
 
 export default function ProjectCard({ project }: CardParams) {
-  const isMobile: boolean = window.innerWidth < 768
   const descriptionElement = useRef<HTMLParagraphElement>(null)
 
+  const [isMobile, setIsMobile] = useState<boolean>(false)
   const [isHovering, setIsHovering] = useState<boolean>(false)
   const [descriptionHeight, setDescriptionHeight] = useState<number>(0)
 
   const getSlug = () => `/projects/${project.slug}`
   const handleHover = (hovering: boolean) => setIsHovering(hovering)
+
+  useEffect(() => {
+    const updateIsMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    updateIsMobile()
+
+    window.addEventListener('resize', updateIsMobile)
+
+    return () => window.removeEventListener('resize', updateIsMobile)
+  }, [])
 
   useEffect(() => {
     if (!descriptionElement.current) return
@@ -30,7 +42,7 @@ export default function ProjectCard({ project }: CardParams) {
         onMouseEnter={() => handleHover(true)}
         onMouseLeave={() => handleHover(false)}
         href={getSlug()}
-        className="hoverable-card group relative flex aspect-square flex-col rounded-lg bg-green-300"
+        className="hoverable-card group relative flex aspect-square flex-col rounded-lg bg-blue-400 text-white hover:bg-blue-500"
       >
         <div className="relative flex h-full w-full flex-col justify-end">
           <div className="p-6">
@@ -48,7 +60,7 @@ export default function ProjectCard({ project }: CardParams) {
             </p>
             <p
               ref={descriptionElement}
-              className="absolute bottom-6 left-6 right-6 text-2xl transition-all delay-0 md:opacity-0 md:group-hover:opacity-100 md:group-hover:delay-200"
+              className="absolute bottom-4 left-6 right-6 text-xl transition-all delay-0 md:opacity-0 md:group-hover:opacity-100 md:group-hover:delay-200"
             >
               {project.metadata.subtitle}
             </p>
