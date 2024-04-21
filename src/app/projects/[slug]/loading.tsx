@@ -2,10 +2,7 @@ import LayoutContainer from '@/components/layout/container'
 
 export default function Loading() {
   return (
-    <LayoutContainer size="xl" classname="mt-8">
-      {/* Title */}
-      <div className="mb-4 h-8 w-48 rounded-full bg-gray-200 dark:bg-gray-700"></div>
-      <div className="mb-8 h-2 w-48 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+    <LayoutContainer size="m" classname="mt-8">
       {/* Cover image */}
       <div className="relative flex aspect-video w-full items-center justify-center rounded bg-gray-300 dark:bg-gray-700">
         <svg

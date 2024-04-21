@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react'
 import Loading from './loading'
 import CustomLink from '@/components/customLink'
 import { IconArrowUpRight } from '@tabler/icons-react'
+import DynamicIcon, { IconName } from '@/components/dynamicIcon'
 
 type Params = {
   params: {
@@ -48,10 +49,8 @@ export default function ProjectDetailPage({ params }: Params) {
 
   useEffect(() => {
     axios
-      // TODO: Change the localhost url to a dynamic url
       .get(`/projects/api/${params.slug}`)
       .then((res) => {
-        console.log(res)
         setPost(res.data.content)
       })
       .catch((err) => {
@@ -72,19 +71,22 @@ export default function ProjectDetailPage({ params }: Params) {
   return post == null ? (
     <Loading />
   ) : (
-    <LayoutContainer size="xl">
-      {post && (
-        <>
+    <LayoutContainer size="m" classname="md:pt-8">
+      <div className="relative flex aspect-video w-full items-end overflow-hidden rounded-md bg-gradient-to-br from-blue-400 to-blue-700 pl-4 text-white">
+        <div className="absolute -bottom-4 -right-4">
+          {/* TODO: Make a function to check if isMobile for dynamic size number */}
+          <DynamicIcon iconName={post.frontmatter.icon as IconName} />
+        </div>
+        <div className="z-10 inline-flex flex-col">
           <CustomText level={1}>{post.frontmatter.title as string}</CustomText>
           <CustomText level={0}>
             {getFormattedDate(post.frontmatter.date as string)}
           </CustomText>
-        </>
-      )}
-      <ImageComponent url={getCoverImageUrl()} />
-      <LayoutContainer size="m" classname="mt-4">
+        </div>
+      </div>
+      <section className="mt-4">
         {post && <MDXRemote {...post} components={components} />}
-      </LayoutContainer>
+      </section>
     </LayoutContainer>
   )
 }

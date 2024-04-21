@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { AllProjectsReturn } from '@/types'
 import { useEffect, useRef, useState } from 'react'
+import DynamicIcon, { IconName } from '../dynamicIcon'
 
 type CardParams = {
   project: AllProjectsReturn
@@ -42,8 +43,11 @@ export default function ProjectCard({ project }: CardParams) {
         onMouseEnter={() => handleHover(true)}
         onMouseLeave={() => handleHover(false)}
         href={getSlug()}
-        className="hoverable-card group relative flex aspect-square flex-col rounded-lg bg-gradient-to-br from-blue-400 to-blue-600 text-white"
+        className="hoverable-card group relative flex aspect-square flex-col overflow-hidden rounded-lg bg-gradient-to-br from-blue-400 to-blue-700 text-white"
       >
+        <div className="absolute -bottom-4 -right-4">
+          <DynamicIcon iconName={project.metadata.icon as IconName} />
+        </div>
         <div className="relative flex h-full w-full flex-col justify-end">
           <div className="p-6">
             <p
