@@ -6,7 +6,6 @@ export type Prettify<T> = {
 
 export type ProjectMetadata = {
   title: string
-  description: string
   technologies: string[]
   date: string
   subtitle: string

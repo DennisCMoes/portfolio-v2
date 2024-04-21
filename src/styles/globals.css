@@ -14,24 +14,12 @@ main {
   padding-bottom: 2rem;
 }
 
-.shadow-as-border {
-  transition: all 0.3s;
-}
-
-.shadow-as-border:hover {
-  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px,
-              rgb(190, 190, 190) 0px 0px 0px 2px inset; */
-
-  box-shadow: #bfdbfe 0px 1px 4px 0px,
-              #93c5fd 0px 0px 0px 3px inset;
-}
-
-.hoverable-card {
-  clip-path: inset(4px round 12px);
-  transition: all 0.3s ease-in-out;
-}
-
 @media (min-width: 768px) {
+  .hoverable-card {
+    clip-path: inset(4px round 12px);
+    transition: all 0.3s ease-in-out;
+  }
+
   .hoverable-card:hover {
     clip-path: inset(0px round 14px);
   }

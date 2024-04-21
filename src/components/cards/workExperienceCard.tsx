@@ -7,7 +7,7 @@ type WorkParams = {
 export default function WorkExperienceCard({ workExperience }: WorkParams) {
   return (
     <div className="flex flex-row">
-      <div className="basis-4/12">
+      <div className="basis-4/12 pr-2">
         {workExperience.startMonth} - {workExperience.endMonth}
       </div>
       <div className="inline-flex basis-8/12 flex-col">

@@ -8,9 +8,9 @@ export default async function AllProjectsPage() {
   const projects: AllProjectsReturn[] = await getAllProjects()
 
   return (
-    <LayoutContainer size="m" classname="pt-16">
+    <LayoutContainer size="m" classname="md:pt-8">
       <SectionTitle label="Projects" />
-      <div className="grid grid-cols-2 gap-1">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-1">
         {projects.map((project: AllProjectsReturn) => (
           <ProjectCard key={project.slug} project={project} />
         ))}

@@ -16,7 +16,7 @@ export default async function Home() {
   const getKey = (value: string) => value.replaceAll(' ', '-').toLowerCase()
 
   return (
-    <LayoutContainer size="m" classname="flex flex-col gap-12 pt-8">
+    <LayoutContainer size="m" classname="flex flex-col gap-12 md:pt-8">
       <section className="group relative overflow-hidden rounded-md bg-blue-500 px-8 py-16 text-white">
         <div className="relative z-30">
           <h1 className="text-5xl">👋 Hey, I&apos;m Dennis</h1>
