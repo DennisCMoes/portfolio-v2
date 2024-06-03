@@ -58,10 +58,10 @@ export default function ProjectCard({ project }: CardParams) {
                 marginBottom: isMobile
                   ? descriptionHeight
                   : isHovering
-                    ? descriptionHeight
+                    ? descriptionHeight - 10
                     : 0,
               }}
-              className="text-4xl transition-all duration-300"
+              className="text-4xl transition-all duration-300 font-medium"
             >
               {project.metadata.title}
             </p>
