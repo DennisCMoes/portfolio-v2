@@ -22,17 +22,12 @@ export default function Footer() {
         />
         <div className="inline-flex flex-row gap-2">
           <CustomLink
-            href="https://google.com"
-            icon={<IconMail size={26} />}
-            tabBehaviour="new"
-          />
-          <CustomLink
-            href="https://google.com"
+            href="https://www.linkedin.com/in/dennismoes/"
             icon={<IconBrandLinkedin size={26} />}
             tabBehaviour="new"
           />
           <CustomLink
-            href="https://google.com"
+            href="https://github.com/DennisCMoes"
             icon={<IconBrandGithub size={26} />}
             tabBehaviour="new"
           />
