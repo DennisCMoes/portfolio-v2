@@ -3,18 +3,20 @@ import LayoutContainer from '@/components/layout/container'
 import SectionTitle from '@/components/sectionTitle'
 import { getAllProjects } from '@/posts'
 import { AllProjectsReturn } from '@/types'
+import { Metadata } from 'next'
+import ProjectsPagination from './pagination'
+
+export const metadata: Metadata = {
+  title: 'Projects',
+}
 
 export default async function AllProjectsPage() {
   const projects: AllProjectsReturn[] = await getAllProjects()
 
   return (
-    <LayoutContainer size="m" classname="md:pt-8">
+    <LayoutContainer size="m">
       <SectionTitle label="Projects" />
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-1">
-        {projects.map((project: AllProjectsReturn) => (
-          <ProjectCard key={project.slug} project={project} />
-        ))}
-      </div>
+      <ProjectsPagination projects={projects}/>
     </LayoutContainer>
   )
 }
