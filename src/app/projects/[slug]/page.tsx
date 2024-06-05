@@ -52,7 +52,7 @@ export default function ProjectDetailPage({ params }: Params) {
 
   useEffect(() => {
     axios
-      .get(`/projects/api/${params.slug}`)
+      .get(`/api/projects/${params.slug}`)
       .then((res: AxiosResponse) => {
         setPost(res.data.content)
         setNotFound(false)
@@ -71,7 +71,7 @@ export default function ProjectDetailPage({ params }: Params) {
   }
 
   const getRepoHref = () =>
-    `https://github.com/kingdennis-crypto/${post?.frontmatter.repository}`
+    `https://github.com/DennisCMoes/${post?.frontmatter.repository}`
 
   if (projectNotFound) {
     return notFound()
@@ -79,7 +79,7 @@ export default function ProjectDetailPage({ params }: Params) {
     return <Loading />
   } else {
     return (
-      <LayoutContainer size="m" classname="md:pt-8">
+      <LayoutContainer size="m">
         <div className="relative flex aspect-video w-full items-end overflow-hidden rounded-md bg-gradient-to-br from-blue-400 to-blue-700 pl-4 text-white">
           <Link
             href={getRepoHref()}
@@ -87,13 +87,12 @@ export default function ProjectDetailPage({ params }: Params) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <div className="rounded-md bg-blue-100 p-2 hover:bg-blue-200">
+            <div className="rounded-md bg-neutral-50 p-2 transition-colors duration-300 hover:bg-neutral-200">
               <IconBrandGithub
                 stroke={2}
                 width={32}
                 height={32}
                 className="text-black"
-                // className="text-blue-100"
               />
             </div>
           </Link>
