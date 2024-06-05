@@ -8,4 +8,100 @@ isFeatured: false
 icon: "IconUserSearch"
 ---
 
-Hello World!
+Here's another project of mine called Social Connect. it's an API build with typescript designed to manage a small-scale social media platform. It features routes to manage your posts, media, and profile.
+
+Next to all the API routes it also has middleware to check for various functions. And it has various design patterns implemented such as but not limited to the singleton for our database connector. To make sure it doesn't create multiple connections when only one is needed.
+
+## Token support
+
+```typescript
+getToken(
+  payload?: { [key: string]: unknown },
+  role: UserRole = 'user'
+): Promise<string> {
+  try {
+    const token = jwt.sign(
+      {
+        iat: Math.floor(Date.now() / 1000) - 30, // 30 seconds backtrack
+        exp: Math.floor(Date.now() / 1000) + 3600, // 1 hour expiration
+        role,
+        ...payload,
+      },
+      'SECRET'
+    )
+
+    return token
+  } catch (error: unknown) {
+    logger.error('Token retrieval went wrong: %s', (error as Error).message)
+    throw error
+  }
+}
+```
+
+As seen on top we have a function called getToken which generates a token for us when we request it. As we see it has a role parameter which only has 'user' or 'admin' so that we know what kind of user we're creating a token for. We also have a key value map as our payload, this is so that we can pass information that is not required for every token. We also set our expiration to 1 hour and have a backtracking for 30 seconds for example if there is lag.
+
+## Authentication
+
+```typescript
+const token: string | undefined = req.headers.authorization?.split(' ')[1]
+
+if (!token) {
+  throw new Unauthenticated(RESPONSE_MESSAGES.TOKEN.NO_TOKEN_PROVIDED, 401)
+}
+
+// Verify the validity of the token
+const isValidToken = await TokenHelper.verifyToken(token)
+
+if (!isValidToken) {
+  throw new InvalidToken(RESPONSE_MESSAGES.TOKEN.INVALID_TOKEN)
+}
+
+// Store the decoded token into the request
+res.locals.decodedToken = TokenHelper.decodeToken(token)
+
+// If the token is valid, call the next function
+return next()
+```
+
+Because we use a token based authentication we can create a middleware that will check if our request has a token in its headers and which will also check if the token is a valid one from our server within the specified timespan of 1 hour. Because the token can have information that is required for the route we put the decoded key value of the token in a temporary storage so that we can pass that information to the next middleware or even the api route itself.
+
+```typescript
+// Get the token from the local store
+const decodedToken: DecodedToken = res.locals.decodedToken
+
+if (decodedToken.role === 'user') {
+  throw new InvalidRole(RESPONSE_MESSAGES.AUTHORIZATION.NO_ADMIN, 403)
+}
+```
+
+As you can see in the code snippet above we have an example of how we would check if the request is from an admin. We get the decoded token from the temporary local storage and then check which role is on the token and if it is not an admin we will throw a error that tells the application that the request is not coming from an admin user.
+
+Going back to the middleware, I have also created a middleware function that checks if all fields are available in the header of a request.
+
+```typescript
+const isBody = requestType === 'body'
+
+const targetFieldList = isBody
+  ? Object.keys(req.body)
+  : Object.keys(req.params)
+
+const missingFields = fieldsOrParams.filter(
+  (field: string) => !targetFieldList.includes(field)
+)
+
+if (missingFields.length > 0) {
+  const responseMessage = isBody
+    ? RESPONSE.REQUEST.EMPTY_FIELDS(fieldsOrParams)
+    : RESPONSE.REQUEST.EMPTY_PARAMS(fieldsOrParams)
+
+  return formatErrorResponse(res, 400, responseMessage)
+}
+```
+
+As we can see in the code snippet above the function will first filter the keys from if it is a body or a header we need to search through. Then we get all the values from all those keys and if we see that ony of the fields are missing that we gave in the function parameter it will throw an error that we have insufficient fields for the route to work correctly.
+
+```typescript
+requireFieldsOrParams(['email', 'password'], 'body')
+```
+
+Above we see how this would work in our login route. We pass to the function that we want an email and a password key value in the body of our request, so it will check the body for these values. If either the email of the password is empty it will return an error, if both are available, it will continue to the next middleware of the actual route function.

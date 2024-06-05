@@ -1,11 +1,60 @@
 ---
-title: "Car dealership"
-subtitle: "Manage cars on the ethereum blockchain"
-technologies: [NextJS, Ethereum]
-date: "2023-03-28T00:00:00.000Z"
-repository: "Card-Dealership"
+title: 'Car dealership'
+subtitle: 'Manage cars on the ethereum blockchain'
+technologies: [NextJS, Solidity]
+date: '2023-03-28T00:00:00.000Z'
+repository: 'Card-Dealership'
 isFeatured: false
-icon: "IconCarGarage"
+icon: 'IconCarGarage'
 ---
 
-Hello World!
+This project was for a class I had which introduced me to the blockchain, more importantly the ethereum blockchain
+
+## Implementation
+
+To establish the connection between the website and the Ethereum blockchain, I made use of Next.JS and Ethers.JS. The project's architecture involved creating a React Context that handles all the communication between the blockchain and the website.
+
+## Connecting to the contract
+
+Upon starting the website, a function called connectToContract is invoked to establish a connection with the deployed smart contract on the Ethereum blockchain. Here is how it works:
+
+```typescript
+async function connectToContract(): Promise<void> {
+  try {
+    // Check if MetaMask is installed
+    if (typeof (window as any) === 'undefined') {
+      throw new Error('Please install MetaMask first.')
+    }
+
+    // Connect to Web3Provider using MetaMask
+    const _provider = new ethers.providers.Web3Provider(
+      (window as any).ethereum
+    )
+
+    const _signer = _provider.getSigner()
+    const _contract = new ethers.Contract(contractAddress, abi.abi, _signer)
+
+    const _address = await _provider.listAccounts()
+
+    if (_address.length > 0) {
+      setAddress(_address[0])
+    }
+
+    // Set the provider, signer, and contract
+    setProvider(_provider)
+    setSigner(_signer)
+    setContract(_contract)
+
+    const ethereuem = (window as any).ethereum
+
+    // Add event listener for account changes
+    ethereuem.on('accountsChanged', (_accounts: any) => {
+      setAddress(_accounts.length > 0 ? _accounts[0] : null)
+    })
+
+    setIsConnected(true)
+  } catch (err) {
+    console.error(err)
+  }
+}
+```

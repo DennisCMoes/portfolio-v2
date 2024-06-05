@@ -8,4 +8,66 @@ isFeatured: false
 icon: "IconVinyl"
 ---
 
-Hello World!
+After diving into a few projects with React Native, I decided that it was time to explore a new frontier: the Flutter ecosystem. Just as I had with React native, I started my Flutter journey by following a few tutorials. Once I felt confident enough, I started my own application, and thus, MusicBox was born.
+
+## Introducing MusicBox
+
+MusicBox is a "functional" music player app with a sleek design. The home screen showcases the top songs of the year. When you select a song, it opens up in the music player, ready to play your favorite tunes (without functioning sound).
+
+## Features
+
+### Home Screen
+
+The home screen displays the top songs of the year. It's a simple yet effective way to discover and play popular tracks.
+
+### Playlist and Favourites Screen
+
+MusicBox features a dedicated screen for playlists and favorite songs. You can view your favorite tracks, organized by playlists. This functionality is achieved by temporarily storing data in the app's state.
+
+### Music Playing Screen
+
+When a user clicks on a song, the music player screen opens. Here, you can listen to your favorite song and enjoy various UI options, including:
+
+<ImageComponent url="/posts/music-box/images/now-playing.png" />
+
+### Play, Next, Back, Shuffle, and Repeat buttons
+
+A dynamically changing repeat button icon
+Bookmarking songs into your favorites tab
+Additionally, swiping up from the bottom reveals a lyrics tab and an "Up Next" tab, helping you keep track of upcoming songs.
+
+<ImageComponent url="/posts/music-box/images/favourites.png" />
+
+### Local State Management with GetX
+
+For managing local state, I chose GetX over bloC. In my opinion, GetX is more intuitive and easier to learn. It also offers additional features, such as simple page transitions.
+
+To implement state management, I created a StoreController and extended it with GetXController. Here's a glimpse of the code:
+
+```dart
+class StoreController extends GetXController {
+  // Variables that are observable
+  final isPlaying = false.obs;
+
+  // Functions that change the observable variables
+  void updateIsPlaying(bool status) {
+    isPlaying.value = status;
+  }
+
+  void addFavoriteSong(String name, String artist) {
+    // Logic to add song to favorites
+  }
+}
+```
+
+In the app pages, I call these functions to handle state management efficiently:
+
+```dart
+final storeController = Get.put(StoreController());
+
+storeController.updateIsPlaying(true);
+```
+
+## Conclusion
+
+Creating MusicBox with Flutter has been an enjoyable and rewarding experience. Integrating essential music player features and managing local state with GetX has allowed me to create an app that I am proud of. I look forward to further exploring the Flutter framework and developing more applications in the future.

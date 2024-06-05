@@ -19,20 +19,20 @@ I started with making a singleton class for all my configurations, such as the p
 ```java
 public static ConfigurationHandler getInstance() {
   if (ConfigurationHandler.instance == null) {
-      ConfigurationHandler.instance = new ConfigurationHandler();
+    ConfigurationHandler.instance = new ConfigurationHandler();
   }
 
   if (instance.getProperty("KEY_PATH") == null) {
-      try {
-          Scanner scanner = new Scanner(System.in);
-          System.out.print("Please give the path to where the keys should be stored: ");
-          String keyPath = scanner.nextLine();
+    try {
+      Scanner scanner = new Scanner(System.in);
+      System.out.print("Please give the path to where the keys should be stored: ");
+      String keyPath = scanner.nextLine();
 
-          instance.setProperty("KEY_PATH", keyPath);
-          instance.saveProperties();
-      } catch (Exception ex) {
-          ex.printStackTrace();
-      }
+      instance.setProperty("KEY_PATH", keyPath);
+      instance.saveProperties();
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
   }
 
   return ConfigurationHandler.instance;
@@ -41,7 +41,123 @@ public static ConfigurationHandler getInstance() {
 
 Afterwards I started with 
 
-- Development
-- Code walkthrough
-- Security considerations
-- Reflections about the project/conclusion
+### Keys
+
+The AES standard requires a special key to scramble the content with. So for this I created the KeyHandler class which contains all the functions to create, get, delete, and more.
+
+So let's take a look at the createKey function, we pass the name of the key to the function and first of all we will check if the key name is a valid one and if the key doesn't already exists in the directory. This all happens in the abbreviated section at the top of the function.
+
+```java
+public Path createKey(String keyName) {
+  // Pre create checks to see if the key would be viable to create
+  // ...
+
+  Files.createFile(keyPath);
+
+  KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+  // Size 128, 192 or 256
+  keyGen.init(256, SecureRandom.getInstanceStrong());
+
+  byte[] secret = keyGen.generateKey().getEncoded();
+  byte[] nonce = getRandomNonce();
+
+  byte[] content = new byte[nonce.length + secret.length];
+
+  for (int i = 0; i < content.length; i++) {
+    content[i] = i < nonce.length ? nonce[i] : secret[i - nonce.length];
+  }
+
+  return Files.write(keyPath, content);
+}
+```
+
+After the checks we will first of all create the file where we will put the key in. Then we will initialize a KeyGenerator with the AES instance of the javax.crypto package. And of course with 256 bits of key security.
+
+After we have created the key we will create a nonce. In the case of AES you could see this as an IV. The Initialization Vector. This would be the value of which the encryption will start with trying to encrypt everything.
+
+Then after everything is generated we will put the secret and the IV in the same file because our IV is always of 12 bits. So that is easy counting. So for the first 12 bits of the file we will insert IV data, and then for the next bits we will insert our secret data.
+
+But this is only for creating a key, because our application uses multiple different keys we want to make the user be able to choose which keys to use, so that's why there is a getKey function which will return a KeyProperty instance which contains the secret key and the IV.
+
+```java
+public KeyProperties getKey(String keyName) {
+  // Pre get key checks to see if the key exists
+  // ...
+
+  byte[] keyContent = Files.readAllBytes(keyPath);
+
+  byte[] nonce = new byte[12];
+  byte[] secret = new byte[keyContent.length - 12];
+
+  for (int i = 0; i < keyContent.length; i++) {
+    if (i < 12) {
+      nonce[i] = keyContent[i];
+    } else {
+      secret[i - nonce.length] = keyContent[i];
+    }
+  }
+
+  return new KeyProperties(secret, nonce);
+}
+```
+
+Because we don't encrypt our key we can just easily grab the data from that file and put it in the KeyProperties instance. And that's exactly what we're doing, like I mentioned before, because our nonce is always 12 bits long we can just hardcode that value in the for loop to use the first 12 bits for our IV and the rest for our secret key. Then combine it in a KeyProperties model and return it.
+
+### Encryption
+
+Now for the encryption and decryption part, for this we are still using javax.crypto.
+
+```java
+public void encryptFile(String path, SecretKey secret, byte[] iv) {
+  try {   
+    // Check the input and output file validity
+    // ...
+
+    Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+    cipher.init(Cipher.ENCRYPT_MODE, secret, new GCMParameterSpec(128, iv));
+
+    try (FileInputStream inputStream = new FileInputStream(inputFile);
+      FileOutputStream outputStream = new FileOutputStream(outputFile)) {
+
+      FileMetadata metadata = new FileMetadata(inputFile.getName(), inputFile.getAbsolutePath());
+
+      byte[] metadataOutput = cipher.update(metadata.toString().getBytes(), 0, metadata.toString().getBytes().length);
+      outputStream.write(metadataOutput);
+
+      ByteArrayOutputStream encryptedContent = fileToByteArray(inputStream, cipher, new ByteArrayOutputStream());
+      outputStream.write(encryptedContent.toByteArray());
+    }
+  } catch (FileNotFoundException ex) {
+    throw ex;
+  } catch (Exception ex) {
+    ex.printStackTrace();
+  }
+}
+```
+
+In the above code snippet we initialize the cipher with the AES encryption module and then open a input and outputstream for the original content and the new encrypted file. After this we make a metadata object for our file metadata. Then we grab all the outputs but then in a byte array and then writes it to the output file, after which we can say that we successfully encrypted our file.
+
+For our decryption method we do the exact opposite, we grab the contents of our file load it in a byte array and then piece by piece we decrypt it and parse the data to a new FileMetadata object and the content that needs to be written to the file.
+
+### Modules
+
+For this project I wanted to make a clear seperation between the "backend" code which contains all the logics and the "frontend" code which the end user interacts with. So with the help of maven I implemented two different modules, one called lib and the other one called cli.
+
+## Demo
+
+For the user interactivity there is a build in CLI that can be used by the user.
+
+```
+Enter your command (enter 'help' or 'h' for help): h
+
+All available commands (each command has it's own subcommands):
+
+encryption:  Commands for handling encryption and decryption of files
+key:         Commands for managing and handling the cryptographic keys
+```
+
+Here we can see the available commands for the application at this moment. The user can enter the key command to view all the available keys, and the encryption command for all the available encryption methods.
+
+## What have I learned?
+
+The thing I have learned about this project is how to seperate your code into multiple modules. In this project I have two modules, lib and cli. This seperates nicely all the "frontend" and "backend" code. And if I want to extend it with a JavaFX ui I could simply just add a new module called app which would contain all the javafx code, this way we have separation and don't have to be scared to break code in the same module. The other big benefit is that I can export only the classes I need from the module.

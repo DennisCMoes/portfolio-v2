@@ -1,11 +1,73 @@
 ---
 title: "Zoo"
 subtitle: "Manage a zoo with talking animals"
-technologies: ["Java"]
+technologies: [Java]
 date: "2023-05-25T00:00:00.000Z"
 repository: "zoo-opdracht"
 isFeatured: false
 icon: "IconPaw"
 ---
 
-Hello World!
+This project was made to test my skills with interfaces, it is a small yet dynamic Java application designed for an internship I was looking to get. Despite it's size, I take pride in crafting this system that is both dynamic and scalable.
+
+## Abstraction
+
+The foundations of this project is the abstract Animal class. This class cannot be instantiated by itself, but it serves as a foundation for the animals that will extend from this class. Because each animal needs the same functions we can define them here in this class.
+
+```java
+public abstract class Animal implements IAnimal {
+  private final String name;
+  private final String helloText;
+
+  public Animal(String name, String helloText) {
+    this.name = name;
+    this.helloText = helloText;
+  }
+
+  public void sayHello() {
+    System.out.println(helloText);
+  }
+
+  @Override
+  public String toString() {
+    return String.format("Hello my name is %s", this.name);
+  }
+}
+```
+
+Given that the zoo consists of various different animals, extending the astract base class would be the best option. Let's take the example of the Lion class, which not only extends the Animal class but also implements the IEatMeat interface. With this interface we can use the interface later on to filter all the animal classes for it.
+
+```java
+public class Lion extends Animal implements IEatMeat {
+  public Lion(String name) {
+    super(name, "roooaoaaaaar");
+  }
+
+  @Override
+  public void eatMeat() {
+    System.out.println("nomnomnom thx mate");
+  }
+}
+```
+
+To make the most of the dynamic system, I made a function called getAnimalsByInterface. This function takes a class object (interface) as a parameter and returns a list of all animals implementing that interface. For example, if we want a list of animals that eat meat, we would call this function with the IEatMeat interface.
+
+```java
+public <T> List<T> getAnimalsByInterface(Class<T> interfaceObj) {
+  List<T> animalsWithInterface = new ArrayList<>();
+
+  for (Animal animal : animals.values()) {
+    if (interfaceObj.isInstance(animal)) {
+      animalsWithInterface.add(interfaceObj.cast(animal));
+    }
+  }
+
+  return animalsWithInterface
+}
+```
+
+In this specific case we have a animals map with a key that specifiec the name and a value of the instantiated animal. So by looping through that maps we make sure that only the correct animals get chosen based on the specified interface.
+
+## Conclusion
+
+In conclusion, this small Java project showcases the power of abstraction, specialization, and dynamic retrieval. The design of the abstract class, interface implementation, and retrieval function allows for a scalable and extensible system. Whether you're dealing with lions that roar of animals with other specific dietary habits.
