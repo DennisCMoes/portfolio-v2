@@ -8,8 +8,8 @@ type CardParams = {
 export default function FeaturedProjectCard({ project }: CardParams) {
   return (
     <Link href={`/projects/${project.slug}`}>
-      <div className="md:hover:shadow-gray-border group relative flex flex-row gap-4 rounded-md duration-300 md:hover:p-4">
-        <div className="h-16 w-6 rounded-sm bg-blue-500" />
+      <div className="group relative flex flex-row gap-4 rounded-md duration-300">
+        <div className="h-16 w-6 rounded-sm bg-blue-500 transition-all group-hover:w-12" />
         <div className="w-full">
           <div className="text-xs text-gray-500">
             <p>{project.metadata.technologies.join(', ')}</p>

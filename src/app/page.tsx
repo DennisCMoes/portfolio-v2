@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const projects: AllProjectsReturn[] = await getFeaturedProjects()
-
   const getKey = (value: string) => value.replaceAll(' ', '-').toLowerCase()
 
   return (
@@ -21,12 +20,12 @@ export default async function Home() {
         <div className="relative z-30">
           <h1 className="text-3xl md:text-5xl">👋 Hey, I&apos;m Dennis</h1>
           <h2 className="text-xl md:text-3xl">
-            A backend engineer based in Amsterdam
+            A fullstack engineer based in Amsterdam
           </h2>
           <p className="text-sm md:text-base">
-            While my focus lies in backend development, I also have some
-            frontend experience. Currently, I&apos;m dedicating my free time to
-            working on personal projects.
+            While my focus lies in backend development, I also like to make the
+            frontend, ranging from websites to mobile applications. Currently
+            I&apos;m dedicating my free time to working on personal projects.
           </p>
         </div>
 
@@ -89,7 +88,7 @@ const workExperience: WorkExperience[] = [
     title: 'Junior Software Developer',
     company: 'Crafter B.V.',
     description:
-      'Lorem ipsum magna reprehenderit, qui esse, officia, magna dolor ex aliquip sint sit. Quis cupidatat, in in, proident laborum ex, cupidatat et nostrud, tempor officia.',
+      'Working with Python and Django to provide a invoice web application for freelancers and companies',
     startMonth: 'sep. 2022',
     endMonth: 'dec. 2022',
   },
@@ -97,7 +96,7 @@ const workExperience: WorkExperience[] = [
     title: 'co-founder',
     company: 'Next Gen Atlas',
     description:
-      'Lorem ipsum magna reprehenderit, qui esse, officia, magna dolor ex aliquip sint sit. Quis cupidatat, in in, proident laborum ex, cupidatat et nostrud, tempor officia.',
+      'Working with React Native to create mobile applications for customers.',
     startMonth: 'apr. 2021',
     endMonth: 'jul. 2022',
   },

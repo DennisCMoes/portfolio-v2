@@ -4,7 +4,7 @@
 
 body {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 
   min-height: 100vh;
 }
@@ -14,13 +14,38 @@ main {
   padding-bottom: 2rem;
 }
 
+hover-circle::after {
+  width: 24rem;
+  height: 24rem;
+
+  top: 12rem;
+  left: 12rem;
+
+  inset: 0;
+  z-index: 40;
+  border-radius: 10px;
+  background: radial-gradient(
+    180px circle at var(--mouse-x) var(--mouse-y),
+    red,
+    transparent
+  );
+}
+
+hover-circle::before {
+  position: absolute;
+  opacity: 0;
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.5s;
+}
+
 @media (min-width: 768px) {
   .hoverable-card {
-    clip-path: inset(4px round 12px);
+    clip-path: inset(0px round 12px);
     transition: all 0.3s ease-in-out;
   }
 
   .hoverable-card:hover {
-    clip-path: inset(0px round 14px);
+    clip-path: inset(4px round 14px);
   }
 }

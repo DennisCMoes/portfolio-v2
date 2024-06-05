@@ -12,7 +12,7 @@ export default function WorkExperienceCard({ workExperience }: WorkParams) {
       </div>
       <div className="inline-flex basis-8/12 flex-col">
         <p className="text-lg font-medium">{workExperience.company}</p>
-        <p className="text-sm">{workExperience.title}</p>
+        <p className="text-sm text-gray-400">{workExperience.title}</p>
         <p>{workExperience.description}</p>
       </div>
     </div>

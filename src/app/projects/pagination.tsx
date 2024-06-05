@@ -27,7 +27,6 @@ export default function ProjectsPagination({
   useEffect(() => {
     // Get the page number
     const currentPage = getCurrentPage()
-    console.log(currentPage)
 
     if (currentPage < 1) {
       setInternalPage(0)
