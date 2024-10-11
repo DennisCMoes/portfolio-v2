@@ -1,5 +1,3 @@
-import colors from 'tailwindcss/colors'
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
@@ -11,34 +9,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: {
-          light: '#FFFFFF',
-          dark: '#262626',
-        },
-        primary: {
-          light: '#F0F0F0',
-          dark: '#2F2F2F',
-        },
-        secondary: {
-          light: '#DCDCDC',
-          dark: '#262626',
-        },
-        tertiary: {
-          light: '#A8A8A8',
-          DEFAULT: '#ADADAD',
-          dark: '#ADADAD',
-        },
-        quatinary: '',
-        quinary: '',
-      },
-      keyframes: {
-        fadeInUp: {
-          '0%': { transform: 'translateY(5%)', opacity: 0 },
-          '100%': { transform: 'translateY(0%)', opacity: 1 },
-        },
-      },
-      animation: {
-        fadeInUp: 'fadeInUp forwards 1.5s ease-in-out',
+        primary: '#1D1D1F',
+        secondary: '#A5A5A5',
+        link: '#1B73F6',
+        background: '#FAF9F6',
+        footer: '#F1F1F1',
+        card: '#F2F0EB',
+        cardPressed: '#ECEAE3',
       },
     },
   },
