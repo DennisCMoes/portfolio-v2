@@ -5,7 +5,9 @@ import { Metadata, Viewport } from 'next'
 import { JetBrains_Mono } from 'next/font/google'
 import { ReactNode } from 'react'
 import { Theme } from '@radix-ui/themes'
+
 import Footer from '@/components/footer'
+import cn from 'classnames'
 
 export const viewport: Viewport = {
   themeColor: 'black',
@@ -23,8 +25,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <body>
         <Theme>
-          <div className={`min-h-screen bg-background ${jetbrains.className}`}>
-            <div className="mx-auto max-w-2xl py-24">{children}</div>
+          <div
+            className={cn('min-h-screen bg-background', jetbrains.className)}
+          >
+            <div className="mx-auto max-w-4xl py-24">{children}</div>
           </div>
           <Footer font={jetbrains} />
         </Theme>
