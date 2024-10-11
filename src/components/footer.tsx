@@ -1,13 +1,17 @@
 import { IconBrandGithub, IconBrandLinkedin } from '@tabler/icons-react'
 import { NextFont } from 'next/dist/compiled/@next/font'
 import Link from 'next/link'
+import cn from 'classnames'
 
 type Props = { font: NextFont }
 
 export default function Footer({ font }: Props) {
   return (
     <footer
-      className={`flex flex-col items-center justify-center bg-footer py-16 ${font.className}`}
+      className={cn(
+        'flex flex-col items-center justify-center bg-footer px-4 py-16 md:px-0',
+        font.className
+      )}
     >
       <div className="flex flex-row gap-2">
         <Link

@@ -8,6 +8,7 @@ import { Theme } from '@radix-ui/themes'
 
 import Footer from '@/components/footer'
 import cn from 'classnames'
+import Navbar from '@/components/navbar'
 
 export const viewport: Viewport = {
   themeColor: 'black',
@@ -28,7 +29,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <div
             className={cn('min-h-screen bg-background', jetbrains.className)}
           >
-            <div className="mx-auto max-w-4xl py-24">{children}</div>
+            <Navbar font={jetbrains} />
+            <div className="mx-auto max-w-4xl py-10 md:py-24">{children}</div>
           </div>
           <Footer font={jetbrains} />
         </Theme>

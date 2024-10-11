@@ -1,12 +1,13 @@
-import { Metadata } from 'next'
-import { IconMapPin } from '@tabler/icons-react'
-import Section from '@/components/section'
-import ExperienceCard from '@/components/experience'
-import Switch from '@/components/switch'
 import Link from 'next/link'
-import ProjectCard from '@/components/project'
 
+import Section from '@/components/section'
+import Switch from '@/components/switch'
+import ProjectCard from '@/components/project'
+import ExperienceCard from '@/components/experience'
+
+import { Metadata } from 'next'
 import { IconName } from '@/components/tabler-icon'
+import { IconMapPin } from '@tabler/icons-react'
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="mx-auto flex max-w-2xl flex-col gap-12 px-4 md:px-0">
       <div>
         <div className="mb-2 flex text-secondary">
           <IconMapPin />
@@ -30,19 +31,21 @@ export default function Home() {
       </div>
       <Section label="About">
         <p className="font-medium">
-          I&apos;m currently studying at the Amsterdam University of Applied
-          Sciences and working part-time at ChipSoft. In my free time, I enjoy
-          building fun and interactive applications.
+          Hello, my name is Dennis, and I&apos;m currently studying at the
+          Amsterdam University of Applied Sciences and working part-time at
+          ChipSoft. In my free time, I enjoy building fun and interactive
+          applications.
         </p>
       </Section>
-      <Section label="Experience" classNames="flex flex-col gap-4">
+      <Section label="Experience" className="flex flex-col gap-4">
         {workExperienceList.map((experience) => (
           <ExperienceCard key={experience.title} {...experience} />
         ))}
       </Section>
       <Section
+        id="projects"
         label="Projects"
-        classNames="grid grid-cols-2 auto-rows-[22rem] gap-4"
+        className="grid auto-rows-[22rem] grid-cols-1 gap-4 md:grid-cols-2"
       >
         {projects.map((project) => (
           <ProjectCard key={project.title} {...project} />
@@ -64,7 +67,11 @@ export default function Home() {
   )
 }
 
-const workExperienceList = [
+const workExperienceList: {
+  title: string
+  subtitle: string
+  date: string
+}[] = [
   {
     title: 'ChipSoft',
     subtitle: 'Werkstudent',
@@ -86,31 +93,36 @@ const projects: {
   title: string
   subtitle: string
   icon: IconName
-  xSize?: number
+  slug: string
 }[] = [
   {
     title: 'Title',
     subtitle: 'Subtitle',
     icon: 'IconAspectRatio',
+    slug: 'project-1',
   },
   {
     title: 'Title',
     subtitle: 'Subtitle',
     icon: 'IconAspectRatio',
+    slug: 'project-1',
   },
   {
     title: 'Title',
     subtitle: 'Subtitle',
     icon: 'IconAspectRatio',
+    slug: 'project-1',
   },
   {
     title: 'Title',
     subtitle: 'Subtitle',
     icon: 'IconAspectRatio',
+    slug: 'project-1',
   },
   {
     title: 'Title',
     subtitle: 'Subtitle',
     icon: 'IconAspectRatio',
+    slug: 'project-1',
   },
 ]

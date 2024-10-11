@@ -16,12 +16,14 @@ type Props = {
 
 export default function ProjectDetail({ params }: Props) {
   return (
-    <div className="flex flex-col gap-8 font-medium">
+    <div className="flex flex-col gap-8 px-4 font-medium md:px-0">
       <FullWidthImage src="/coding.jpg" alt="Coding Image" />
       <div className="mx-auto flex max-w-2xl flex-col gap-4">
         <div>
-          <h1 className="text-6xl font-bold uppercase">Project title</h1>
-          <div className="my-4 flex flex-row items-center justify-between">
+          <h1 className="text-center text-6xl font-bold uppercase">
+            Project title
+          </h1>
+          <div className="my-4 flex flex-col items-center justify-between gap-4 md:flex-row md:gap-0">
             <Link
               href={'https://google.com'}
               target="_blank"
