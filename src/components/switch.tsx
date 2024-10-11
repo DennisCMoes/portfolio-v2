@@ -56,7 +56,7 @@ const Switch = React.forwardRef<
       <MotionSwitch
         checked={checkedState}
         onCheckedChange={handleCheckedChange}
-        className="inline-flex items-center w-16 h-10 shrink-0 cursor-pointer bg-gray-300 rounded-full relative data-[state=checked]:bg-link transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50"
+        className="focus-visible:ring-ring relative inline-flex h-10 w-16 shrink-0 cursor-pointer items-center rounded-full bg-gray-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-link"
         whileTap="tap"
         animate={checkedState ? 'checked' : 'unchecked'}
         {...props}
@@ -64,7 +64,7 @@ const Switch = React.forwardRef<
       >
         <MotionThumb
           initial={{ translateX: '4px' }}
-          className="block w-8 h-8 bg-white rounded-full shadow-sm"
+          className="block h-8 w-8 rounded-full bg-white shadow-sm"
           variants={thumbVariants}
         />
       </MotionSwitch>

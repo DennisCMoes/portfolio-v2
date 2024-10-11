@@ -1,15 +1,15 @@
-import { ReactNode } from 'react'
+import { HTMLAttributes, ReactNode } from 'react'
 
 type Props = {
   label: string
   children: ReactNode
-  classNames?: string
+  classNames?: HTMLAttributes<HTMLDivElement>['className']
 }
 
 export default function Section({ children, label, classNames }: Props) {
   return (
     <div>
-      <p className="text-secondary uppercase font-bold">{label}</p>
+      <p className="font-bold uppercase text-secondary">{label}</p>
       <div className={classNames}>{children}</div>
     </div>
   )

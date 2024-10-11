@@ -6,12 +6,12 @@ type Props = {
 
 export default function ExperienceCard({ title, subtitle, date }: Props) {
   return (
-    <div className="flex flex-row justify-between items-center">
+    <div className="flex flex-row items-center justify-between">
       <div>
         <p className="text-2xl font-bold">{title}</p>
-        <p>{subtitle}</p>
+        <p className="font-medium text-secondary">{subtitle}</p>
       </div>
-      <p>{date}</p>
+      <p className="font-medium">{date}</p>
     </div>
   )
 }

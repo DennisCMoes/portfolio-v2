@@ -14,6 +14,8 @@ module.exports = {
         link: '#1B73F6',
         background: '#FAF9F6',
         footer: '#F1F1F1',
+        card: '#F2F0EB',
+        cardPressed: '#ECEAE3',
       },
     },
   },
