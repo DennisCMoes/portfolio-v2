@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             className={cn('min-h-screen bg-background', jetbrains.className)}
           >
             <Navbar font={jetbrains} />
-            <div className="mx-auto max-w-4xl py-10 md:py-24">{children}</div>
+            <div className="mx-auto max-w-4xl py-10 md:py-20">{children}</div>
           </div>
           <Footer font={jetbrains} />
         </Theme>

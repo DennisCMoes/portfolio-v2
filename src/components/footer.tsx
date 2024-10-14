@@ -24,7 +24,7 @@ export default function Footer({ font }: Props) {
         </Link>
 
         <Link
-          href={'https://github.com/DennisCMoes'}
+          href={'https://github.com/DennisCMoes/'}
           target="_blank"
           rel="noopener noreferrer"
           className="rounded-md text-primary transition-all duration-200 hover:scale-95 hover:opacity-60"

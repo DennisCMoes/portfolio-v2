@@ -55,7 +55,9 @@ export default function Home() {
         <div className="font-semibold">
           Want to chat? Just shoot me a message{' '}
           <Link
-            href={'https://google.com'}
+            href={'https://www.linkedin.com/in/dennismoes/'}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-link underline transition-opacity duration-150 hover:opacity-60"
           >
             with a direct question on LinkedIn
