@@ -6,8 +6,8 @@ export type IconName = keyof typeof TablerIcons
 export const TablerIcon: React.FC<{
   iconName: IconName
   size?: number
-  color?: string
-}> = ({ iconName, size = 64, color = '#1D1D1F' }) => {
+  className?: string
+}> = ({ iconName, className, size = 64 }) => {
   const IconComponent = TablerIcons[iconName] as IconComponent
-  return <IconComponent color={color} width={size} height={size} />
+  return <IconComponent className={className} width={size} height={size} />
 }
