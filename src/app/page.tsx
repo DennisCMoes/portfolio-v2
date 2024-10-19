@@ -45,7 +45,7 @@ export default function Home() {
       <Section
         id="projects"
         label="Projects"
-        className="grid auto-rows-[22rem] grid-cols-1 gap-4 md:grid-cols-2"
+        className="grid auto-rows-[22rem] grid-cols-1 gap-2 md:grid-cols-2"
       >
         {projects.map((project) => (
           <ProjectCard key={project.title} {...project} />
