@@ -3,9 +3,12 @@ import { IconName } from '@/components/tabler-icon'
 export type Project = {
   title: string
   subtitle: string
-  icon: IconName
   slug: string
-  className: string
+  date: Date
+  className?: string
+  size?: 'default' | 'small' | 'medium' | 'large'
+  isFeatured?: boolean
+  icon: IconName
 }
 
 export type WorkExperience = {
