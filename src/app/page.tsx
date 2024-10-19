@@ -8,13 +8,16 @@ import ExperienceCard from '@/components/experience'
 import { Metadata } from 'next'
 import { IconMapPin } from '@tabler/icons-react'
 import { Project, WorkExperience } from '@/types'
+import { getAllFeaturedProjects } from '@/utils/api'
 
 export const metadata: Metadata = {
   title: 'Home',
   description: 'The index page of my personal website',
 }
 
-export default function Home() {
+export default async function Home() {
+  const projects: Project[] = await getAllFeaturedProjects()
+
   return (
     <div className="flex flex-col gap-12 px-4 md:px-0">
       <div className="mx-auto flex max-w-2xl flex-col gap-12">
@@ -48,8 +51,8 @@ export default function Home() {
       </div>
       <Section
         id="projects"
-        label="Projects"
-        className="grid auto-rows-[22rem] grid-cols-1 gap-4 md:grid-cols-4"
+        label="Featured Projects"
+        className="grid auto-rows-[22rem] grid-cols-1 gap-4 md:grid-cols-3"
       >
         {projects.map((project) => (
           <ProjectCard key={project.title} {...project} />
@@ -90,50 +93,5 @@ const workExperienceList: WorkExperience[] = [
     title: 'Next Gen Atlas',
     subtitle: 'Co-founder',
     date: 'apr. 2021 - jul. 2022',
-  },
-]
-
-const projects: Project[] = [
-  {
-    title: 'Title',
-    subtitle: 'Subtitle',
-    icon: 'IconAspectRatio',
-    slug: 'project-1',
-    className: 'col-span-1',
-  },
-  {
-    title: 'Title',
-    subtitle: 'Subtitle',
-    icon: 'IconAspectRatio',
-    slug: 'project-1',
-    className: 'col-span-1',
-  },
-  {
-    title: 'Title',
-    subtitle: 'Subtitle',
-    icon: 'IconAspectRatio',
-    slug: 'project-1',
-    className: 'col-span-1 row-span-1 md:col-span-2 md:row-span-2',
-  },
-  {
-    title: 'Title',
-    subtitle: 'Subtitle',
-    icon: 'IconAspectRatio',
-    slug: 'project-1',
-    className: 'col-span-1 md:col-span-2',
-  },
-  {
-    title: 'Title',
-    subtitle: 'Subtitle',
-    icon: 'IconAspectRatio',
-    slug: 'project-1',
-    className: 'col-span-1 md:col-span-3',
-  },
-  {
-    title: 'Title',
-    subtitle: 'Subtitle',
-    icon: 'IconAspectRatio',
-    slug: 'project-1',
-    className: 'col-span-1',
   },
 ]

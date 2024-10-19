@@ -22,6 +22,7 @@ export default function Navbar({ font }: Props) {
 
   const isHomeUrl = isCurrentUrl(/^\/$/gm)
   const isAboutUrl = isCurrentUrl(/about/gm)
+  const isProjectsUrl = isCurrentUrl(/projects/gm)
 
   const toggleMenu = () => {
     setMenuIsOpen(!menuIsOpen)
@@ -82,9 +83,8 @@ export default function Navbar({ font }: Props) {
             className={cn(
               'hover:text-primary-light dark:hover:text-primary-dark py-3 transition-colors duration-150 hover:bg-secondary/25',
               {
-                'text-primary-light dark:text-primary-dark font-bold':
-                  isHomeUrl,
-                'font-medium text-secondary':
+                'text-primary-light dark:text-primary-dark': isHomeUrl,
+                'text-secondary':
                   !isHomeUrl || (hoveredItem && hoveredItem !== 'home'),
               }
             )}
@@ -93,21 +93,37 @@ export default function Navbar({ font }: Props) {
           </Link>
           <Link
             href={'/about'}
-            aria-disabled={isHomeUrl}
-            tabIndex={isHomeUrl ? -1 : undefined}
+            aria-disabled={isAboutUrl}
+            tabIndex={isAboutUrl ? -1 : undefined}
             onMouseEnter={() => setHoveredItem('about')}
             onMouseLeave={() => setHoveredItem(undefined)}
             className={cn(
               'hover:text-primary-light dark:hover:text-primary-dark py-3 transition-colors duration-150 hover:bg-secondary/25',
               {
-                'text-primary-light dark:text-primary-dark font-bold':
-                  isAboutUrl,
-                'font-medium text-secondary':
+                'text-primary-light dark:text-primary-dark': isAboutUrl,
+                'text-secondary':
                   !isAboutUrl || (hoveredItem && hoveredItem !== 'about'),
               }
             )}
           >
             About
+          </Link>
+          <Link
+            href={'/projects'}
+            aria-disabled={isProjectsUrl}
+            tabIndex={isProjectsUrl ? -1 : undefined}
+            onMouseEnter={() => setHoveredItem('projects')}
+            onMouseLeave={() => setHoveredItem(undefined)}
+            className={cn(
+              'hover:text-primary-light dark:hover:text-primary-dark py-3 transition-colors duration-150 hover:bg-secondary/25',
+              {
+                'text-primary-light dark:text-primary-dark': isProjectsUrl,
+                'text-secondary':
+                  !isProjectsUrl || (hoveredItem && hoveredItem !== 'projects'),
+              }
+            )}
+          >
+            Projects
           </Link>
         </motion.div>
       </button>
