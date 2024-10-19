@@ -1,12 +1,10 @@
-import { IconBrandGithub } from '@tabler/icons-react'
-
-import { Metadata } from 'next'
 import Link from 'next/link'
 import FullWidthImage from '@/components/full-width-image'
 
-export const metadata: Metadata = {
-  title: 'Project X',
-}
+import { Metadata } from 'next'
+import { Project } from '@/types'
+import { IconBrandGithub } from '@tabler/icons-react'
+import { getProjectBySlug } from '@/utils/api'
 
 type Props = {
   params: {
@@ -14,14 +12,24 @@ type Props = {
   }
 }
 
-export default function ProjectDetail({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const project = await getProjectBySlug(params.slug)
+
+  return {
+    title: project.title,
+  }
+}
+
+export default async function ProjectDetail({ params }: Props) {
+  const project: Project = await getProjectBySlug(params.slug)
+
   return (
     <div className="text-primary-light dark:text-primary-dark flex flex-col gap-8 px-4 font-medium md:px-0">
       <FullWidthImage src="/coding.jpg" alt="Coding Image" />
       <div className="mx-auto flex max-w-2xl flex-col gap-4">
         <div>
           <h1 className="text-center text-6xl font-bold uppercase">
-            Project title
+            {project.title}
           </h1>
           <div className="my-4 flex flex-col items-center justify-between gap-4 md:flex-row md:gap-0">
             <Link
