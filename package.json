@@ -27,6 +27,7 @@
     "eslint-config-next": "^14.2.15",
     "framer-motion": "^10.18.0",
     "gray-matter": "^4.0.3",
+    "hamburger-react": "^2.5.1",
     "moment": "^2.29.4",
     "next": "^14.2.15",
     "next-themes": "^0.2.1",

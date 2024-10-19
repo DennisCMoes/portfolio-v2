@@ -1,25 +1,34 @@
 import Link from 'next/link'
-import { IconName, TablerIcon } from './tabler-icon'
+import { TablerIcon } from './tabler-icon'
 import { IconArrowRight } from '@tabler/icons-react'
+import cn from 'classnames'
+import { Project } from '@/types'
 
-type Props = {
-  title: string
-  subtitle: String
-  slug: string
-  icon: IconName
-}
-
-export default function ProjectCard({ title, subtitle, icon, slug }: Props) {
+export default function ProjectCard({
+  title,
+  subtitle,
+  icon,
+  slug,
+  className,
+}: Project) {
   return (
     <Link
       href={`/projects/${slug}`}
-      className="group relative overflow-hidden rounded-md bg-card transition-colors duration-300 hover:bg-cardPressed"
+      className={cn(
+        'project-card bg-card-light dark:bg-card-dark group relative flex flex-col justify-end overflow-hidden rounded-md p-6 transition-colors duration-300 hover:bg-neutral-800/10',
+        className
+      )}
     >
-      <div className="absolute bottom-4 left-4">
-        <TablerIcon iconName={icon} />
-        <h1 className="text-3xl font-bold text-primary">{title}</h1>
+      <div>
+        <TablerIcon
+          iconName={icon}
+          className="text-primary-light dark:text-primary-dark"
+        />
+        <h1 className="text-primary-light dark:text-primary-dark text-3xl font-bold">
+          {title}
+        </h1>
         <h2 className="text-secondary">{subtitle}</h2>
-        <div className="flex flex-row gap-1">
+        <div className="text-primary-light dark:text-primary-dark flex flex-row gap-1">
           Learn more
           <IconArrowRight />
         </div>

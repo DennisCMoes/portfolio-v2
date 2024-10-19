@@ -9,12 +9,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#1D1D1F',
-        secondary: '#A5A5A5',
+        primary: {
+          light: '#1D1D1F',
+          dark: '#EDEDED',
+        },
+        secondary:'#A5A5A5',
         link: '#1B73F6',
-        background: '#FAF9F6',
-        footer: '#F1F1F1',
-        card: '#F2F0EB',
+        background: {
+          light: '#FAF9F6',
+          dark: '#2B2B2B',
+        },
+        card: {
+          light: '#F2F0EB',
+          dark: '#323232',
+        },
         cardPressed: '#ECEAE3',
       },
     },

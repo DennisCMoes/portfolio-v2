@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <div className="mx-auto flex max-w-2xl flex-col gap-8 px-4 md:px-0">
+    <div className="text-primary-light dark:text-primary-dark mx-auto flex max-w-2xl flex-col gap-8 px-4 md:px-0">
       <div>
         <div className="mb-2 flex text-secondary">
           <p className="font-medium uppercase">About</p>

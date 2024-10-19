@@ -9,7 +9,7 @@ export default function Footer({ font }: Props) {
   return (
     <footer
       className={cn(
-        'flex flex-col items-center justify-center bg-footer px-4 py-16 md:px-0',
+        'bg-card-light dark:bg-card-dark text-primary-light dark:text-primary-dark flex flex-col items-center justify-center px-4 py-16 md:px-0',
         font.className
       )}
     >
@@ -24,7 +24,7 @@ export default function Footer({ font }: Props) {
         </Link>
 
         <Link
-          href={'https://github.com/DennisCMoes'}
+          href={'https://github.com/DennisCMoes/'}
           target="_blank"
           rel="noopener noreferrer"
           className="rounded-md text-primary transition-all duration-200 hover:scale-95 hover:opacity-60"
