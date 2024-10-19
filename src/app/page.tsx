@@ -16,55 +16,59 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="mx-auto flex max-w-2xl flex-col gap-12 px-4 md:px-0">
-      <div>
-        <div className="mb-2 flex text-secondary">
-          <IconMapPin />
-          <p className="ml-1 font-medium uppercase">Amsterdam</p>
+    <div className="flex flex-col gap-12 px-4 md:px-0">
+      <div className="mx-auto flex max-w-2xl flex-col gap-12">
+        <div>
+          <div className="mb-2 flex text-secondary">
+            <IconMapPin />
+            <p className="ml-1 font-medium uppercase">Amsterdam</p>
+          </div>
+          <h1 className="text-5xl font-medium uppercase">
+            <span className="text-primary">Developer by day,</span>
+            <br />
+            <DarkModeSwitch />
+            <span className="ml-2 text-secondary">Jedi by night</span>
+          </h1>
         </div>
-        <h1 className="text-5xl font-medium uppercase">
-          <span className="text-primary">Developer by day,</span>
-          <br />
-          <DarkModeSwitch />
-          <span className="ml-2 text-secondary">Jedi by night</span>
-        </h1>
+        <Section label="About">
+          <p className="font-medium">
+            Hello, my name is Dennis, and I&apos;m currently studying at the
+            Amsterdam University of Applied Sciences and working part-time at
+            ChipSoft. In my free time, I enjoy building fun and interactive
+            applications.
+          </p>
+        </Section>
+        <Section label="Experience" className="flex flex-col gap-4">
+          {workExperienceList.map((experience) => (
+            <ExperienceCard key={experience.title} {...experience} />
+          ))}
+        </Section>
       </div>
-      <Section label="About">
-        <p className="font-medium">
-          Hello, my name is Dennis, and I&apos;m currently studying at the
-          Amsterdam University of Applied Sciences and working part-time at
-          ChipSoft. In my free time, I enjoy building fun and interactive
-          applications.
-        </p>
-      </Section>
-      <Section label="Experience" className="flex flex-col gap-4">
-        {workExperienceList.map((experience) => (
-          <ExperienceCard key={experience.title} {...experience} />
-        ))}
-      </Section>
       <Section
         id="projects"
         label="Projects"
-        className="grid auto-rows-[22rem] grid-cols-1 gap-2 md:grid-cols-2"
+        className="grid auto-rows-[22rem] grid-cols-1 gap-4 md:grid-cols-4"
       >
         {projects.map((project) => (
           <ProjectCard key={project.title} {...project} />
         ))}
       </Section>
-      <Section label="Get in touch">
-        <div className="font-semibold">
-          Want to chat? Just shoot me a message{' '}
-          <Link
-            href={'https://www.linkedin.com/in/dennismoes/'}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-link underline transition-opacity duration-150 hover:opacity-60"
-          >
-            with a direct question on LinkedIn
-          </Link>{' '}
-          and I&apos;ll respond as soon I can.
-        </div>
-      </Section>
+      <div className="mx-auto max-w-2xl">
+        <Section label="Get in touch">
+          <div className="font-semibold">
+            Want to chat? Just shoot me a message{' '}
+            <Link
+              href={'https://www.linkedin.com/in/dennismoes/'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-link underline transition-opacity duration-150 hover:opacity-60"
+            >
+              with a direct question on LinkedIn
+            </Link>{' '}
+            and I&apos;ll respond as soon I can.
+          </div>
+        </Section>
+      </div>
     </div>
   )
 }
@@ -96,35 +100,48 @@ const projects: {
   subtitle: string
   icon: IconName
   slug: string
+  className: string
 }[] = [
   {
     title: 'Title',
     subtitle: 'Subtitle',
     icon: 'IconAspectRatio',
     slug: 'project-1',
+    className: 'col-span-1',
   },
   {
     title: 'Title',
     subtitle: 'Subtitle',
     icon: 'IconAspectRatio',
     slug: 'project-1',
+    className: 'col-span-1',
   },
   {
     title: 'Title',
     subtitle: 'Subtitle',
     icon: 'IconAspectRatio',
     slug: 'project-1',
+    className: 'col-span-1 row-span-1 md:col-span-2 md:row-span-2',
   },
   {
     title: 'Title',
     subtitle: 'Subtitle',
     icon: 'IconAspectRatio',
     slug: 'project-1',
+    className: 'col-span-1 md:col-span-2',
   },
   {
     title: 'Title',
     subtitle: 'Subtitle',
     icon: 'IconAspectRatio',
     slug: 'project-1',
+    className: 'col-span-1 md:col-span-3',
+  },
+  {
+    title: 'Title',
+    subtitle: 'Subtitle',
+    icon: 'IconAspectRatio',
+    slug: 'project-1',
+    className: 'col-span-1',
   },
 ]

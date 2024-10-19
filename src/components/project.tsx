@@ -1,19 +1,30 @@
 import Link from 'next/link'
 import { IconName, TablerIcon } from './tabler-icon'
 import { IconArrowRight } from '@tabler/icons-react'
+import cn from 'classnames'
 
 type Props = {
   title: string
   subtitle: String
   slug: string
   icon: IconName
+  className: string
 }
 
-export default function ProjectCard({ title, subtitle, icon, slug }: Props) {
+export default function ProjectCard({
+  title,
+  subtitle,
+  icon,
+  slug,
+  className,
+}: Props) {
   return (
     <Link
       href={`/projects/${slug}`}
-      className="project-card bg-card-light dark:bg-card-dark group relative flex flex-col justify-end overflow-hidden rounded-md p-6 transition-colors duration-300"
+      className={cn(
+        'project-card bg-card-light dark:bg-card-dark group relative flex flex-col justify-end overflow-hidden rounded-md p-6 transition-colors duration-300 hover:bg-neutral-800/10',
+        className
+      )}
     >
       <div>
         <TablerIcon
