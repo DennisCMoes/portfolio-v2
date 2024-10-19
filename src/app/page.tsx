@@ -24,14 +24,16 @@ export default function Home() {
             <p className="ml-1 font-medium uppercase">Amsterdam</p>
           </div>
           <h1 className="text-5xl font-medium uppercase">
-            <span className="text-primary">Developer by day,</span>
+            <span className="text-primary-light dark:text-primary-dark">
+              Developer by day,
+            </span>
             <br />
             <DarkModeSwitch />
             <span className="ml-2 text-secondary">Jedi by night</span>
           </h1>
         </div>
         <Section label="About">
-          <p className="font-medium">
+          <p className="text-primary-light dark:text-primary-dark font-medium">
             Hello, my name is Dennis, and I&apos;m currently studying at the
             Amsterdam University of Applied Sciences and working part-time at
             ChipSoft. In my free time, I enjoy building fun and interactive
@@ -55,7 +57,7 @@ export default function Home() {
       </Section>
       <div className="mx-auto max-w-2xl">
         <Section label="Get in touch">
-          <div className="font-semibold">
+          <div className="text-primary-light dark:text-primary-dark font-semibold">
             Want to chat? Just shoot me a message{' '}
             <Link
               href={'https://www.linkedin.com/in/dennismoes/'}

@@ -55,12 +55,12 @@ export default function Navbar({ font }: Props) {
       <button
         onClick={toggleMenu}
         ref={menuRef}
-        className="relative rounded-md bg-card text-primary transition-colors duration-200 hover:text-secondary"
+        className="text-primary-light dark:text-primary-dark relative rounded-md bg-card transition-colors duration-200 hover:text-secondary"
       >
         <HamburgerIcon toggled={menuIsOpen} size={24} />
         <motion.div
           className={cn(
-            'absolute right-0 z-10 mt-1 flex w-40 origin-top-right flex-col overflow-hidden rounded-md border-2 border-secondary/25 shadow-lg',
+            'bg-background-light dark:bg-background-dark absolute right-0 z-10 mt-1 flex w-40 origin-top-right flex-col overflow-hidden rounded-md border-2 border-secondary/25 shadow-lg',
             { 'pointer-events-none': !menuIsOpen }
           )}
           initial={{

@@ -9,7 +9,7 @@ export default function Footer({ font }: Props) {
   return (
     <footer
       className={cn(
-        'bg-card-light dark:bg-card-dark flex flex-col items-center justify-center px-4 py-16 md:px-0',
+        'bg-card-light dark:bg-card-dark text-primary-light dark:text-primary-dark flex flex-col items-center justify-center px-4 py-16 md:px-0',
         font.className
       )}
     >

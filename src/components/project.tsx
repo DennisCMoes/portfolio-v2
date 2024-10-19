@@ -28,7 +28,7 @@ export default function ProjectCard({
           {title}
         </h1>
         <h2 className="text-secondary">{subtitle}</h2>
-        <div className="flex flex-row gap-1">
+        <div className="text-primary-light dark:text-primary-dark flex flex-row gap-1">
           Learn more
           <IconArrowRight />
         </div>

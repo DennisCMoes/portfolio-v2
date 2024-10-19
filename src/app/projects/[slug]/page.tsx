@@ -16,7 +16,7 @@ type Props = {
 
 export default function ProjectDetail({ params }: Props) {
   return (
-    <div className="flex flex-col gap-8 px-4 font-medium md:px-0">
+    <div className="text-primary-light dark:text-primary-dark flex flex-col gap-8 px-4 font-medium md:px-0">
       <FullWidthImage src="/coding.jpg" alt="Coding Image" />
       <div className="mx-auto flex max-w-2xl flex-col gap-4">
         <div>
