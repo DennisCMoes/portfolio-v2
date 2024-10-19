@@ -11,11 +11,9 @@ export default function ExperienceCard({
         <p className="text-primary-light dark:text-primary-dark text-2xl font-bold">
           {title}
         </p>
-        <p className="font-medium text-secondary">{subtitle}</p>
+        <p className="text-secondary">{subtitle}</p>
       </div>
-      <p className="text-primary-light dark:text-primary-dark font-medium">
-        {date}
-      </p>
+      <p className="text-primary-light dark:text-primary-dark">{date}</p>
     </div>
   )
 }

@@ -10,7 +10,7 @@ type Props = {
 export default function Section({ children, label, className, id }: Props) {
   return (
     <div id={id}>
-      <p className="font-bold uppercase text-secondary">{label}</p>
+      <p className="uppercase text-secondary">{label}</p>
       <div className={className}>{children}</div>
     </div>
   )
