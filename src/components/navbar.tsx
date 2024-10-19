@@ -16,6 +16,7 @@ export default function Navbar({ font }: Props) {
   const menuRef = useRef<HTMLButtonElement>(null)
 
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false)
+  const [hoveredItem, setHoveredItem] = useState<string | undefined>(undefined)
 
   const isCurrentUrl = (regex: RegExp): boolean => regex.test(pathname)
 
@@ -59,7 +60,7 @@ export default function Navbar({ font }: Props) {
         <HamburgerIcon toggled={menuIsOpen} size={24} />
         <motion.div
           className={cn(
-            'absolute right-0 z-10 mt-1 flex w-40 origin-top-right flex-col overflow-hidden rounded-md border-2 border-secondary/25 bg-background shadow-lg',
+            'absolute right-0 z-10 mt-1 flex w-40 origin-top-right flex-col overflow-hidden rounded-md border-2 border-secondary/25 shadow-lg',
             { 'pointer-events-none': !menuIsOpen }
           )}
           initial={{
@@ -76,11 +77,15 @@ export default function Navbar({ font }: Props) {
             href={'/'}
             aria-disabled={isHomeUrl}
             tabIndex={isHomeUrl ? -1 : undefined}
+            onMouseEnter={() => setHoveredItem('home')}
+            onMouseLeave={() => setHoveredItem(undefined)}
             className={cn(
-              'py-3 transition-colors duration-150 hover:bg-secondary/25 hover:text-primary',
+              'hover:text-primary-light dark:hover:text-primary-dark py-3 transition-colors duration-150 hover:bg-secondary/25',
               {
-                'font-bold text-primary': isHomeUrl,
-                'font-medium text-secondary': !isHomeUrl,
+                'text-primary-light dark:text-primary-dark font-bold':
+                  isHomeUrl,
+                'font-medium text-secondary':
+                  !isHomeUrl || (hoveredItem && hoveredItem !== 'home'),
               }
             )}
           >
@@ -90,11 +95,15 @@ export default function Navbar({ font }: Props) {
             href={'/about'}
             aria-disabled={isHomeUrl}
             tabIndex={isHomeUrl ? -1 : undefined}
+            onMouseEnter={() => setHoveredItem('about')}
+            onMouseLeave={() => setHoveredItem(undefined)}
             className={cn(
-              'py-3 transition-colors duration-150 hover:bg-secondary/25 hover:text-primary',
+              'hover:text-primary-light dark:hover:text-primary-dark py-3 transition-colors duration-150 hover:bg-secondary/25',
               {
-                'font-bold text-primary': isAboutUrl,
-                'font-medium text-secondary': !isAboutUrl,
+                'text-primary-light dark:text-primary-dark font-bold':
+                  isAboutUrl,
+                'font-medium text-secondary':
+                  !isAboutUrl || (hoveredItem && hoveredItem !== 'about'),
               }
             )}
           >
