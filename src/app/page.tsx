@@ -6,8 +6,8 @@ import ProjectCard from '@/components/project'
 import ExperienceCard from '@/components/experience'
 
 import { Metadata } from 'next'
-import { IconName } from '@/components/tabler-icon'
 import { IconMapPin } from '@tabler/icons-react'
+import { Project, WorkExperience } from '@/types'
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -73,11 +73,7 @@ export default function Home() {
   )
 }
 
-const workExperienceList: {
-  title: string
-  subtitle: string
-  date: string
-}[] = [
+const workExperienceList: WorkExperience[] = [
   {
     title: 'ChipSoft',
     subtitle: 'Werkstudent',
@@ -95,13 +91,7 @@ const workExperienceList: {
   },
 ]
 
-const projects: {
-  title: string
-  subtitle: string
-  icon: IconName
-  slug: string
-  className: string
-}[] = [
+const projects: Project[] = [
   {
     title: 'Title',
     subtitle: 'Subtitle',

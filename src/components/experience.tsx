@@ -1,10 +1,10 @@
-type Props = {
-  title: string
-  subtitle: string
-  date: string
-}
+import { WorkExperience } from '@/types'
 
-export default function ExperienceCard({ title, subtitle, date }: Props) {
+export default function ExperienceCard({
+  title,
+  subtitle,
+  date,
+}: WorkExperience) {
   return (
     <div className="flex flex-row items-center justify-between">
       <div>

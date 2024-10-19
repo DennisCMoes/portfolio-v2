@@ -1,15 +1,8 @@
 import Link from 'next/link'
-import { IconName, TablerIcon } from './tabler-icon'
+import { TablerIcon } from './tabler-icon'
 import { IconArrowRight } from '@tabler/icons-react'
 import cn from 'classnames'
-
-type Props = {
-  title: string
-  subtitle: String
-  slug: string
-  icon: IconName
-  className: string
-}
+import { Project } from '@/types'
 
 export default function ProjectCard({
   title,
@@ -17,7 +10,7 @@ export default function ProjectCard({
   icon,
   slug,
   className,
-}: Props) {
+}: Project) {
   return (
     <Link
       href={`/projects/${slug}`}
