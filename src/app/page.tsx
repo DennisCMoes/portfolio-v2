@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import Section from '@/components/section'
-import Switch from '@/components/switch'
+import DarkModeSwitch from '@/components/darkModeSwitch'
 import ProjectCard from '@/components/project'
 import ExperienceCard from '@/components/experience'
 
@@ -25,7 +25,7 @@ export default function Home() {
         <h1 className="text-5xl font-medium uppercase">
           <span className="text-primary">Developer by day,</span>
           <br />
-          <Switch />
+          <DarkModeSwitch />
           <span className="ml-2 text-secondary">Jedi by night</span>
         </h1>
       </div>
