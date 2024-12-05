@@ -56,14 +56,10 @@ export default function Navbar({ font }: Props) {
       <button
         onClick={toggleMenu}
         ref={menuRef}
-        className="text-primary-light dark:text-primary-dark relative rounded-md bg-card transition-colors duration-200 hover:text-secondary"
+        className="text-primary-light dark:text-primary-dark bg-card relative rounded-md transition-colors duration-200 hover:text-secondary"
       >
         <HamburgerIcon toggled={menuIsOpen} size={24} />
         <motion.div
-          className={cn(
-            'bg-background-light dark:bg-background-dark absolute right-0 z-10 mt-1 flex w-40 origin-top-right flex-col overflow-hidden rounded-md border-2 border-secondary/25 shadow-lg',
-            { 'pointer-events-none': !menuIsOpen }
-          )}
           initial={{
             scale: 0.7,
             opacity: 0,
@@ -74,57 +70,65 @@ export default function Navbar({ font }: Props) {
           }}
           transition={{ easings: ['backInOut'], duration: 0.2 }}
         >
-          <Link
-            href={'/'}
-            aria-disabled={isHomeUrl}
-            tabIndex={isHomeUrl ? -1 : undefined}
-            onMouseEnter={() => setHoveredItem('home')}
-            onMouseLeave={() => setHoveredItem(undefined)}
+          <div
             className={cn(
-              'hover:text-primary-light dark:hover:text-primary-dark py-3 transition-colors duration-150 hover:bg-secondary/25',
-              {
-                'text-primary-light dark:text-primary-dark': isHomeUrl,
-                'text-secondary':
-                  !isHomeUrl || (hoveredItem && hoveredItem !== 'home'),
-              }
+              'absolute right-0 z-10 mt-1 flex w-40 origin-top-right flex-col overflow-hidden rounded-md border-2 border-secondary/25 bg-background-light shadow-lg dark:bg-background-dark',
+              { 'pointer-events-none': !menuIsOpen }
             )}
           >
-            Home
-          </Link>
-          <Link
-            href={'/about'}
-            aria-disabled={isAboutUrl}
-            tabIndex={isAboutUrl ? -1 : undefined}
-            onMouseEnter={() => setHoveredItem('about')}
-            onMouseLeave={() => setHoveredItem(undefined)}
-            className={cn(
-              'hover:text-primary-light dark:hover:text-primary-dark py-3 transition-colors duration-150 hover:bg-secondary/25',
-              {
-                'text-primary-light dark:text-primary-dark': isAboutUrl,
-                'text-secondary':
-                  !isAboutUrl || (hoveredItem && hoveredItem !== 'about'),
-              }
-            )}
-          >
-            About
-          </Link>
-          <Link
-            href={'/projects'}
-            aria-disabled={isProjectsUrl}
-            tabIndex={isProjectsUrl ? -1 : undefined}
-            onMouseEnter={() => setHoveredItem('projects')}
-            onMouseLeave={() => setHoveredItem(undefined)}
-            className={cn(
-              'hover:text-primary-light dark:hover:text-primary-dark py-3 transition-colors duration-150 hover:bg-secondary/25',
-              {
-                'text-primary-light dark:text-primary-dark': isProjectsUrl,
-                'text-secondary':
-                  !isProjectsUrl || (hoveredItem && hoveredItem !== 'projects'),
-              }
-            )}
-          >
-            Projects
-          </Link>
+            <Link
+              href={'/'}
+              aria-disabled={isHomeUrl}
+              tabIndex={isHomeUrl ? -1 : undefined}
+              onMouseEnter={() => setHoveredItem('home')}
+              onMouseLeave={() => setHoveredItem(undefined)}
+              className={cn(
+                'hover:text-primary-light dark:hover:text-primary-dark py-3 transition-colors duration-150 hover:bg-secondary/25',
+                {
+                  'text-primary-light dark:text-primary-dark': isHomeUrl,
+                  'text-secondary':
+                    !isHomeUrl || (hoveredItem && hoveredItem !== 'home'),
+                }
+              )}
+            >
+              Home
+            </Link>
+            <Link
+              href={'/about'}
+              aria-disabled={isAboutUrl}
+              tabIndex={isAboutUrl ? -1 : undefined}
+              onMouseEnter={() => setHoveredItem('about')}
+              onMouseLeave={() => setHoveredItem(undefined)}
+              className={cn(
+                'hover:text-primary-light dark:hover:text-primary-dark py-3 transition-colors duration-150 hover:bg-secondary/25',
+                {
+                  'text-primary-light dark:text-primary-dark': isAboutUrl,
+                  'text-secondary':
+                    !isAboutUrl || (hoveredItem && hoveredItem !== 'about'),
+                }
+              )}
+            >
+              About
+            </Link>
+            <Link
+              href={'/projects'}
+              aria-disabled={isProjectsUrl}
+              tabIndex={isProjectsUrl ? -1 : undefined}
+              onMouseEnter={() => setHoveredItem('projects')}
+              onMouseLeave={() => setHoveredItem(undefined)}
+              className={cn(
+                'hover:text-primary-light dark:hover:text-primary-dark py-3 transition-colors duration-150 hover:bg-secondary/25',
+                {
+                  'text-primary-light dark:text-primary-dark': isProjectsUrl,
+                  'text-secondary':
+                    !isProjectsUrl ||
+                    (hoveredItem && hoveredItem !== 'projects'),
+                }
+              )}
+            >
+              Projects
+            </Link>
+          </div>
         </motion.div>
       </button>
     </nav>
