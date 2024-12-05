@@ -10,6 +10,7 @@ export type Project = {
   content: MDXRemoteSerializeResult
   className?: string
   isFeatured?: boolean
+  language: string
   icon: IconName
 }
 

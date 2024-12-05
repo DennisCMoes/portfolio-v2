@@ -14,9 +14,12 @@ type Props = {
   params: Promise<{ slug: string }>
 }
 
-export async function generateMetadata({ params }: Props, parent: ResolvingMetadata): Promise<Metadata> {
-  const slug = (await params).slug;
-  const project = await getProjectBySlug(slug);
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const slug = (await params).slug
+  const project = await getProjectBySlug(slug)
 
   return {
     title: project.title,
@@ -24,14 +27,14 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
 }
 
 export default async function ProjectDetail({ params }: Props) {
-  const slug = (await params).slug;
-  const project = await getProjectBySlug(slug);
+  const slug = (await params).slug
+  const project = await getProjectBySlug(slug)
 
   const formatDate = (date: Date) =>
     date.toLocaleDateString('en', { year: 'numeric', month: 'long' })
 
   return (
-    <div className="flex flex-col gap-8 px-4 font-medium text-primary-light dark:text-primary-dark md:px-0">
+    <div className="text-primary-light dark:text-primary-dark flex flex-col gap-8 px-4 font-medium md:px-0">
       <div className="mx-auto flex max-w-2xl flex-col gap-4">
         <div>
           <h1 className="text-center text-6xl font-bold uppercase">
@@ -42,7 +45,7 @@ export default async function ProjectDetail({ params }: Props) {
               href={'https://google.com'}
               target="_blank"
               rel="noopener noreferrer"
-            className="text-primary flex flex-row items-center gap-2 rounded-md border-2 hover:border-transparent border-primary px-2 py-1 transition-colors duration-300 hover:bg-orange hover:text-white"
+              className="flex flex-row items-center gap-2 rounded-md border-2 border-primary px-2 py-1 text-primary transition-colors duration-300 hover:border-transparent hover:bg-orange hover:text-white"
             >
               <IconBrandGithub size={20} strokeWidth={2.3} />
               <span>Repository</span>

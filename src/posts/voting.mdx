@@ -5,6 +5,7 @@ date: '2023-11-10T00:00:00.000Z'
 repository: 'voting'
 isFeatured: false
 icon: 'notes'
+language: 'TypeScript'
 ---
 
 In recent times, voting has become a prominent and contentious issue, especially during the Covid-19 pandemic and the recent American elections. Concerns about fraud and the use of mail-in ballots have emerged, leading to questions about the legitimacy of votes cast from home. While the truth of these claims remains uncertain, it is evident that there is a need for increased transparency in the voting process. One potential solution to this problem is the implementation of blockchain technology.
@@ -27,33 +28,34 @@ The chaincode is also responsible for defining the business logic of the voting 
 
 ### Example: Chaincode for Casting a Vote
 
-```ts
-import { Context, Contract } from 'fabric-contract-api'
+<CodeBlockComponent
+code={
+`import { Context, Contract } from 'fabric-contract-api'
 
 export class VotingContract extends Contract {
-  async castVote(
-    ctx: Context,
-    voterId: string,
-    candidateId: string
-  ): Promise<void> {
-    const vote = {
-      voterId,
-      candidateId,
-      timestamp: new Date().toISOString(),
+    async castVote(
+      ctx: Context,
+      voterId: string,
+      candidateId: string
+    ): Promise<void> {
+      const vote = {
+        voterId,
+        candidateId,
+        timestamp: new Date().toISOString(),
+      }
+
+      await ctx.stub.putState(voterId, Buffer.from(JSON.stringify(vote)))
     }
 
-    await ctx.stub.putState(voterId, Buffer.from(JSON.stringify(vote)))
-  }
-
-  async queryVote(ctx: Context, voterId: string): Promise<string> {
-    const voteAsBytes = await ctx.stub.getState(voterId)
-    if (!voteAsBytes || voteAsBytes.length === 0) {
-      throw new Error(`Vote for voter ID ${voterId} does not exist`)
+    async queryVote(ctx: Context, voterId: string): Promise<string> {
+      const voteAsBytes = await ctx.stub.getState(voterId)
+      if (!voteAsBytes || voteAsBytes.length === 0) {
+        throw new Error(\`Vote for voter ID \${voterId} does not exist\`)
+      }
+      return voteAsBytes.toString()
     }
-    return voteAsBytes.toString()
-  }
-}
-```
+}`}
+language="typescript" />
 
 In this example, the <InlineCodeComponent text='castVote'/> function records a vote on the blockchain, while the queryVote function retrieves the vote details for a given voter ID. This ensures that all votes are securely recorded and can be easily queries for verification.
 
@@ -65,38 +67,39 @@ The API includes endpoints for creating and managing parties and cadidates, as w
 
 ### Example: Response Helpers
 
-```ts
-import { Request, Response } from 'express'
+<CodeBlockComponent
+code={
+`import { Request, Response } from 'express'
 
 export default class ResponseHelper {
-  public static successResponse(
-    response: Response,
-    statusCode: number,
-    payload: any
-  ) {
-    response.status(200).json({
-      success: true,
-      statusCode: statusCode,
-      payload,
-    })
-  }
+    public static successResponse(
+      response: Response,
+      statusCode: number,
+      payload: any
+    ) {
+      response.status(200).json({
+        success: true,
+        statusCode: statusCode,
+        payload,
+      })
+    }
 
-  public static errorResponse(
-    response: Response,
-    statusCode: number,
-    message?: string
-  ) {
-    response.status(statusCode).json({
-      success: false,
-      statusCode: statusCode,
-      error: {
-        timestamp: Date.now(),
-        message: message || 'Something went wrong',
-      },
-    })
-  }
-}
-```
+    public static errorResponse(
+      response: Response,
+      statusCode: number,
+      message?: string
+    ) {
+      response.status(statusCode).json({
+        success: false,
+        statusCode: statusCode,
+        error: {
+          timestamp: Date.now(),
+          message: message || 'Something went wrong',
+        },
+      })
+    }
+}`}
+language="typescript"/>
 
 In this example, the <InlineCodeComponent text="successResponse" /> function sends a successful response with a given status code and payload, while the <InlineCodeComponent text="errorResponse" /> function sends an error response with a given status code and message. These helper functions help with providing consistent and informative responses to clients.
 

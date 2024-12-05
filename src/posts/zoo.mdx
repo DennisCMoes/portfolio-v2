@@ -5,6 +5,7 @@ date: '2023-05-25T00:00:00.000Z'
 repository: 'zoo-opdracht'
 isFeatured: false
 icon: 'paw'
+language: 'Java'
 ---
 
 Welcome to my project "Zoo", it is a small yet dynamic Java application designed I made for an internship opportunity. Despite its size, I take pride in crafting a system that is both dynamic and scalable. In this post, I'll delve into the architecture and design choice that make this zoo project unique.
@@ -13,8 +14,7 @@ Welcome to my project "Zoo", it is a small yet dynamic Java application designed
 
 To lay the groundwork, I started by creating an abstract class called <InlineCodeComponent text="Animal" />. This class cannot be instantiated by itself, but it serves as a foundation for other classes to extend. The abstract class contains essential attributes like the animal's name and a greeting message.
 
-```java
-public abstract class Animal implements IAnimal {
+<CodeBlockComponent code={`public abstract class Animal implements IAnimal {
     private final String name;
     private final String helloText;
 
@@ -31,15 +31,14 @@ public abstract class Animal implements IAnimal {
     public String toString() {
         return String.format("Hello my name is %s", this.name);
     }
-}
-```
+
+}`} language="java" />
 
 ## Extending with Specialization
 
 Given that a zoo primarily consists of various animals, extending the abstract class becomes straightforward. Let's take the example of a <InlineCodeComponent text="Lion" /> class, which not only extends the <InlineCodeComponent text="Animal" /> class but also implements the <InlineCodeComponent text="IEatMeat" /> interface.
 
-```java
-public class Lion extends Animal implements IEatMeat {
+<CodeBlockComponent code={`public class Lion extends Animal implements IEatMeat {
     public Lion(String name) {
         super(name, "roooaoaaaaar");
     }
@@ -48,15 +47,14 @@ public class Lion extends Animal implements IEatMeat {
     public void eatMeat() {
         System.out.println("nomnomnom thx mate");
     }
-}
-```
+
+}`} language="java"/>
 
 ## Interface Implementation and Retrieval
 
 To enhance the dynamism of the system, I implemented a function called <InlineCodeComponent text="getAnimalsByInterface" />. This function takes a class object (interface) as a parameter and returns a list of all animals implementing that interface. For example, if we want a list of animals that eat meat, we would call this function with the <InlineCodeComponent text="IEatMeat" /> interface.
 
-```java
-public <T> List<T> getAnimalsByInterface(Class<T> interfaceObj) {
+<CodeBlockComponent code={`public <T> List<T> getAnimalsByInterface(Class<T> interfaceObj) {
     List<T> animalsWithInterface = new ArrayList<>();
 
     for (Animal animal : animals.values()) {
@@ -66,8 +64,8 @@ public <T> List<T> getAnimalsByInterface(Class<T> interfaceObj) {
     }
 
     return animalsWithInterface;
-}
-```
+
+}`} language="java"/>
 
 This generic function ensures flexibility in obtaining animals based on specified interfaces, contributing to the overall adaptability of the zoo.
 

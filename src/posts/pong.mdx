@@ -5,6 +5,7 @@ date: '2024-03-13T00:00:00.000Z'
 repository: 'Pong'
 isFeatured: true
 icon: 'IconPingPong'
+language: 'Assembly'
 ---
 
 For one of my school courses we needed to make a few assignments in assembly x86_64. One of the assignments was to make a game, it was optional. I decided to make the game. They gave us a few options to create a game with. a gamelib to make games with, basic x86 assembly, or make one for the DOSBox which runs 8086 code, which means we are taking a time machine back in time.
@@ -28,8 +29,8 @@ The <InlineCodeComponent text="8086" /> assembly code uses the BIOS and this won
 
 After that it became simple, I made a subroutine that would draw a string to the screen on the given coördinates of my chosing
 
-```asm
-; Draw a string on the given coordinates
+<CodeBlockComponent
+code={`; Draw a string on the given coordinates
 drawText proc near
     mov ah, 02h      ; Set cursor position
     mov bh, 00h      ; Set page number
@@ -40,30 +41,33 @@ drawText proc near
     int 21h          ; Execute
 
     ret
-drawText endp
-```
+
+drawText endp`}
+language="x86asm"/>
 
 While I could have done the same for all the times I would paint a pixel to the screen, it was not necessary because writing a pixel to the screen doesn't use a lot of code. Below we can see the code I used to draw a piece of the left paddle.
 
-```asm
-mov ah, 0Ch             ; Set the configuration to writing a pixel
+<CodeBlockComponent
+  code={`mov ah, 0Ch             ; Set the configuration to writing a pixel
 mov dx, paddleLeftY     ; Set Y coordinates
 mov cx, paddleLeftX     ; Set X coordinates
 mov al, 00h             ; Choose black as color
 mov bh, 00h             ; Set the page number
-int 10h                 ; Execute
-```
+int 10h                 ; Execute`}
+  language="x86asm"
+/>
 
 ### AI implementation
 
 For the singleplayer we needed some sort of AI to compete against, so I tried to implement a very basic version of AI for the user to play against and try to win against. The issue is that I accidently made the AI unbeatable, as we can see in the code below, if the ball is above the paddle on the Y-axis it will move up, the same for going down. Even if it's just one pixel over or under.
 
-```asm
-mov ax, ballY
+<CodeBlockComponent
+  code={`mov ax, ballY
 add ax, ballSize
 cmp ax, paddleLeftY
-jl  leftPaddleUp
-```
+jl  leftPaddleUp`}
+  language="x86asm"
+/>
 
 So what happens in the code? First of all we put the coordinates of the ball in the ax register and we add the ballsize to it. This is because we want to check if the whole ball is above the ball and not just the top part. Then after we added the size we check where the left paddle is on the Y axis, and if the left paddle is below the ball, then the paddle will jump up.
 

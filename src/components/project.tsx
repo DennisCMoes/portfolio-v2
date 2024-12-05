@@ -8,7 +8,7 @@ import { Project } from '@/types'
 export default function ProjectCard({
   title,
   subtitle,
-  icon,
+  language,
   slug,
   className,
 }: Project) {
@@ -25,11 +25,12 @@ export default function ProjectCard({
         className="text-primary-light dark:text-primary-dark"
       /> */}
       <div>
-        <h1 className="text-3xl font-bold text-primary-light group-hover:text-orange duration-200 transition-colors">
+        <h1 className="text-primary-light text-3xl font-bold transition-colors duration-200 group-hover:text-orange">
           {title}
         </h1>
+        <h2>{language}</h2>
         <h2 className="text-secondary">{subtitle}</h2>
-        <div className="flex flex-row gap-1 text-primary-light">
+        <div className="text-primary-light flex flex-row gap-1">
           Learn more
           <IconArrowRight className="transition-transform duration-300 group-hover:translate-x-2" />
         </div>
