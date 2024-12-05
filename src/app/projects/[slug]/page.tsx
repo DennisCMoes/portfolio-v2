@@ -1,19 +1,22 @@
 import Link from 'next/link'
 import FullWidthImage from '@/components/full-width-image'
+import MDXDisplayer from '@/components/mdxDisplayer'
 
-import { Metadata } from 'next'
+import { Metadata, ResolvingMetadata } from 'next'
 import { Project } from '@/types'
 import { IconBrandGithub } from '@tabler/icons-react'
 import { getProjectBySlug } from '@/utils/api'
+import { TablerIcon } from '@/components/tabler-icon'
+
+type Params = Promise<{ slug: string }>
 
 type Props = {
-  params: {
-    slug: string
-  }
+  params: Promise<{ slug: string }>
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project = await getProjectBySlug(params.slug)
+export async function generateMetadata({ params }: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const slug = (await params).slug;
+  const project = await getProjectBySlug(slug);
 
   return {
     title: project.title,
@@ -21,11 +24,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProjectDetail({ params }: Props) {
-  const project: Project = await getProjectBySlug(params.slug)
+  const slug = (await params).slug;
+  const project = await getProjectBySlug(slug);
+
+  const formatDate = (date: Date) =>
+    date.toLocaleDateString('en', { year: 'numeric', month: 'long' })
 
   return (
-    <div className="text-primary-light dark:text-primary-dark flex flex-col gap-8 px-4 font-medium md:px-0">
-      <FullWidthImage src="/coding.jpg" alt="Coding Image" />
+    <div className="flex flex-col gap-8 px-4 font-medium text-primary-light dark:text-primary-dark md:px-0">
       <div className="mx-auto flex max-w-2xl flex-col gap-4">
         <div>
           <h1 className="text-center text-6xl font-bold uppercase">
@@ -36,73 +42,17 @@ export default async function ProjectDetail({ params }: Props) {
               href={'https://google.com'}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-row items-center gap-2 rounded-md border-2 border-primary px-3 py-1 text-primary transition-colors duration-300 hover:bg-primary hover:text-background"
+            className="text-primary flex flex-row items-center gap-2 rounded-md border-2 hover:border-transparent border-primary px-2 py-1 transition-colors duration-300 hover:bg-orange hover:text-white"
             >
-              <IconBrandGithub size={20} />
+              <IconBrandGithub size={20} strokeWidth={2.3} />
               <span>Repository</span>
             </Link>
-            <p className="text-lg text-secondary">October 10, 2024</p>
+            <p className="text-lg text-secondary">{formatDate(project.date)}</p>
           </div>
         </div>
-        <p>Projects page</p>
-        <p>
-          Lorem ipsum occaecat exercitation dolore sint ut deserunt laboris non
-          anim ad, dolore labore fugiat irure. Ex esse magna magna incididunt
-          qui consequat proident laboris dolor aliqua do occaecat sint, commodo.
-          Nisi officia occaecat ullamco laborum fugiat dolor ut ad enim dolor
-          occaecat, voluptate, est cupidatat.
-        </p>
-        <p>
-          Lorem ipsum duis, reprehenderit sunt sunt proident magna dolore ut ut
-          in ut in. Tempor dolor culpa proident labore consequat cillum culpa
-          dolore minim, tempor excepteur officia. Do ut aliquip commodo
-          excepteur voluptate ut in laboris ad nisi, tempor consectetur.
-        </p>
-        <p>
-          Lorem ipsum minim voluptate officia duis velit veniam excepteur sit
-          labore esse nisi aliquip duis. Velit dolor ut, laborum velit aute
-          tempor, ex consectetur, ullamco elit consectetur proident et. Do non
-          dolore in velit, sunt ut, id aliquip mollit, enim laboris ut proident.
-        </p>
-        <FullWidthImage src="/coding.jpg" alt="Coding" />
-        <p>
-          Lorem ipsum occaecat exercitation dolore sint ut deserunt laboris non
-          anim ad, dolore labore fugiat irure. Ex esse magna magna incididunt
-          qui consequat proident laboris dolor aliqua do occaecat sint, commodo.
-          Nisi officia occaecat ullamco laborum fugiat dolor ut ad enim dolor
-          occaecat, voluptate, est cupidatat.
-        </p>
-        <p>
-          Lorem ipsum duis, reprehenderit sunt sunt proident magna dolore ut ut
-          in ut in. Tempor dolor culpa proident labore consequat cillum culpa
-          dolore minim, tempor excepteur officia. Do ut aliquip commodo
-          excepteur voluptate ut in laboris ad nisi, tempor consectetur.
-        </p>
-        <p>
-          Lorem ipsum minim voluptate officia duis velit veniam excepteur sit
-          labore esse nisi aliquip duis. Velit dolor ut, laborum velit aute
-          tempor, ex consectetur, ullamco elit consectetur proident et. Do non
-          dolore in velit, sunt ut, id aliquip mollit, enim laboris ut proident.
-        </p>
-        <p>
-          Lorem ipsum occaecat exercitation dolore sint ut deserunt laboris non
-          anim ad, dolore labore fugiat irure. Ex esse magna magna incididunt
-          qui consequat proident laboris dolor aliqua do occaecat sint, commodo.
-          Nisi officia occaecat ullamco laborum fugiat dolor ut ad enim dolor
-          occaecat, voluptate, est cupidatat.
-        </p>
-        <p>
-          Lorem ipsum duis, reprehenderit sunt sunt proident magna dolore ut ut
-          in ut in. Tempor dolor culpa proident labore consequat cillum culpa
-          dolore minim, tempor excepteur officia. Do ut aliquip commodo
-          excepteur voluptate ut in laboris ad nisi, tempor consectetur.
-        </p>
-        <p>
-          Lorem ipsum minim voluptate officia duis velit veniam excepteur sit
-          labore esse nisi aliquip duis. Velit dolor ut, laborum velit aute
-          tempor, ex consectetur, ullamco elit consectetur proident et. Do non
-          dolore in velit, sunt ut, id aliquip mollit, enim laboris ut proident.
-        </p>
+
+        <MDXDisplayer project={project} />
+        <p>Happy coding! 🎉</p>
       </div>
     </div>
   )

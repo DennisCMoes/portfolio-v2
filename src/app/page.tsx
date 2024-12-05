@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 import Section from '@/components/section'
-import DarkModeSwitch from '@/components/darkModeSwitch'
 import ProjectCard from '@/components/project'
 import ExperienceCard from '@/components/experience'
 
@@ -31,12 +30,11 @@ export default async function Home() {
               Developer by day,
             </span>
             <br />
-            <DarkModeSwitch />
-            <span className="ml-2 text-secondary">Jedi by night</span>
+            <span className="text-secondary">Jedi by night</span>
           </h1>
         </div>
         <Section label="About">
-          <p className="text-primary-light dark:text-primary-dark font-medium">
+          <p className="font-medium text-primary-light dark:text-primary-dark">
             Hello, my name is Dennis, and I&apos;m currently studying at the
             Amsterdam University of Applied Sciences and working part-time at
             ChipSoft. In my free time, I enjoy building fun and interactive
@@ -48,27 +46,31 @@ export default async function Home() {
             <ExperienceCard key={experience.title} {...experience} />
           ))}
         </Section>
-      </div>
-      <Section
-        id="projects"
-        label="Featured Projects"
-        className="grid auto-rows-[22rem] grid-cols-1 gap-4 md:grid-cols-3"
-      >
-        {projects.map((project) => (
-          <ProjectCard key={project.title} {...project} />
-        ))}
-      </Section>
-      <div className="mx-auto max-w-2xl">
+        <Section
+          id="projects"
+          label="Featured Projects"
+          className="flex flex-col gap-2"
+        >
+          {projects.map((project) => (
+            <ProjectCard key={project.title} {...project} />
+          ))}
+          <Link
+            href={'/projects'}
+            className="text-link underline transition-opacity duration-150 hover:opacity-60"
+          >
+            Browse all projects
+          </Link>
+        </Section>
         <Section label="Get in touch">
-          <div className="text-primary-light dark:text-primary-dark font-semibold">
-            Want to chat? Just shoot me a message{' '}
+          <div className="font-semibold text-primary-light dark:text-primary-dark">
+            Want to chat? Just shoot me a message with a direct question on{' '}
             <Link
               href={'https://www.linkedin.com/in/dennismoes/'}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-link underline transition-opacity duration-150 hover:opacity-60"
+              className="text-blue underline hover:text-orange transition-colors duration-200"
             >
-              with a direct question on LinkedIn
+              LinkedIn
             </Link>{' '}
             and I&apos;ll respond as soon I can.
           </div>

@@ -8,10 +8,10 @@ export const metadata: Metadata = {
 }
 
 export default async function ProjectList() {
-  const projects: Project[] = await getAllProjects(true)
+  const projects: Project[] = await getAllProjects()
 
   return (
-    <div className="mx:px-0 mx-auto grid max-w-2xl auto-rows-[22rem] grid-cols-1 gap-4 px-2 md:grid-cols-2">
+    <div className="mx:px-0 mx-auto flex max-w-2xl flex-col gap-8">
       {projects.map((project) => (
         <ProjectCard key={project.title} {...project} />
       ))}

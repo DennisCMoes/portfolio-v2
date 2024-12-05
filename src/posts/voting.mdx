@@ -1,0 +1,114 @@
+---
+title: 'Voting'
+subtitle: 'A custom Hyperledger Fabric blockchain'
+date: '2023-11-10T00:00:00.000Z'
+repository: 'voting'
+isFeatured: false
+icon: 'notes'
+---
+
+In recent times, voting has become a prominent and contentious issue, especially during the Covid-19 pandemic and the recent American elections. Concerns about fraud and the use of mail-in ballots have emerged, leading to questions about the legitimacy of votes cast from home. While the truth of these claims remains uncertain, it is evident that there is a need for increased transparency in the voting process. One potential solution to this problem is the implementation of blockchain technology.
+
+The aim of this project is to explore the feasibility of implementing an electronic national election system utilizing blockchain technology, with the goal of enhancing the efficiency and transparency of the voting process.
+
+In response to the call for improved voting procedures, our team sought to leverage modern technology to revolutionize the electoral process. The primary objective was to investigate the viability of an electronic voting system built on a secure blockchain platform.
+
+## Blockchain
+
+The backbone of the voting system is the Hyperledger Fabric blockchain. Hyperledger Fabric is a permissioned blockchain framework that provides a modular architecture, allowing us to customize the network to meet our specific needs. In this project, Hyperledger Fabric is used to create a secure and transparent ledger for recording votes.
+
+Hyperledger Fabric's permissioned nature ensures that only authorized participants can join the network, which is crucial for maintaining the integrity of the voting process. Each transaction on the blockchain is recorded in an immutable ledger, making it impossible to alter or delete votes once they have been cast. This ensures that the voting process is transparent and tamper-proof
+
+## The Chaincode
+
+The chaincode, or smart contracts, are written in TypeScript and deployed on the Hyperledger Fabric network. The chaincode ensures that only authorized actions are performed, such as creating parties, adding candidates, and casting votes. It acts as the gatekeeper, enforcing the rules and logics of the voting system.
+
+The chaincode is also responsible for defining the business logic of the voting system. It ensures that only eligible voters can cast their votes and that each voter can only vote once. Additionally, the chaincode manages the creation and management of parties and candidates, ensuring that only authorized administrators can perform these actions.
+
+### Example: Chaincode for Casting a Vote
+
+```ts
+import { Context, Contract } from 'fabric-contract-api'
+
+export class VotingContract extends Contract {
+  async castVote(
+    ctx: Context,
+    voterId: string,
+    candidateId: string
+  ): Promise<void> {
+    const vote = {
+      voterId,
+      candidateId,
+      timestamp: new Date().toISOString(),
+    }
+
+    await ctx.stub.putState(voterId, Buffer.from(JSON.stringify(vote)))
+  }
+
+  async queryVote(ctx: Context, voterId: string): Promise<string> {
+    const voteAsBytes = await ctx.stub.getState(voterId)
+    if (!voteAsBytes || voteAsBytes.length === 0) {
+      throw new Error(`Vote for voter ID ${voterId} does not exist`)
+    }
+    return voteAsBytes.toString()
+  }
+}
+```
+
+In this example, the <InlineCodeComponent text='castVote'/> function records a vote on the blockchain, while the queryVote function retrieves the vote details for a given voter ID. This ensures that all votes are securely recorded and can be easily queries for verification.
+
+## API
+
+The backend API, built with Express.js, handles all the core functionalities such as managing parties, candidates, and votes. It provides a set of endpoints for interacting with the system. The API can act as the intermediary between the frontend and the blockchain, ensuring that all interactions are secure and properly authenticated.
+
+The API includes endpoints for creating and managing parties and cadidates, as well as for casting and querying votes. It also includes utility functions for handling responses and errors.
+
+### Example: Response Helpers
+
+```ts
+import { Request, Response } from 'express'
+
+export default class ResponseHelper {
+  public static successResponse(
+    response: Response,
+    statusCode: number,
+    payload: any
+  ) {
+    response.status(200).json({
+      success: true,
+      statusCode: statusCode,
+      payload,
+    })
+  }
+
+  public static errorResponse(
+    response: Response,
+    statusCode: number,
+    message?: string
+  ) {
+    response.status(statusCode).json({
+      success: false,
+      statusCode: statusCode,
+      error: {
+        timestamp: Date.now(),
+        message: message || 'Something went wrong',
+      },
+    })
+  }
+}
+```
+
+In this example, the <InlineCodeComponent text="successResponse" /> function sends a successful response with a given status code and payload, while the <InlineCodeComponent text="errorResponse" /> function sends an error response with a given status code and message. These helper functions help with providing consistent and informative responses to clients.
+
+## Frontend
+
+The frontend, built with Next.js, provides an interfac for administrators and voters. It includes routes for managing the election and casting votes. The frontend communicates with the API to perform actions such as creating parties, adding candidates, and casting votes.
+
+<ImageComponent
+  src="/posts/voting/administrator.png"
+  alt="The administrator page to setup the voting machine"
+/>
+
+## Conclusion
+
+The digital voting system project showcases the power of blockchain technology in ensuring a secure and transparent voting process. By combining Hyperledger Fabric with a robust API and user-friendly frontend, we've created a scalable and adaptable solution for modern elections.

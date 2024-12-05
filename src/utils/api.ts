@@ -1,14 +1,35 @@
+import path from 'path'
+
+import { promises as fs } from 'fs'
+import { MDXRemoteSerializeResult } from 'next-mdx-remote/rsc'
+import { serialize } from 'next-mdx-remote/serialize'
+
 import { Project } from '@/types'
 
-export async function getAllProjects(
-  makeDefaultSize: boolean = false
-): Promise<Project[]> {
-  return projects
-    .sort((a, b) => b.date.valueOf() - a.date.valueOf())
-    .map((project) => ({
-      ...project,
-      size: makeDefaultSize ? 'default' : project.size,
-    }))
+const postsDir = path.resolve('src/posts')
+
+export async function getAllProjects(): Promise<Project[]> {
+  // Read all filenames from the directory
+  const filenames: string[] = await fs.readdir(postsDir)
+
+  return (
+    await Promise.all(
+      filenames.map(async (name): Promise<Project> => {
+        const fileContent = await fs.readFile(path.join(postsDir, name), {
+          encoding: 'utf-8',
+        })
+
+        const serializedContent = await serialize(fileContent, {
+          parseFrontmatter: true,
+        })
+
+        return {
+          ...serializedContent.frontmatter,
+          slug: name.replaceAll(' ', '-').replace('.mdx', ''),
+        } as Project
+      })
+    )
+  ).sort((a, b) => b.date.valueOf() - a.date.valueOf())
 }
 
 export async function getAllFeaturedProjects(): Promise<Project[]> {
@@ -16,58 +37,18 @@ export async function getAllFeaturedProjects(): Promise<Project[]> {
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project> {
-  return projects.find((project) => project.slug === slug)!
-}
+  const fileContent = await fs.readFile(path.join(postsDir, slug + '.mdx'), {
+    encoding: 'utf-8',
+  })
 
-const projects: Project[] = [
-  {
-    title: 'AES encryption',
-    subtitle: 'Encrypt files and folders with AES-256',
-    icon: 'IconShieldLock',
-    slug: 'aes-encryption',
-    date: new Date('2024-01-10T00:00:00.000Z'),
-    size: 'large',
-    isFeatured: true,
-  },
-  {
-    title: 'Zoo',
-    subtitle: 'A java zoo with inherited animals',
-    icon: 'IconPaw',
-    slug: 'zoo',
-    date: new Date('2023-05-25T00:00:00.000Z'),
-    size: 'small',
-    isFeatured: true,
-  },
-  {
-    title: 'Musicbox',
-    subtitle: 'A mobile music player',
-    icon: 'IconVinyl',
-    slug: 'music-box',
-    date: new Date('2022-11-11T00:00:00.000Z'),
-    size: 'small',
-    isFeatured: true,
-  },
-  {
-    title: 'Pong',
-    subtitle: 'Made with 8086 architecture assembly',
-    icon: 'IconPingPong',
-    slug: 'pong',
-    date: new Date('2024-03-13T00:00:00.000Z'),
-    size: 'medium',
-    isFeatured: true,
-  },
-  {
-    title: 'Car Dealership',
-    subtitle: 'Manage cars on the ethereum blockchain',
-    icon: 'IconCarGarage',
-    slug: 'car-dealership',
-    date: new Date('2023-03-28T00:00:00.000Z'),
-  },
-  {
-    title: 'Social Connect',
-    subtitle: 'Manage your social life via this API',
-    icon: 'IconUserSearch',
-    slug: 'social-connect',
-    date: new Date('2023-09-01T00:00:00.000Z'),
-  },
-]
+  const serializedContent = await serialize(fileContent, {
+    parseFrontmatter: true,
+  })
+
+  return {
+    ...serializedContent.frontmatter,
+    slug: slug,
+    date: new Date(serializedContent.frontmatter.date as string),
+    content: serializedContent as MDXRemoteSerializeResult,
+  } as Project
+}

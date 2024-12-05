@@ -1,5 +1,4 @@
 import '@/styles/globals.css'
-import '@radix-ui/themes/styles.css'
 
 import { Metadata, Viewport } from 'next'
 import { JetBrains_Mono } from 'next/font/google'
@@ -26,7 +25,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <div
           className={cn(
-            'bg-background-light dark:bg-background-dark min-h-screen transition-colors duration-300',
+            'min-h-screen bg-background-light transition-colors duration-300 dark:bg-background-dark',
             jetbrains.className
           )}
         >
