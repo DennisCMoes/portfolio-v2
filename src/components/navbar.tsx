@@ -3,6 +3,7 @@
 import cn from 'classnames'
 import Link from 'next/link'
 import HamburgerIcon from 'hamburger-react'
+import Image from 'next/image'
 
 import { NextFont } from 'next/dist/compiled/@next/font'
 import { usePathname } from 'next/navigation'
@@ -49,10 +50,13 @@ export default function Navbar({ font }: Props) {
   return (
     <nav
       className={cn(
-        'mx-auto flex max-w-2xl justify-end gap-4 p-4 md:px-0',
+        'mx-auto flex max-w-2xl justify-between items-center gap-4 p-4 md:px-0',
         font.className
       )}
     >
+      <Link href="/">
+        <Image src="/favicon.svg" height={30} width={30} alt="Website logo" />
+      </Link>
       <button
         onClick={toggleMenu}
         ref={menuRef}

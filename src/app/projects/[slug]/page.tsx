@@ -33,16 +33,18 @@ export default async function ProjectDetail({ params }: Props) {
   const formatDate = (date: Date) =>
     date.toLocaleDateString('en', { year: 'numeric', month: 'long' })
 
+  const repoLink = () => 'https://github.com/DennisCMoes/' + project.repository
+
   return (
     <div className="text-primary-light dark:text-primary-dark flex flex-col gap-8 px-4 font-medium md:px-0">
-      <div className="mx-auto flex max-w-2xl flex-col gap-4">
+      <div className="mx-auto flex w-full max-w-2xl flex-col gap-4">
         <div>
           <h1 className="text-center text-6xl font-bold uppercase">
             {project.title}
           </h1>
           <div className="my-4 flex flex-col items-center justify-between gap-4 md:flex-row md:gap-0">
             <Link
-              href={'https://google.com'}
+              href={repoLink()}
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-row items-center gap-2 rounded-md border-2 border-primary px-2 py-1 text-primary transition-colors duration-300 hover:border-transparent hover:bg-orange hover:text-white"

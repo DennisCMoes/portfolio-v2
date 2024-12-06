@@ -20,17 +20,13 @@ export default function ProjectCard({
         className
       )}
     >
-      {/* <TablerIcon
-        iconName={icon}
-        className="text-primary-light dark:text-primary-dark"
-      /> */}
       <div>
         <h1 className="text-primary-light text-3xl font-bold transition-colors duration-200 group-hover:text-orange">
           {title}
         </h1>
         <h2>{language}</h2>
         <h2 className="text-secondary">{subtitle}</h2>
-        <div className="text-primary-light flex flex-row gap-1">
+        <div className="text-primary-light flex flex-row gap-1 group-hover:text-orange transition-colors duration-200">
           Learn more
           <IconArrowRight className="transition-transform duration-300 group-hover:translate-x-2" />
         </div>

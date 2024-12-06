@@ -1,4 +1,5 @@
 import ProjectCard from '@/components/project'
+
 import { Project } from '@/types'
 import { getAllProjects } from '@/utils/api'
 import { Metadata } from 'next'

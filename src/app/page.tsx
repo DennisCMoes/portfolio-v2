@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Section from '@/components/section'
 import ProjectCard from '@/components/project'
 import ExperienceCard from '@/components/experience'
+import PortfolioLink from '@/components/link'
 
 import { Metadata } from 'next'
 import { IconMapPin } from '@tabler/icons-react'
@@ -35,9 +36,7 @@ export default async function Home() {
         </div>
         <Section label="About">
           <p className="font-medium text-primary-light dark:text-primary-dark">
-            Hello, my name is Dennis, and I&apos;m currently studying at the
-            Amsterdam University of Applied Sciences and working part-time at
-            ChipSoft. In my free time, I enjoy building fun and interactive
+            Hello, my name is Dennis, and I&apos;m currently studying at the <PortfolioLink url={"https://www.hva.nl"} label={"Amsterdam University of Applied Sciences"}/> and working part-time at <PortfolioLink url={"https://www.chipsoft.com"} label={"ChipSoft"}/>. In my free time, I enjoy building fun and interactive
             applications.
           </p>
         </Section>
@@ -49,29 +48,18 @@ export default async function Home() {
         <Section
           id="projects"
           label="Featured Projects"
-          className="flex flex-col gap-2"
+          className="flex flex-col gap-4"
         >
           {projects.map((project) => (
             <ProjectCard key={project.title} {...project} />
           ))}
-          <Link
-            href={'/projects'}
-            className="text-link underline transition-opacity duration-150 hover:opacity-60"
-          >
-            Browse all projects
-          </Link>
+          <PortfolioLink url={'/projects'} newTab={false} label={"Browse all projects"}/>
         </Section>
         <Section label="Get in touch">
           <div className="font-semibold text-primary-light dark:text-primary-dark">
             Want to chat? Just shoot me a message with a direct question on{' '}
-            <Link
-              href={'https://www.linkedin.com/in/dennismoes/'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue underline hover:text-orange transition-colors duration-200"
-            >
-              LinkedIn
-            </Link>{' '}
+            <PortfolioLink url={'https://www.linkedin.com/in/dennismoes/'} label={"LinkedIn"}/>
+            {' '}
             and I&apos;ll respond as soon I can.
           </div>
         </Section>
@@ -83,7 +71,7 @@ export default async function Home() {
 const workExperienceList: WorkExperience[] = [
   {
     title: 'ChipSoft',
-    subtitle: 'Werkstudent',
+    subtitle: 'Developer R&D',
     date: 'apr. 2023 - present',
   },
   {

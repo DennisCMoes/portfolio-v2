@@ -9,7 +9,7 @@ export default function Footer({ font }: Props) {
   return (
     <footer
       className={cn(
-        'bg-card-light dark:bg-card-dark text-primary-light dark:text-primary-dark flex flex-col items-center justify-center px-4 py-16 md:px-0',
+        'bg-card-light text-primary-light flex flex-col items-center justify-center px-4 py-8 md:px-0',
         font.className
       )}
     >
@@ -18,7 +18,7 @@ export default function Footer({ font }: Props) {
           href={'https://www.linkedin.com/in/dennismoes/'}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-md text-primary transition-all duration-200 hover:scale-95 hover:opacity-60"
+          className="rounded-md transition-colors duration-200 text-blue hover:text-orange"
         >
           <IconBrandLinkedin size={48} strokeWidth={1.7} />
         </Link>
@@ -27,7 +27,7 @@ export default function Footer({ font }: Props) {
           href={'https://github.com/DennisCMoes/'}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-md text-primary transition-all duration-200 hover:scale-95 hover:opacity-60"
+          className="rounded-md transition-colors duration-200 text-blue hover:text-orange"
         >
           <IconBrandGithub size={48} strokeWidth={1.7} />
         </Link>

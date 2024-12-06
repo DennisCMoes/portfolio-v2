@@ -11,6 +11,7 @@ export type Project = {
   className?: string
   isFeatured?: boolean
   language: string
+  repository: string
   icon: IconName
 }
 
