@@ -9,8 +9,12 @@ import { Project } from '@/types'
 const postsDir = path.resolve('src/posts')
 
 export async function getAllProjects(): Promise<Project[]> {
-  // Read all filenames from the directory
-  const filenames: string[] = await fs.readdir(postsDir)
+  // Read all filenames and their metadata
+  const dirEntries = await fs.readdir(postsDir, { withFileTypes: true })
+
+  const filenames: string[] = dirEntries
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.mdx'))
+    .map((entry) => entry.name)
 
   return (
     await Promise.all(
