@@ -1,6 +1,6 @@
 ---
-title: 'Velocity Sales'
-subtitle: 'Second hand car dealership website on the ethereum blockchain'
+title: 'Velocity Sales: A Blockchain-Powered Car Dealership'
+subtitle: 'Building a Second-Hand Car Dealership Website on the Ethereum Blockchain'
 date: '2023-03-28T00:00:00.000Z'
 repository: 'Car-Dealership'
 isFeatured: false
@@ -64,6 +64,7 @@ code={
     } catch (err) {
       console.error(err)
     }
+
 }`}
 language="typescript"/>
 
@@ -87,14 +88,14 @@ code={
 
     const result = await contract[functionName](...args)
     return result
-  } catch (error) {
-    console.error(\`Error calling function \${functionName\}: \${error}\`)
-    return null
-  }
+
+} catch (error) {
+console.error(\`Error calling function \${functionName\}: \${error}\`)
+return null
+}
 }
 `}
 language="typescript" />
-
 
 This function takes the name of the contract function and any required arguments. It then calls the corresponding function on the contract and returns the result. This simplifies the process of interacting with the smart contract from the website.
 
@@ -146,6 +147,7 @@ code={
     } else {
       setAuthorized(true)
     }
+
 }`
 }
 language="typescript"/>

@@ -1,10 +1,61 @@
 ---
-title: 'Not Another Weather App'
-subtitle: 'A weather app written in Flutter '
+title: 'Not Another Weather App: An Flutter-Powered Weather App'
+subtitle: 'An Weather App Exploring Local Storage, Location Services, and API Integration'
 date: '2024-08-31T00:00:00.000Z'
 repository: 'Not-Another-Weather-App'
 isFeatured: true
 language: 'Flutter'
 ---
 
-Still writing the post
+When it comes to building apps, the weather app is often a starting point for many developers. While it might seem like a straightforward project, it offers an opportunity to explore important concepts like local storage, location services, and API integration. In this post, I will dive into my flutter weather app that incorporates local storage through ObjectBox, uses the user's location to fetch relevant weather data, and presents that data in an intuitive and responsive user interface.
+
+<ImageComponent
+  src="/posts/not-another-weather-app/ui.jpeg"
+  alt="Image of the Design"
+/>
+
+# How Does the App Get Its Data?
+
+One of the most crucial aspects of any weather app is how it retrieves its data. In this Flutter app, I've used a combination of local storage, location services, and a weather API to deliver the best experience for the user. Let's break it down step by step.
+
+## Local Storage with ObjectBox
+
+At the heart of this app lies **ObjectBox**, a powerful and high-performance NoSQL database that helps store and retrieve local data quickly. ObjectBox is particularly useful for mobile apps where low-latency and high-speed data access is crucial, especially when working with user preferences and app settings.
+
+In this case, ObjectBox handles storage for key pieces of data, such as the user's preferred location and recent weather searches. By saving this locally, the app ensures that users have quick access to their favorite locations without needing to make unnecessary API calls every time they open the app.
+
+The integration of ObjectBox into the app is seamless. The <InlineCodeComponent text="objectbox.g.dart" /> file is auto-generated to provide the necessary code to map our data models to the database. This makes the process of storing and retrieving data almost effortless. The <InlineCodeComponent text="objectbox-model.json" /> file serves as a schema definition, ensuring that our local database remains consistent with the app's data structure.
+
+Using ObjectBox, the app efficiently handles local data, providing a fast and offline-friendly experience. When you open the app, it loads your last searched location instantly, all without needing to fetch data from the internet.
+
+## Location Services: Bringing Data to Life
+
+A weather app isn't much use without knowing where you are. That's why this app integrates location services using the <InlineCodeComponent text="geolocator" /> package, which fetches the user's current location via GPS. This integration is not only essential for showing accurate weather forecasts, but also adds a layer of personalization to the app experience.
+
+The app prompts the user for location permissions upon launch. Once granted, it utilizes the device's GPS to retrieve the user's precise coordinates. These coordinates are then sent to the weather API to retrieve weather data for that location.
+
+However, for users who prefer not to rely on GPS, the app also allws them to manually input a location. This flexibility ensures that users from anywhere in the world can get the weather information they need, even if they're not in a position to share their current location.
+
+## Fetching Weather Data via API
+
+While local storage and location services are crucial, no weather app would be complete without real-time weather data. This is where the **weahter API** comes in. The app connects to a weather service, passing the user's location data and receiving real-time forecasts in return.
+
+The weather data is fetched through structured API calls, handled by the controllers located in the <InlineCodeComponent text="weather/controllers" /> directory. These controllers manage the communication with the API, ensuring that the data is fetched, parsed, and formatted correctly before being passed on to the views for display.
+
+Once the data is retrieved, the app uses the <InlineCodeComponent text="models" /> to map the JSON responses from the API into meaningful objects that represent the weather conditions, temperature, and other relevant information. This structured approach to handling API responses helps maintain a clean and scalable architecture, making it easier to extend or modify the app as needed.
+
+The app's UI, defined in the <InlineCodeComponent text="views" /> folder, is designed to present this data in a user-friendly manner. Whether it's a clear sky or a thunderstorm, the app displays weather conditions with clear visuals, ensuring that users can easily interpret the forecast.
+
+# What have I learned?
+
+Building this weather app has been a great learning experience. Here's what I took away from the project:
+
+- **State Management:** Managing state across different parts of the app was key. By using providers and ObjectBox for local data storage, I learned how to keep app state organized and reactive.
+
+- **API Integration:** Working with APIs to fetch real-time data was a valuable skill. I got a deeper understanding of how to structure API calls, handle responses, and map them to app models.
+
+- **Local Databases:** ObjectBox showed me the power of local databases in mobile apps. The ability to store user data locally and retrieve it with minimal latency is essential for creating a responsive, offline-friendly experience.
+
+- **Clean Architecture:** Breaking the app into models, controllers, and views not only kept the codebase clean and maintainable, but also made it easy to scale. This structure is something I plan to use in future projects.
+
+- **Flutter Ecosystem:** Flutter continues to impress me with its flexibility and wide array of packages. From flutter_native_splash for a polished startup experience to geolocator for location services, Flutter's ecosystem made building this app a breeze.

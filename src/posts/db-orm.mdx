@@ -1,10 +1,205 @@
 ---
-title: 'DB-ORM'
-subtitle: 'A java database object relational mapper'
+title: 'Java ORM: Simplifying Database Interactions'
+subtitle: 'A Deep Dive into Custom Object-Relational Mapping'
 date: '2024-04-10T00:00:00.000Z'
 repository: 'DB-ORM'
 isFeatured: false
 language: 'Java'
 ---
 
-Still writing the post
+[//] **Building My Custom ORM in Java: A Deep Dive**
+
+The idea of creating a custom ORM first struck me during a project where I found myself writing repetitive SQL code. Every SELECT or INSERT statement felt like I was reinventing the wheel. What if I could automate these tedious tasks?
+
+That's when I decided to build my own ORM—a tool that would map Java objects to SQL tables seamlessly. While popular libraries like Hibernate exist, I wanted to explore the mechanics under the hood and build something tailored to my needs.
+
+## **Starting Point: Mapping Classes to Tables**
+
+The cornerstone of any ORM is its ability to map classes to database tables. For this, I relied heavily on Java annotations. Here's an example of how a simple User class is represented:
+
+<CodeBlockComponent language='java' code={
+`@Entity
+  @Table(name = "users")
+  public class User {
+    @Id
+	  private int id;
+	  private String name;
+	  private String email;
+
+      // Getters and setters
+      public User(int id, String name, String email) {
+    	  this.id = id;
+    	  this.name = name;
+    	  this.email = email;
+      }
+
+}
+`}
+/>
+
+Annotations like <InlineCodeComponent text='@Entity' />, <InlineCodeComponent text='@Table' />, and <InlineCodeComponent text='@Id' /> allowed me to define the relationship between a Java class and its corresponding table. The ORM parses these annotations using Java's reflection API to generate SQL dynamically.
+
+## **The Magic of Reflection**
+
+Reflection became the backbone of the project. By scanning class fields at runtime, the ORM identifies which properties map to database columns. Here's a snippet of the code that achieves this:
+
+<CodeBlockComponent language='java' code={
+  `public <T> String generateInsertQuery(Class<T> clazz) {
+	  StringBuilder query = new StringBuilder("INSERT INTO ");
+	  Table table = clazz.getAnnotation(Table.class);
+	  query.append(table.name()).append(" (");
+
+      // Get all fields
+      Field[] fields = clazz.getDeclaredFields();
+      for (Field field : fields) {
+    	  query.append(field.getName()).append(", ");
+      }
+
+      query.delete(query.length() - 2, query.length()).append(") VALUES (");
+
+      // Generate placeholders for values
+      query.append("?, ".repeat(fields.length));
+
+      query.delete(query.length() - 2, query.length()).append(")");
+
+      return query.toString();
+
+}
+`}
+/>
+
+This method constructs INSERT statements by:
+
+1. Extracting the table name from the <InlineCodeComponent text='@Table' /> annotation.
+2. Iterating through the class fields to build column names.
+3. Appending placeholders (?) for prepared statements to prevent SQL injection.
+
+For a class like User, the resulting query looks like this:
+
+<CodeBlockComponent
+  language="sql"
+  code={'INSERT INTO users (id, name, email) VALUES (?, ?, ?);'}
+/>
+
+## **Executing CRUD Operations**
+
+With query generation in place, the next step was handling Create, Read, Update, and Delete (CRUD) operations. The save method, for instance, inserts a new object into the database:
+
+<CodeBlockComponent language="java" code={
+`public <T> void save(T entity) {
+	  String query = generateInsertQuery(entity.getClass());
+
+      try (PreparedStatement statement = connection.prepareStatement(query)) {
+    	  Field[] fields = entity.getClass().getDeclaredFields();
+
+    	  // Set parameter values
+    	  for (int i = 0; i < fields.length; i++) {
+    		  fields[i].setAccessible(true);
+    		  statement.setObject(i + 1, fields[i].get(entity));
+    	  }
+
+    	  statement.executeUpdate();
+      } catch (SQLException | IllegalAccessException e) {
+    	  e.printStackTrace();
+      }
+
+}`}/>
+
+This method:
+
+- Dynamically builds the INSERT statement.
+- Uses reflection to extract values from the object and map them to query parameters.
+- Executes the statement to save the data into the database.
+
+Here's how it works in practice:
+
+<CodeBlockComponent
+  language="java"
+  code={`User user = new User(1, "John Doe", "john@example.com");
+orm.save(user);`}
+/>
+
+## **Reading Data: Querying the Database**
+
+Fetching data is where the ORM shines. With a single line of code, you can retrieve an object from the database:
+
+<CodeBlockComponent
+  language="java"
+  code={'User user = orm.find(User.class, 1);'}
+/>
+
+Here's how the find method works:
+
+<CodeBlockComponent language="java" code={
+`public <T> T find(Class<T> clazz, Object id) {
+	  String query = "SELECT * FROM " + clazz.getAnnotation(Table.class).name() + " WHERE id = ?";
+
+      try (PreparedStatement statement = connection.prepareStatement(query)) {
+    	  statement.setObject(1, id);
+    	  ResultSet resultSet = statement.executeQuery();
+
+    	  if (resultSet.next()) {
+    		  T instance = clazz.getDeclaredConstructor().newInstance();
+
+        for (Field field : clazz.getDeclaredFields()) {
+          field.setAccessible(true);
+          field.set(instance, resultSet.getObject(field.getName()));
+        }
+
+        return instance;
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return null;
+
+}`}
+
+/>
+
+This method dynamically:
+
+1. Builds the SELECT query using the table name and primary key.
+2. Maps the result set back to the object fields using reflection.
+
+## **Handling Relationships**
+
+The ORM also supports simple relationships between entities, such as OneToMany and ManyToOne. For example, a Post class might reference a User:
+
+<CodeBlockComponent language="java" code={
+`@Entity
+@Table(name = "posts")
+public class Post {
+    @Id
+    private int id;
+    private String content;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User author;
+
+}`} />
+
+The ORM parses the <InlineCodeComponent text='@ManyToOne' /> annotation to handle foreign key constraints and fetch related data.
+
+## **Challenges and Lessons Learned**
+
+Building this ORM wasn't without its challenges. For instance:
+
+- **SQL Injection Prevention:** Using prepared statements for every query ensured security.
+- **Connection Management:** Efficiently managing database connections and ensuring thread safety was crucial. Implementing connection pooling was a game-changer.
+- **Reflection Overhead:** While reflection is powerful, it comes with performance costs. Careful caching of metadata helped mitigate this.
+
+## **What I Learned**
+
+This project gave me a deeper appreciation for the design and complexity of mature ORMs like Hibernate. Some of the key lessons include:
+
+- The importance of clean abstraction in software design.
+- How Java's reflection API unlocks dynamic behavior at runtime.
+- The trade-offs between flexibility and performance when building custom solutions.
+
+## **Conclusion**
+
+Developing this ORM has been a rewarding journey. It's not just about building a tool but about understanding the inner workings of how Java applications interact with databases. While it's unlikely to replace Hibernate in production, this ORM serves as a testament to the value of learning by doing.
+
+Would you like to build your own ORM? Dive into the source code and experiment with these ideas!
