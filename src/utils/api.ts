@@ -33,7 +33,7 @@ export async function getAllProjects(): Promise<Project[]> {
         } as Project
       })
     )
-  ).sort((a, b) => new Date(b.date) - new Date(a.date))
+  ).sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
 }
 
 export async function getAllFeaturedProjects(): Promise<Project[]> {

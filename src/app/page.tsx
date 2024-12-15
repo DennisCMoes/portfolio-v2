@@ -35,8 +35,20 @@ export default async function Home() {
           </h1>
         </div>
         <Section label="About">
-          <p className="font-medium text-primary-light dark:text-primary-dark">
-            Hello, my name is Dennis, and I&apos;m currently studying at the <PortfolioLink url={"https://www.hva.nl"} label={"Amsterdam University of Applied Sciences"}/> and working part-time at <PortfolioLink url={"https://www.chipsoft.com"} label={"ChipSoft"}/>. In my free time, I enjoy building fun and interactive
+          <p className="text-primary-light dark:text-primary-dark font-medium">
+            Hello, my name is Dennis, and I&apos;m currently studying at the{' '}
+            <PortfolioLink
+              newTab={true}
+              url={'https://www.hva.nl'}
+              label={'Amsterdam University of Applied Sciences'}
+            />{' '}
+            and working part-time at{' '}
+            <PortfolioLink
+              newTab={true}
+              url={'https://www.chipsoft.com'}
+              label={'ChipSoft'}
+            />
+            . In my free time, I enjoy building fun and interactive
             applications.
           </p>
         </Section>
@@ -53,13 +65,20 @@ export default async function Home() {
           {projects.map((project) => (
             <ProjectCard key={project.title} {...project} />
           ))}
-          <PortfolioLink url={'/projects'} newTab={false} label={"Browse all projects"}/>
+          <PortfolioLink
+            url={'/projects'}
+            newTab={false}
+            label={'Browse all projects'}
+          />
         </Section>
         <Section label="Get in touch">
-          <div className="font-semibold text-primary-light dark:text-primary-dark">
+          <div className="text-primary-light dark:text-primary-dark font-semibold">
             Want to chat? Just shoot me a message with a direct question on{' '}
-            <PortfolioLink url={'https://www.linkedin.com/in/dennismoes/'} label={"LinkedIn"}/>
-            {' '}
+            <PortfolioLink
+              newTab={true}
+              url={'https://www.linkedin.com/in/dennismoes/'}
+              label={'LinkedIn'}
+            />{' '}
             and I&apos;ll respond as soon I can.
           </div>
         </Section>

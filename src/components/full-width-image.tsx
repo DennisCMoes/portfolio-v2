@@ -8,7 +8,7 @@ type Props = {
 export default function FullWidthImage({ src, alt }: Props) {
   return (
     <div>
-      <div className="relative aspect-video w-full">
+      <div className="relative aspect-[12/9] w-full">
         <Image
           src={src}
           alt={alt}
