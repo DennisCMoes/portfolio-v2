@@ -43,7 +43,7 @@ export default function About() {
           how to balance the elegance of clean abstractions and reflections with
           the power of raw SQL syntax. And let&apos;s not forget my EAS file
           encryption tool, it&apos;s a command-line application that tries to
-          let you believe "Your files are safe with me", assuming that
+          let you believe &quot;Your files are safe with me&quot;, assuming that
           you&apos;re using it correctly. These aren&apos;t some projects or
           exercises. It&apos;s more of a way to learn deeper concepts within the
           world of programming.
