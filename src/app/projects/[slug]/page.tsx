@@ -23,6 +23,17 @@ export async function generateMetadata(
 
   return {
     title: project.title,
+    description: project.subtitle,
+    openGraph: {
+      title: project.title,
+      type: 'article',
+      url: `https://dennismoes.com/projects/${slug}`,
+      images: {
+        url: `/posts/covers/${slug}.jpg`,
+        width: 1080,
+        height: 1080,
+      },
+    },
   }
 }
 
