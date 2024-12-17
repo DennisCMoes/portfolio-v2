@@ -54,12 +54,10 @@ export default function Navbar({ font }: Props) {
   return (
     <nav
       className={cn(
-        'sticky top-0 z-20',
-        { 'shadow-sm': scroll.y > 25 },
+       "mx-auto flex max-w-2xl items-center justify-between gap-4 bg-background-light p-4 md:px-0",
         font.className
       )}
     >
-      <div className="mx-auto flex max-w-2xl items-center justify-between gap-4 bg-background-light p-4 md:px-0">
         <Link href="/">
           <Image src="/favicon.svg" height={30} width={30} alt="Website logo" />
         </Link>
@@ -184,7 +182,6 @@ export default function Navbar({ font }: Props) {
             </div>
           </motion.div>
         </button>
-      </div>
     </nav>
   )
 }
