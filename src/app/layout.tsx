@@ -10,12 +10,19 @@ import cn from 'classnames'
 import Navbar from '@/components/navbar'
 import ScrollToTopBtn from '@/components/scrollToTop'
 
-export const viewport: Viewport = {
-  themeColor: 'black',
-}
-
 export const metadata: Metadata = {
+  title: 'DM',
   icons: { icon: '/favicon.ico', apple: '/favicon.ico' },
+  openGraph: {
+    title: 'DM',
+    type: 'website',
+    url: 'https://dennismoes.com',
+    images: {
+      url: '/open-graph.jpg',
+      width: 1080,
+      height: 1080,
+    },
+  },
 }
 
 const jetbrains = JetBrains_Mono({ subsets: ['latin'] })

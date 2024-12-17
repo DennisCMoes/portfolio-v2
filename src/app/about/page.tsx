@@ -1,8 +1,18 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'About',
-  description: 'The index page of my personal website',
+  title: 'DM | About',
+  description: 'A dive into the life of the bug whisperer',
+  openGraph: {
+    title: 'DM | About',
+    type: 'website',
+    url: 'https://dennismoes.com/about',
+    images: {
+      url: '/open-graph.jpg',
+      width: 1080,
+      height: 1080,
+    },
+  },
 }
 
 export default function About() {
@@ -50,8 +60,8 @@ export default function About() {
         </p>
         <p>
           My current project? Trying to relearn the elusive realm of data
-          structures and algorithms. It's a journey back to the basics, but with
-          a fresh perspective and a deeper understanding of how these
+          structures and algorithms. It&apos;s a journey back to the basics, but
+          with a fresh perspective and a deeper understanding of how these
           fundamental concepts shape the software we build.
         </p>
         <h2 className="text-3xl">Beyond the Code</h2>
