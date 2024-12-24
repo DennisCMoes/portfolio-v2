@@ -40,19 +40,23 @@ export async function getAllFeaturedProjects(): Promise<Project[]> {
   return (await getAllProjects()).filter((project) => project.isFeatured)
 }
 
-export async function getProjectBySlug(slug: string): Promise<Project> {
-  const fileContent = await fs.readFile(path.join(postsDir, slug + '.mdx'), {
-    encoding: 'utf-8',
-  })
+export async function getProjectBySlug(slug: string): Promise<Project | null> {
+  try {
+    const fileContent = await fs.readFile(path.join(postsDir, slug + '.mdx'), {
+      encoding: 'utf-8',
+    })
 
-  const serializedContent = await serialize(fileContent, {
-    parseFrontmatter: true,
-  })
+    const serializedContent = await serialize(fileContent, {
+      parseFrontmatter: true,
+    })
 
-  return {
-    ...serializedContent.frontmatter,
-    slug: slug,
-    date: new Date(serializedContent.frontmatter.date as string),
-    content: serializedContent as MDXRemoteSerializeResult,
-  } as Project
+    return {
+      ...serializedContent.frontmatter,
+      slug: slug,
+      date: new Date(serializedContent.frontmatter.date as string),
+      content: serializedContent as MDXRemoteSerializeResult,
+    } as Project
+  } catch (error: any) {
+    return null
+  }
 }
