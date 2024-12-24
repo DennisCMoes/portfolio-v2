@@ -5,6 +5,9 @@ import { JetBrains_Mono } from 'next/font/google'
 import { ReactNode } from 'react'
 import { MantineProvider } from '@mantine/core'
 
+import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 import Footer from '@/components/footer'
 import cn from 'classnames'
 import Navbar from '@/components/navbar'
@@ -44,6 +47,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </div>
           <Footer font={jetbrains} />
         </MantineProvider>
+
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
