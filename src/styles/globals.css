@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.no-transition * {
+  transition: none !important;
+}
+
+@media only screen and (min-width: 768px) {
+  .project-card {
+    clip-path: inset(0px round 6px);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .project-card:hover {
+    clip-path: inset(4px round 8px);
+  }
+}

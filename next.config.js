@@ -1,6 +1,9 @@
+const withMDX = require('@next/mdx')()
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  pageExtensions: ['ts', 'tsx', 'mdx'],
   images: {
     domains: [
       'images.unsplash.com',
@@ -10,4 +13,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+module.exports = withMDX(nextConfig)

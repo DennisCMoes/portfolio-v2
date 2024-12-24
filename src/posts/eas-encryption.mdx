@@ -1,0 +1,136 @@
+---
+title: 'EAS File Encryption: Secure Your Data'
+subtitle: 'A Command-Line Interface for Secure File Encryption and Decryption'
+date: '2024-01-10T00:00:00.000Z'
+repository: 'AES-File-Encryption'
+isFeatured: true
+language: 'Java'
+---
+
+Data security has always fascinated me. The ability to transform readable information into an impenetrable cipher feels almost magical. I decided to explore this concept by building a Java-based CLI tool to encrypt and decrypt files using the **EAS algorithm**. Here's the story of how this project came to life, the challenges I faced, and what I learned along the way.
+
+## **The Spark: Why Build an Encryption Tool?**
+
+In today's digital age, data breaches are a constant threat. I wanted to understand how encryption works under the hood, not just in theory but in practice. While standard encryption tools exist, there's something deeply satisfying about creating your own solution. That's how this project began: as a way to learn, experiment, and create something useful.
+
+The EAS algorithm was the perfect starting point. Lightweight yet effective, it aligned with my goal of creating a simple but powerful tool. The idea was to build a command-line application that anyone could use, even without a technical background.
+
+## **Building the Heart: The Encryption Logic**
+
+At the core of this project is the EAS encryption algorithm. Here's a snippet from my implementation, which performs the encryption and decryption:
+
+<CodeBlockComponent language="java"
+  code={
+`private byte[] process(byte[] data, byte[] key) {
+    byte[] result = new byte[data.length];
+
+    for (int i = 0; i < data.length; i++) {
+      result[i] = (byte) (data[i] ^ key[i % key.length]);
+    }
+
+    return result;
+
+}`}
+/>
+
+This process method is the workhorse of the application. It takes the data and a key as inputs and applies a simple XOR operation to transform the data. The beauty of XOR lies in its reversibility: applying it again with the same key decrypts the data.
+
+Here's how this method ties into the encryption and decryption commands:
+
+<CodeBlockComponent language="java"
+code={`public void encryptFile(File inputFile, File outputFile, String key) throws IOException {
+    processFile(inputFile, outputFile, key, true);
+}
+
+public void decryptFile(File inputFile, File outputFile, String key) throws IOException {
+processFile(inputFile, outputFile, key, false);
+}`}
+/>
+
+These methods ensure a seamless flow, wrapping the underlying logic in clear, easy-to-use functions.
+
+## **Making It Usable: The Command-Line Interface**
+
+Designing the CLI was an exercise in balancing simplicity with functionality. The application had to be intuitive for users who might not be familiar with encryption tools. Here's what the main interface looks like:
+
+<CodeBlockComponent language="java"
+code={`public static void main(String[] args) {
+    if (args.length < 4) {
+      System.out.println("Usage: java Encryptor [encrypt|decrypt] [inputFile] [outputFile] [key]");
+      return;
+    }
+
+    String command = args[0];
+
+    File inputFile = new File(args[1]);
+    File outputFile = new File(args[2]);
+
+    String key = args[3];
+
+    Encryptor encryptor = new Encryptor();
+
+    try {
+      if (command.equalsIgnoreCase("encrypt")) {
+        encryptor.encryptFile(inputFile, outputFile, key);
+        System.out.println("File encrypted successfully!");
+      } else if (command.equalsIgnoreCase("decrypt")) {
+        encryptor.decryptFile(inputFile, outputFile, key);
+        System.out.println("File decrypted successfully!");
+      } else {
+        System.out.println("Unknown command: " + command);
+      }
+    } catch (IOException e) {
+      System.err.println("Error processing the file: " + e.getMessage());
+    }
+
+}`}
+/>
+
+This main method is the starting point for users. It validates the input, determines the operation (encryption or decryption), and delegates the task to the appropriate methods. The feedback messages ensure users know exactly what's happening.
+
+## **Handling Files: Efficiency and Flexibility**
+
+One of the biggest challenges was designing the tool to handle files of any size, from tiny text files to large binaries. Java's FileInputStream and FileOutputStream classes were indispensable here. By processing files in chunks, I ensured the tool could operate efficiently without consuming too much memory.
+
+Here's the method that performs the heavy lifting:
+
+<CodeBlockComponent language="java"
+code={`private void processFile(File inputFile, File outputFile, String key, boolean encrypt) throws IOException {
+    try (FileInputStream fis = new FileInputStream(inputFile);
+      FileOutputStream fos = new FileOutputStream(outputFile)) {
+      byte[] buffer = new byte[1024];
+      int bytesRead;
+      byte[] keyBytes = key.getBytes(StandardCharsets.UTF_8);
+
+      while ((bytesRead = fis.read(buffer)) != -1) {
+        byte[] processed = process(Arrays.copyOf(buffer, bytesRead), keyBytes);
+        fos.write(processed);
+      }
+    }
+
+}`}
+/>
+
+This method reads the input file in chunks of 1 KB, processes each chunk, and writes the result to the output file. This approach ensures the tool is not only memory-efficient but also scalable.
+
+## **Challenges Along the Way**
+
+This project wasn't without its hurdles. One of the trickiest parts was managing key security. In its current form, the key is passed as a string, which isn't the most secure approach. Exploring secure key management solutions is something I plan to address in future iterations.
+
+Another challenge was testing. Encryption is unforgiving—one small mistake in the implementation can render the data unrecoverable. Rigorous testing with different file types and sizes helped iron out the bugs.
+
+## **Reflections and Future Goals**
+
+This project taught me a lot about encryption, Java's file handling capabilities, and the importance of user-centric design. While the tool is functional, there's always room for improvement. Future enhancements could include:
+
+• Support for more advanced encryption algorithms like AES.
+
+• A secure vault for managing keys.
+
+• A GUI version for broader accessibility.
+
+## **Conclusion**
+
+Creating this EAS file encryption tool has been a rewarding journey. It's not just about encrypting files—it's about understanding the underlying principles and building something meaningful. Whether you're new to encryption or a seasoned developer, I hope this story inspires you to explore the fascinating world of cryptography.
+
+Let me know if you'd like to adjust the tone or focus further!

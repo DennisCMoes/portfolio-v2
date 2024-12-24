@@ -1,83 +1,62 @@
 import path from 'path'
 
 import { promises as fs } from 'fs'
-import matter from 'gray-matter'
-import { FullProject, ProjectMetaData } from '@/types/props'
+import { MDXRemoteSerializeResult } from 'next-mdx-remote/rsc'
+import { serialize } from 'next-mdx-remote/serialize'
 
-const POST_DIRECTORY: string = path.resolve('./posts')
-const ENVIRONMENT = process.env.NODE_ENV
+import { Project } from '@/types'
 
-/**
- * Returns the markdown file with the given slug of the project.
- *
- * @param {string} slug - The slug of the project to find.
- * @returns {Promise<FullProject>} - The full converted markdown file.
- */
-export async function getProject(slug: string): Promise<FullProject> {
-  // Checks if the slug ends with .md
-  const hasFileType = slug.endsWith('.md')
+const postsDir = path.resolve('src/posts')
 
-  try {
-    const content: string = await fs.readFile(
-      path.join(POST_DIRECTORY, hasFileType ? slug : `${slug}.md`),
-      'utf-8'
+export async function getAllProjects(): Promise<Project[]> {
+  // Read all filenames and their metadata
+  const dirEntries = await fs.readdir(postsDir, { withFileTypes: true })
+
+  const filenames: string[] = dirEntries
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.mdx'))
+    .map((entry) => entry.name)
+
+  return (
+    await Promise.all(
+      filenames.map(async (name): Promise<Project> => {
+        const fileContent = await fs.readFile(path.join(postsDir, name), {
+          encoding: 'utf-8',
+        })
+
+        const serializedContent = await serialize(fileContent, {
+          parseFrontmatter: true,
+        })
+
+        return {
+          ...serializedContent.frontmatter,
+          slug: name.replaceAll(' ', '-').replace('.mdx', ''),
+        } as Project
+      })
     )
-
-    // Read the raw file and convert it to markdown with header data
-    return matter(content) as FullProject
-  } catch (error: any) {
-    throw new Error(`Error while retrieving project: ${error.message}`)
-  }
-  // Reads the contents of the file and converts it to utf-8
+  ).sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
 }
 
-/**
- * Retrieves all the markdown projects.
- *
- * @returns {Promise<FullProject[]>} - An array of all projects.
- */
-export async function getAllProjects(): Promise<FullProject[]> {
-  const excludeDrafts = ENVIRONMENT === 'production'
+export async function getAllFeaturedProjects(): Promise<Project[]> {
+  return (await getAllProjects()).filter((project) => project.isFeatured)
+}
 
+export async function getProjectBySlug(slug: string): Promise<Project | null> {
   try {
-    // Read the names of all files in the POST_DIRECTORY
-    const posts: string[] = await fs.readdir(POST_DIRECTORY)
-
-    // Creates an array of promises for each project
-    const projectPromises: Promise<FullProject>[] = posts.map(
-      async (_post: string): Promise<FullProject> => await getProject(_post)
-    )
-
-    // Awaits all promises to get all projects
-    const projects: FullProject[] = await Promise.all(projectPromises)
-
-    // Sort the projects based on the date
-    projects.sort((a: FullProject, b: FullProject) => {
-      return new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
+    const fileContent = await fs.readFile(path.join(postsDir, slug + '.mdx'), {
+      encoding: 'utf-8',
     })
 
-    // Exclude draft projects if we are in production
-    return excludeDrafts
-      ? projects.filter((project: FullProject) => !project.data.draft)
-      : projects
-  } catch (error: any) {
-    throw new Error(`Error while retrieving all the projects: ${error.message}`)
-  }
-}
+    const serializedContent = await serialize(fileContent, {
+      parseFrontmatter: true,
+    })
 
-/**
- * Retrieves only the metadata for all the projects.
- *
- * @returns {Promise<ProjectMetaData[]>} - An array of the metadata.
- */
-export async function getAllProjectData(): Promise<ProjectMetaData[]> {
-  try {
-    // Retrieves all projects
-    const projects: FullProject[] = await getAllProjects()
-
-    // Extract and return project metadata
-    return projects.map((item: FullProject) => item.data)
+    return {
+      ...serializedContent.frontmatter,
+      slug: slug,
+      date: new Date(serializedContent.frontmatter.date as string),
+      content: serializedContent as MDXRemoteSerializeResult,
+    } as Project
   } catch (error: any) {
-    throw new Error(`Error while retrieving project data: ${error.message}`)
+    return null
   }
 }

@@ -1,43 +1,22 @@
-import { GrayMatterFile } from 'gray-matter'
+import type { MDXRemoteSerializeResult } from 'next-mdx-remote/rsc'
 
-type Prettify<T> = {
-  [K in keyof T]: T[K]
-}
+import { IconName } from '@/components/tabler-icon'
 
-type Btn = {
-  label: string
-} & Children
-
-export type Children = {
-  children: React.ReactNode
-}
-
-export type Link = {
-  href?: string
-  newTab?: boolean
-} & Btn
-
-export type Button = {} & Btn
-
-export type ProjectMetaData = {
+export type Project = {
   title: string
-  description: string
+  subtitle: string
   slug: string
-  coverImage: string
-  technologies: string[]
-  date: string
+  date: Date
+  content: MDXRemoteSerializeResult
+  className?: string
+  isFeatured?: boolean
+  language: string
   repository: string
-  draft: boolean
+  icon: IconName
 }
 
-export type Project = Prettify<
-  {
-    data: ProjectMetaData
-  } & GrayMatterFile<string>
->
-
-export type DetailPage = {
-  params: {
-    slug: string
-  }
+export type WorkExperience = {
+  title: string
+  subtitle: string
+  date: string
 }
