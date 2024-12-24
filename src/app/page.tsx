@@ -60,7 +60,7 @@ export default async function Home() {
         <Section
           id="projects"
           label="Featured Projects"
-          className="flex flex-col gap-4"
+          className="flex flex-col gap-12"
         >
           {projects.map((project) => (
             <ProjectCard key={project.title} {...project} />

@@ -26,7 +26,7 @@ export default function ProjectCard({
         </h1>
         <h2>{language}</h2>
         <h2 className="text-secondary">{subtitle}</h2>
-        <div className="text-primary-light flex flex-row gap-1 group-hover:text-orange transition-colors duration-200">
+        <div className="text-primary-light flex flex-row gap-1 transition-colors duration-200 group-hover:text-orange">
           Learn more
           <IconArrowRight className="transition-transform duration-300 group-hover:translate-x-2" />
         </div>

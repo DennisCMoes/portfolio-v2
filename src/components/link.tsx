@@ -8,11 +8,11 @@ type Props = {
 
 export default function PortfolioLink({ url, label, newTab = true }: Props) {
   return (
-    <Link 
+    <Link
       target={newTab ? '_blank' : ''}
-      rel={newTab ? 'noopener noreferrer' : ''} 
+      rel={newTab ? 'noopener noreferrer' : ''}
       href={url}
-      className="text-blue hover:text-orange transition-colors duration-200"
+      className="text-blue transition-colors duration-200 hover:text-orange"
     >
       {label}
     </Link>

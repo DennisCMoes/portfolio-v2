@@ -22,7 +22,9 @@ const components: MDXComponents = {
   h1: ({ children }) => <h1 className="text-3xl">{children}</h1>,
   h2: ({ children }) => <h2 className="text-2xl">{children}</h2>,
   h3: ({ children }) => <h3 className="text-xl">{children}</h3>,
-  ul: ({ children }) => <ul className="flex flex-col gap-4 list-disc">{children}</ul>
+  ul: ({ children }) => (
+    <ul className="flex list-disc flex-col gap-4">{children}</ul>
+  ),
 }
 
 export default function MDXDisplayer({ project }: Props) {
