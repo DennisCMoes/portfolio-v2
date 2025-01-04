@@ -1,9 +1,7 @@
-'use client'
-
 import type { MDXComponents } from 'mdx/types'
 import type { Project } from '@/types'
 
-import { MDXRemote } from 'next-mdx-remote'
+import { MDXRemote } from 'next-mdx-remote/rsc'
 
 import VideoComponent from '@/components/postPage/VideoComponent'
 import ImageComponent from '@/components/full-width-image'
@@ -30,7 +28,7 @@ const components: MDXComponents = {
 export default function MDXDisplayer({ project }: Props) {
   return (
     <div className="flex flex-col gap-4">
-      <MDXRemote {...project.content} components={components} />
+      <MDXRemote source={project.content} components={components} />
     </div>
   )
 }

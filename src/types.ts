@@ -1,5 +1,3 @@
-import type { MDXRemoteSerializeResult } from 'next-mdx-remote/rsc'
-
 import { IconName } from '@/components/tabler-icon'
 
 export type Project = {
@@ -7,7 +5,7 @@ export type Project = {
   subtitle: string
   slug: string
   date: Date
-  content: MDXRemoteSerializeResult
+  content: string
   className?: string
   isFeatured?: boolean
   language: string

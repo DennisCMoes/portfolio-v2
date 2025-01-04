@@ -3,6 +3,7 @@ import path from 'path'
 import { promises as fs } from 'fs'
 import { MDXRemoteSerializeResult } from 'next-mdx-remote/rsc'
 import { serialize } from 'next-mdx-remote/serialize'
+import matter from 'gray-matter'
 
 import { Project } from '@/types'
 
@@ -46,15 +47,13 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
       encoding: 'utf-8',
     })
 
-    const serializedContent = await serialize(fileContent, {
-      parseFrontmatter: true,
-    })
+    const { data: frontmatter, content } = matter(fileContent)
 
     return {
-      ...serializedContent.frontmatter,
+      ...frontmatter,
       slug: slug,
-      date: new Date(serializedContent.frontmatter.date as string),
-      content: serializedContent as MDXRemoteSerializeResult,
+      date: new Date(frontmatter.date as string),
+      content: content,
     } as Project
   } catch (error: any) {
     return null
