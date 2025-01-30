@@ -1,3 +1,4 @@
+import PortfolioLink from '@/components/link'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -30,71 +31,57 @@ export default function About() {
       <div className="flex flex-col gap-4 font-medium">
         <p>
           I&apos;m a software developer and occasional bug whisperer driven by
-          curiosity, creativity, and the challenge of solving complex problems.
-          My journey into coding started with a simple (and a tiny bit) naïve
-          question: <em>How hard can it be?</em> Well..... it&apos;s a lot
-          harder than I though. But I love the fact that each project brings me
-          a new challenge and a new opportunity to learn, tinker, and sometimes
-          (a bit to often) crash an entire system along the way.
+          curiosity, creativity, and the great feeling of solving coding
+          problems. My story started a few years ago when I needed to choose my
+          next educational path. I didn&apos;t know what I wanted to do, but I
+          always thought that coding looked very cool. So I questioned myself:{' '}
+          <em>How hard can it be?</em> Well....... it&apos;s a lot harder than I
+          thought. But that&apos;s the fun part of it, isn&apos;t it? Having new
+          challenges and new opportunities to learn, tinker, and somtimes (but
+          more often than I like) crash the entire system along the way.
         </p>
         <p>
-          Take my latest project for example, the custom operating system.
-          It&apos;s designed for the i386 chip, and it plays Pong. I know, very
-          revolutionary. But beneath the somewhat unserious exterior lies a
-          treasy of knowledge. It&apos;s an exploration of memory management,
-          kernel design, and hardware-level programming. It taught me that even
-          a simple game can be a hell of a challenge, especially when the code
-          decides it would rather restart the CPU than draw a ball on the
-          screen.
+          In my free time I like to work on my own projects. It ranges from
+          making mobile weather apps (
+          <PortfolioLink
+            label="Not another weather app"
+            url="/projects/not-another-weather-app"
+          />
+          ), making an database object relational mapper in Java (
+          <PortfolioLink label="DB-ORM" url="/projects/db-orm" />
+          ), to making a full-on operating system called{' '}
+          <PortfolioLink label="Pong-OS" url="/projects/pong-os" /> just to play
+          pong on it. I work on a wide range of projects to explore what I tryly
+          enjoy. And in the process, I end up learning a lot about... well...
+          almost everything.
         </p>
         <p>
-          Then there&apos;s my Java-based object-relational mapper (ORM), which
-          maps Java classes and objects to SQL queries. This project taught me
-          how to balance the elegance of clean abstractions and reflections with
-          the power of raw SQL syntax. And let&apos;s not forget my EAS file
-          encryption tool, it&apos;s a command-line application that tries to
-          let you believe &quot;Your files are safe with me&quot;, assuming that
-          you&apos;re using it correctly. These aren&apos;t some projects or
-          exercises. It&apos;s more of a way to learn deeper concepts within the
-          world of programming.
+          But there is more to me than just coding. When I&apos;m not fighting
+          the missing semicolons, you can find me doing my other hobbies which
+          includes reading books, gaming, and my love for airplanes.
         </p>
         <p>
-          My current project? Trying to relearn the elusive realm of data
-          structures and algorithms. It&apos;s a journey back to the basics, but
-          with a fresh perspective and a deeper understanding of how these
-          fundamental concepts shape the software we build.
-        </p>
-        <h2 className="text-3xl">Beyond the Code</h2>
-        <p>
-          When I&apos;m not hating my life trying to figure out where I forgot a
-          semicolon, you can find me doing my other hobbies including reading
-          books. I mostly read non-fiction books, which I use to learn more
-          about topics which I&apos;m very interested in.
+          As for books, I mostly read non-fiction books. Sometimes about a new
+          topic to learn, and sometimes just a depiction of real-life events.
+          And the gaming side? Well I love a great written game, a game where
+          you can just sink into and forget what time it is because you get so
+          invested in the story. But, I can also get lost for days playing a
+          great city builder. It just gives me a great outles for my creativity
+          and city planning about where the next city part should be.
         </p>
         <p>
-          Speaking of hobbies, I have a not-so-secret love for classic cards.
-          Old Mustangs, in particular. They&apos;re my favorite. There&apos;s
-          just something magical about the roar of those engines. I love hearing
-          about their mechanics, history, and design. It&apos;s probably just a
-          big nostalgia trip for a time I haven&apos;t lived through. Either
-          way, I love those old muscle cars.
+          And last but not least, airplanes. I&apos;m just fascinated by them. I
+          love to learn everything about them. There&apos;s something
+          awe-inspiring about standing next to a jetliner plane, feeling so
+          small in comparison. Their sheer scale and engineering makes me
+          appreciate such an invention.
         </p>
         <p>
-          And of course we can&apos;t forget about gaming. I love a good written
-          RPG, but I can also get lost for a few hours in a city builder game,
-          which gives me a good outlet for creativity and planning.
+          So whether I&apos;m coding, reading, gaming, or admiring a jetliner up
+          close, I&apos;m always trying to chase curiosity and learning
+          something new.
         </p>
-        <p>
-          Outside of all this, I truly believe in the power of balance. Life
-          can&apos;t be all about coding and algorithms. Sometimes you just need
-          a good distraction, whether that is a good book, a roaring muscle car,
-          or just a good meeting with a friend. And in many cases, if
-          you&apos;re stuck with a problem, the solution will come when you
-          don&apos;t focus on it. So, whether I&apos;m reading, driving, gaming,
-          or just having a laugh with my friends, I&apos;m always looking for
-          new ways to learn, grow, and recharge.
-        </p>
-        <p>Thank you for coming to my ted talk :)</p>
+        <p>So thank you for coming to my ted talk :)</p>
       </div>
     </div>
   )
