@@ -1,0 +1,126 @@
+---
+title: 'Pong OS'
+subtitle: 'A custom ring-0 bear metal kernel'
+date: '2024-12-31T00:00:00.000Z'
+repository: 'Pong-OS'
+isFeatured: true
+language: 'C and Assembly'
+---
+
+Well let's start by clearing the record by saying that this is a ring 0 bare-metal microkernel instead of a full fledged OS. But let's be honest, it just doesn't have the same ring to it.
+
+<ImageComponent
+  src="/posts/pong-os/main_menu.png"
+  alt="The main menu of the OS"
+/>
+
+Where do I start? Well it all started by me wanting to be able to tell everyone that I had made a custom OS **just** to play pong. And guess what, after a few months of hard work. I can now finally tell everybody I did just that :)
+
+## So, how does it work?
+
+Let's start with the bootloader. Every OS needs a warm-up act, in the world of custom OS development, that's the bootloader. It's a compact, no-nonsense 512 byte program that is loaded by the BIOS into memory at the start address of <InlineCodeComponent text="0x7c00" />
+
+The process starts with the CPU which is booted in 16-bit real-mode for backwards compatibility reasons. And for us to use the full potential of the i386 chip, we will transition the CPU from the afformentioned 16-bit real-mode to the 32-bit protected mode. This way our program can take full advantage of the CPU's advanced capabilities.
+
+To achieve this, we first need to set up a **Global Descriptor Table (GDT)**. You can think of this a fancy clipboard that the CPU uses to understand the layout of the memory. It defines segments like our code semgent and data segments. And because of this, if we try to enter protected mode without the GDT it would feel like stepping into a building without knowing where to go.
+
+Once the GDT is in place, the bootloader will flip the switch to 32-bit mode by setting one specified bit in the <InlineCodeComponent text="CR0" /> register. With that being done, we can perform a far jump to flush the pipeline (fancy IT speak for 'resetting the internal GPS') and then we have finally landed into 32-bit world.
+
+But we still cannot play our game. To do that we first need to load in the kernel. Which is a core component of an operating system that serves as the main interface between the computer's physical hardware and the processes running on it. And since this OS was designed just to play Pong, I could make it intentionally lightweight without any bloatware. Because of this, the bootloader can just pull the kernel off the disk and place it neatly into memory at <InlineCodeComponent text="0x0100000" /> without any needed magic. Then after it being loaded in, the bootloader will hand over the controls to the kernel and retires, it's job is done.
+
+<ImageComponent
+  src="/posts/pong-os/os_architecture.png"
+  alt="The architecture of the OS under the hood"
+/>
+
+## Coding a Kernel in C
+
+For this project I decided to code the kernel in C, an honestly, it was an easy decision. For an operating system you need binary code that will be directly injected into the CPU. This means I can only use languages that can compile to binary. So there were a few choices such as Rust, C++ or even plain old assembly. In the end I chose for C. I could've used Rust or C++, but I did not want to learn those languages and their paradigms. I could have gone for assembly, because it is very handy for low-level operations, but writing an entire kernel in it would be to high maintencance. And that's where C strikes the perfect balance between staying close enough to the hardware, but high-level enough to not hate my life while coding this project.
+
+<ImageComponent src="/posts/pong-os/game.png" alt="The game" />
+
+## Design and Key Features
+
+The kernel's main job is to set up the system environment for Pong. Making sure everything works before starting the Pong game. This kernel does have a **very** minimalistic design, which only focusses on what's absolutely necessary:
+
+- **Interrupt Handling** - The kernel sets up the **Interrupt Descriptor Table (IDT)** and registers custom handlers for both hardware and softwrae interrupts. This makes sure that events such as keyboard inputs, timers, and other crucial events don't go unnoticed. Without this, the OS could become unresponsive.
+- **Memory Management** - While Pong doesn't need a complex memory allocator, the kernel still reserves and manages memory for its code, data, and stack. It's more about keeping things tidy so that nothing accidentally overwrites something else.
+- **Game Logic Integration** - The Pong game itself lives as part of the kernel, integrated directly into its main loop. This means, that when the system is up and running, the kernel is **_Pong_**
+
+The design philosophy here is 'do more with less'. The kernel is small and fast for one single purpose: running Pong. And guess what, it works great, and who needs more when you have a pixel-perfect paddle and a bouncing ball?
+
+# Interruptors (IDT, ISR, and IRQ)
+
+All operating systems need a way to respond to interruptions. Whether it is from hardware, software, or the occasional existential crisis from it's developer. This is where the **Interrupt Descriptor Table (IDT)**, **Interrupt Service Routines (IRS)**, and **Interrupt Requests (IRQ)** come into play. For a game like Pong, these systems are the unsung heroes, ensuring that inputs from the keyboard, screen updates, and timer events happen without any issues.
+
+## The IDT
+
+The **Interrupt Descriptor Table** is like a phonebook for the CPU, mapping each interrupt number to a specific handler function. Whether it's a hardware interrupt (like a key press) or a software interrupt (like a system call), the CPU consults the IDT to figure out what to do next.
+
+Setting up the IDT involves defining 256 entries, one for each interrupt. Not all of these are used, but having the full table gives flexibility for the future. For instance:
+
+- **Entries 0-31** are reserved for CPU exceptions, like divide-by-zero errors.
+- **Entries 32-47** are used for hardware interrupts (IRQs).
+- **Entries 48-255** are empty for future extensions
+
+## The ISR
+
+An **Interrupt Service Routine (IRS)** is the code that gets executed when an interrupt occurs. Think of an ambulance arriving to the scene of an accident. It knows what to do and how to stabalize the environment.
+
+For example, when a divide-by-zero error occurs (interrupt 0), the CPU triggers an ISR. In this case, the exception handler for this OS doesn't just halt the system, it displays the error message both on screen and in the terminal via serial output.
+
+## The IRQ
+
+**Interrupt Requests (IRQs)** are hardware-generated interrupts. Devices like the keyboard, timer, and screen all use IRQs to signal the CPU that they need some attention. For example:
+
+- **IRQ 0** - Triggered by the Programmable Interval Timer (PIT) which is used to keep Pong running at a consistent speed.
+- **IRQ 1** - Fired by the keyboard controller when a key is pressed or released.
+
+In Pong-OS, handling IRQs means first routing them through the **Programmable Interrupt Controller (PIC)** and then passing them on the approriate ISR. This process involves some extra steps such as remapping the PIC to avoid conflicting with CPU exceptions. Once these are remapped they can be routed to a specific handler. For example, the keyboard interrupt triggers a handler that will read the scancode, processes it, and moves the paddle in the correct direction in Pong.
+
+## Double Buffering
+
+One of the key features of Pong-OS is its graphics implementation, which uses double buffering to provide a smooth and flicker-free rendering. So what is double buffering? Imagine that you're a magician with two hats. While you're secretly preparing a rabbit in one hat, the audience is mesmerized by the other hat. Tha's how this implementation of double buffering works.
+
+We use two buffers to hold the frame data. While one buffer is being displayed, the other buffer is being drawn to. Once the drawing is complete, we swap the hats (buffers), and voila! The audiece (players) see a smooth, flicker-free game.
+
+## The Keyboard Controller
+
+Our little keyboard controller is responsible for handling all the keyboard input and translating it into actions within the game. The controller uses the IRQ1 interrupt to detect any key presses and releases.
+
+In this case we have defined our keyboard layout as a simplified US keyboard. And when a key is pressed, it will read the corresponding scancode from the keyboard port (0x60) and translated into a character using this layout.
+
+## PIT
+
+Meet the Timekeeper, better known as the Programmable Interval Timer (PIT). This component is responsible for generating timer interrupts at regular intervals, ensuring that the game state is updated, animations are handles, and gameplay remains smooth.
+
+This bad boy of a PIT operates at a base frequency of exactly 1193181 Hz. Then to achieve a desired frequency, a divisor is calculated and set in the PIT control registers.
+
+## Fonts
+
+Last but not least, let's talk about fonts! Fonts make sure that each letter and number looks fabulous on screen. So how does Pong-OS handle our font then?
+
+Well, our font is stored in a glorious 8x8 pixel format for ASCII characters 0 to 127. And each character gets its own 8-byte representation. And when we want to draw a character to the screen, we will call the <InlineCodeComponent text="font_char" /> function with the specified character we want to display and then we read the entry in the array to get the specified coordinates we need to draw to:
+
+<CodeBlockComponent language={"c"}
+code={
+`void font_char(u8 character, size_t xCor, size_t yCor, u8 colour) {
+    if (character >= 128) return;
+
+    const u8 \*glyph = FONT[(u8)character];
+
+    for (size_t row = 0; row < 8; row++) {
+      for (size_t col = 0; col < 8; col++) {
+        if (glyph[row] & (1 << col)) {
+          screen_set(xCor + col, yCor + row, colour);
+        }
+      }
+    }
+
+}`} />
+
+## Conclusion
+
+So, what did I take away from completing this project? Quite a bit, actually. First of all, I realized that my planning skills still need a bit of an improvement. Something I definetely have to work on for future projects. But besides that, I have gotten a much deeper understanding of how an operating system works under the hood. I gained a lot of insight into the boot process, how a computer can start itself up and then display a fully functional OS, and the role of memory management and specific hardwre registers in making it all happen.
+
+Now for the million dollar question, would I do it again? Absolutely. The knowledge I've gained is invaluable, and the questioning of my insanity were well worth it.
