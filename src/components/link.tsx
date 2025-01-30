@@ -2,11 +2,11 @@ import Link from 'next/link'
 
 type Props = {
   url: string
-  newTab: boolean
+  newTab?: boolean
   label: string
 }
 
-export default function PortfolioLink({ url, label, newTab = true }: Props) {
+export default function PortfolioLink({ url, label, newTab = false }: Props) {
   return (
     <Link
       target={newTab ? '_blank' : ''}
