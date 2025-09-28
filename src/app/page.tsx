@@ -45,8 +45,8 @@ export default async function Home() {
             and working part-time at{' '}
             <PortfolioLink
               newTab={true}
-              url={'https://www.chipsoft.com'}
-              label={'ChipSoft'}
+              url={'https://www.qogita.com/'}
+              label={'Qogita'}
             />
             . In my free time, I enjoy building fun and interactive
             applications.
@@ -89,9 +89,14 @@ export default async function Home() {
 
 const workExperienceList: WorkExperience[] = [
   {
+    title: 'Qogita',
+    subtitle: 'Intern Software Engineer',
+    date: 'sep. 2025 - present'
+  }
+  {
     title: 'ChipSoft',
     subtitle: 'Developer R&D',
-    date: 'apr. 2023 - present',
+    date: 'apr. 2023 - aug. 2025',
   },
   {
     title: 'Crafter',
