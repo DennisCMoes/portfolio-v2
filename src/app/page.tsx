@@ -92,7 +92,7 @@ const workExperienceList: WorkExperience[] = [
     title: 'Qogita',
     subtitle: 'Intern Software Engineer',
     date: 'sep. 2025 - present'
-  }
+  },
   {
     title: 'ChipSoft',
     subtitle: 'Developer R&D',
